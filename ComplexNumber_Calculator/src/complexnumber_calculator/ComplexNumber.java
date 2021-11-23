@@ -50,6 +50,15 @@ public class ComplexNumber {
     public double getIm() {
         return Im;
     }
+    
+    /**
+     * 
+     * @return 
+     */
+    public String getComplexNumber(){
+ 
+        return this.toString();
+    }
 
     /**
      * Set the new value of real part of this complex number

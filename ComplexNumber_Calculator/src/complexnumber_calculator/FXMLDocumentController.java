@@ -5,7 +5,11 @@
 package complexnumber_calculator;
 
 import java.net.URL;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +18,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -67,9 +72,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button retrieve_btn;
     
+    private ObservableList<ComplexNumber> values;
+    @FXML
+    private Button insert_btn;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        values = FXCollections.observableArrayList();
+        values_column.setCellValueFactory(new PropertyValueFactory("complexNumber"));
+        stack_value.setItems(values);
+        
     }
 
     @FXML
@@ -107,25 +121,60 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void swap_function(ActionEvent event) {
     }
-
-    @FXML
-    private void add_function(ActionEvent event) {
-    }
-
+    
     @FXML
     private void storeVar_function(ActionEvent event) {
     }
 
     @FXML
-    private void mul_function(ActionEvent event) {
+    private void add_function(ActionEvent event) {
+        
+        ComplexNumber result = new ComplexNumber();
+        
+        for(ComplexNumber z : values)
+            result = Calculator.add(result, z);
+        
+        values.clear();
+        values.add(result);
+        
+    }
+    
+    @FXML
+    private void sub_function(ActionEvent event) {
+        
+        ComplexNumber result = values.get(values.size()-1);
+        
+        for(int i=values.size()-2; i>=0; i--)
+            result = Calculator.sub(result, values.get(i));
+        
+        values.clear();
+        values.add(result);
+        
     }
 
     @FXML
-    private void sub_function(ActionEvent event) {
+    private void mul_function(ActionEvent event) {
+        
+        ComplexNumber result = new ComplexNumber(1,1);
+        
+        for(ComplexNumber z : values)
+            result = Calculator.mul(result, z);
+        
+        values.clear();
+        values.add(result);
     }
 
     @FXML
     private void div_function(ActionEvent event) {
+        
+        ComplexNumber result = values.get(values.size()-1);
+        
+        for(int i=values.size()-2; i>=0; i--)
+            result = Calculator.div(result, values.get(i));
+        
+        values.clear();
+        values.add(result);
+        
     }
 
     @FXML
@@ -134,6 +183,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void retrieve_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void insert_function(ActionEvent event) {
+        
+        values.add(0,ComplexNumber.parseComplex(textArea.getText()));
+        textArea.clear();
+        
     }
 
 }
