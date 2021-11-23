@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.4485006518904824" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="769.0" prefWidth="778.0" style="-fx-background-color: #2F4F4F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
+         <children>
+            <TextArea layoutX="444.0" layoutY="20.0" prefHeight="410.0" prefWidth="511.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="10.0" />
+            <TableView layoutX="79.0" layoutY="88.0" prefHeight="410.0" prefWidth="233.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+              <columns>
+                <TableColumn prefWidth="232.0" text="VALUES" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
+         <children>
+            <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="267.0" layoutY="121.0" prefHeight="437.0" prefWidth="776.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button layoutX="209.0" layoutY="125.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="242.0" style="-fx-background-color: #C0C0C0;" text="√" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="55.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="120.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="234.0" style="-fx-background-color: #C0C0C0;" text="Duplicate" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Italic" size="40.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Inverse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="40.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="212.0" style="-fx-background-color: #C0C0C0;" text="+x" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="204.0" layoutY="120.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Drop" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="40.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="398.0" layoutY="120.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Clear" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="40.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="398.0" layoutY="120.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="191.0" style="-fx-background-color: #C0C0C0;" text="-x" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="398.0" layoutY="120.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Swap" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="40.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="585.0" layoutY="331.0" mnemonicParsing="false" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="+" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="Arial Italic" size="55.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="585.0" layoutY="117.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="&gt;x" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="x" textAlignment="CENTER" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Arial Italic" size="55.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="-" textAlignment="CENTER" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="55.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="÷" textAlignment="CENTER" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Arial Italic" size="55.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="=" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Italic" size="55.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button layoutX="585.0" layoutY="218.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="&lt;x" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </GridPane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
