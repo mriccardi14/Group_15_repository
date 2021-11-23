@@ -5,44 +5,71 @@
 package complexnumber_calculator;
 
 /**
- *
- * @author 
+ * Class for complex numbers representation
+ * @author Group_15
  */
 public class ComplexNumber {
 
     private double Re;
     private double Im;
 
+    /**
+     * Empty costructor for a complex number that builds a complex number with 
+     * real and imaginary parts both equal to 0.0
+     */
     public ComplexNumber() {
         this.Re = 0.0;
         this.Im = 0.0;
     }
 
+    /**
+     * Costructor for a complex number
+     * 
+     * @param Re real part of a complex number
+     * @param Im imaginary part of a complex number
+     */
     public ComplexNumber(double Re, double Im) {
         this.Re = Re;
         this.Im = Im;
     }
 
+    /**
+     * Return the value of real part of this complex number
+     * 
+     * @return the value of Re attribute
+     */
     public double getRe() {
         return Re;
     }
 
+    /**
+     * Return the value of imaginary part of this complex number
+     * 
+     * @return the value of Im attribute
+     */
     public double getIm() {
         return Im;
     }
 
+    /**
+     * Set the new value of real part of this complex number
+     * 
+     * @param Re the new real part
+     */
     public void setRe(double Re) {
         this.Re = Re;
     }
 
+    /**
+     * Set the new value of imaginary part of this complex number
+     * 
+     * @param Im the new imaginary part
+     */
     public void setIm(double Im) {
         this.Im = Im;
     }
 
-    /**
-     *
-     * @return
-     */
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -51,11 +78,7 @@ public class ComplexNumber {
         return hash;
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -77,10 +100,6 @@ public class ComplexNumber {
         return true;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
 
