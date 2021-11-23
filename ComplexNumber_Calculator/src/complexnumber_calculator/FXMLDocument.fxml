@@ -14,7 +14,7 @@
             <TextArea fx:id="textArea" layoutX="444.0" layoutY="20.0" prefHeight="410.0" prefWidth="511.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="10.0" />
             <TableView fx:id="stack_value" editable="true" layoutX="79.0" layoutY="88.0" prefHeight="410.0" prefWidth="233.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
               <columns>
-                <TableColumn prefWidth="232.0" text="VALUES" />
+                <TableColumn fx:id="values_column" prefWidth="232.0" text="VALUES" />
               </columns>
             </TableView>
          </children></AnchorPane>

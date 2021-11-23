@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +29,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea textArea;
     @FXML
-    private TableView<?> stack_value;
+    private TableView<ComplexNumber> stack_value;
+    @FXML
+    private TableColumn<ComplexNumber, String> values_column;
     @FXML
     private AnchorPane paneDown;
     @FXML
@@ -63,7 +66,7 @@ public class FXMLDocumentController implements Initializable {
     private Button equal_btn;
     @FXML
     private Button retrieve_btn;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
