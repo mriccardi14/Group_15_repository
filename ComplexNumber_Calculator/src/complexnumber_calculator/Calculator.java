@@ -11,12 +11,12 @@ package complexnumber_calculator;
  */
 public class Calculator {
     
-    public static ComplexNumber add(ComplexNumber z1, ComplexNumber z2){
-        return null;
+   public static ComplexNumber add(ComplexNumber z1, ComplexNumber z2){
+        return new ComplexNumber(z1.Re + z2.Re, z1.Im + z2.Im);
     }
     
     public static ComplexNumber sub(ComplexNumber z1, ComplexNumber z2){
-        return null;
+        return new ComplexNumber(z1.Re - z2.Re, z1.Im - z2.Im);
     }
     
     public static ComplexNumber mul(ComplexNumber z1, ComplexNumber z2){
