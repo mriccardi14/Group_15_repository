@@ -18,6 +18,7 @@ public class Calculator {
     public static ComplexNumber sub(ComplexNumber z1, ComplexNumber z2){
         return new ComplexNumber(z1.getRe() - z2.getRe(), z1.getIm() - z2.getIm());
     }
+    
     /**
      * This method do the multiply between two complex numbers
      * @param z the first ComplexNumber
@@ -29,6 +30,7 @@ public class Calculator {
         double img = z.getRe() *  y.getIm() + z.getIm() * y.getRe();
         return new ComplexNumber(real, img);
     }
+    
     /**
     * Divides one ComplexNumber by another
     * @param z1 the first ComplexNumber
@@ -41,7 +43,7 @@ public class Calculator {
         double outputRe = (int)(Math.round((output.getRe()/div) * 100000))/100000.0;
         double outputIm = (int)(Math.round((output.getIm()/div) * 100000))/100000.0;
         return new ComplexNumber(outputRe, outputIm);
-	}
+    }
     
     /**
      * This method do the inverse of a complex number
