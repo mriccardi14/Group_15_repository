@@ -11,7 +11,7 @@ import org.junit.*;
 
 /**
  *
- * @author mariopetagna
+ * @author Group 15
  */
 public class CalculatorTest {
      @Test

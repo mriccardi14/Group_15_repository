@@ -11,12 +11,24 @@ package complexnumber_calculator;
  */
 public class Calculator {
     
-   public static ComplexNumber add(ComplexNumber z1, ComplexNumber z2){
-        return new ComplexNumber(z1.getRe() + z2.getRe(), z1.getIm() + z2.getIm());
+   /**
+     * This method do the addition between two complex numbers
+     * @param z the first ComplexNumber
+     * @param y the second ComplexNumber
+     * @return the correct resultant ComplexNumber (z+y)
+     */
+   public static ComplexNumber add(ComplexNumber z, ComplexNumber y){
+        return new ComplexNumber(z.getRe() + y.getRe(), z.getIm() + y.getIm());
     }
     
-    public static ComplexNumber sub(ComplexNumber z1, ComplexNumber z2){
-        return new ComplexNumber(z1.getRe() - z2.getRe(), z1.getIm() - z2.getIm());
+    /**
+     * This method do the subtract between two complex numbers
+     * @param z the first ComplexNumber
+     * @param y the second ComplexNumber
+     * @return the correct resultant ComplexNumber (z-y)
+     */
+    public static ComplexNumber sub(ComplexNumber z, ComplexNumber y){
+        return new ComplexNumber(z.getRe() - y.getRe(), z.getIm() - y.getIm());
     }
     
     /**
@@ -33,13 +45,13 @@ public class Calculator {
     
     /**
     * Divides one ComplexNumber by another
-    * @param z1 the first ComplexNumber
-    * @param z2 the second ComplexNumber
-    * @return the correct resultant ComplexNumber (z1/z2)  
+    * @param z the first ComplexNumber
+    * @param y the second ComplexNumber
+    * @return the correct resultant ComplexNumber (z/y)  
     */		
-    public static ComplexNumber divide(ComplexNumber z1, ComplexNumber z2){  
-        ComplexNumber output = multiply(z1,z2.conjugate());
-        double div = Math.pow(z2.mod(),2);
+    public static ComplexNumber divide(ComplexNumber z, ComplexNumber y){  
+        ComplexNumber output = multiply(z,y.conjugate());
+        double div = Math.pow(y.mod(),2);
         double outputRe = (int)(Math.round((output.getRe()/div) * 100000))/100000.0;
         double outputIm = (int)(Math.round((output.getIm()/div) * 100000))/100000.0;
         return new ComplexNumber(outputRe, outputIm);

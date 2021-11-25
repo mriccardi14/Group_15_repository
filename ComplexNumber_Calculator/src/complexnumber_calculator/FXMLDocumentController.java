@@ -158,7 +158,7 @@ public class FXMLDocumentController implements Initializable {
         ComplexNumber result = new ComplexNumber(1,1);
         
         for(ComplexNumber z : values)
-            result = Calculator.mul(result, z);
+            result = Calculator.multiply(result, z);
         
         values.clear();
         values.add(result);
@@ -170,7 +170,7 @@ public class FXMLDocumentController implements Initializable {
         ComplexNumber result = values.get(values.size()-1);
         
         for(int i=values.size()-2; i>=0; i--)
-            result = Calculator.div(result, values.get(i));
+            result = Calculator.divide(result, values.get(i));
         
         values.clear();
         values.add(result);
