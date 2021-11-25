@@ -166,5 +166,27 @@ public class ComplexNumber {
         }
         return parsed;
     }
+    
+    /**
+	* The complex conjugate of the current complex number
+        * @param z
+	* @return a ComplexNumber object which is the conjugate of the current complex number
+	*/
+	
+	public ComplexNumber conjugate()
+	{
+		return new ComplexNumber(this.getRe(),-this.getIm());
+	}
+	
+	/**
+	* The modulus, magnitude or the absolute value of current complex number
+        * @param z
+	* @return the magnitude or modulus of current complex number
+	*/
+	
+	public double mod()
+	{
+		return Math.sqrt(Math.pow(this.getRe(),2) + Math.pow(this.getIm(),2));
+	}
 
 }
