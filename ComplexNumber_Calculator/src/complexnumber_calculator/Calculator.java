@@ -12,11 +12,11 @@ package complexnumber_calculator;
 public class Calculator {
     
    public static ComplexNumber add(ComplexNumber z1, ComplexNumber z2){
-        return new ComplexNumber(z1.Re + z2.Re, z1.Im + z2.Im);
+        return new ComplexNumber(z1.getRe() + z2.getRe(), z1.getIm() + z2.getIm());
     }
     
     public static ComplexNumber sub(ComplexNumber z1, ComplexNumber z2){
-        return new ComplexNumber(z1.Re - z2.Re, z1.Im - z2.Im);
+        return new ComplexNumber(z1.getRe() - z2.getRe(), z1.getIm() - z2.getIm());
     }
     /**
      * This method do the multiply between two complex numbers
