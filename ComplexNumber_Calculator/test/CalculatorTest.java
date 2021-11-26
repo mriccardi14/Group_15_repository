@@ -1,21 +1,42 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 
 import complexnumber_calculator.Calculator;
 import complexnumber_calculator.ComplexNumber;
 import static junit.framework.Assert.*;
 import org.junit.*;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
- *
+ * Test Class for Calculator Class
+ * 
  * @author Group 15
  */
 public class CalculatorTest {
-     @Test
+    
+    @Test
+    public void SumTest(){
+        ComplexNumber z1 = new ComplexNumber(1.5,3.7);
+        ComplexNumber z2 = new ComplexNumber(2.33,1.87);
+        ComplexNumber z3 = new ComplexNumber(3.83, 5.57);
+        assertEquals(z3, Calculator.addition(z1,z2));
+    }
+    
+    @Test
+    public void SubTest(){
+        ComplexNumber z1 = new ComplexNumber(5.33,3.7);
+        ComplexNumber z2 = new ComplexNumber(2.33,1.7);
+        ComplexNumber z3 = new ComplexNumber(3, 2);
+        assertEquals(z3, Calculator.subtract(z1,z2));
+    }
+    
+    @Test
     public void MultiplyTest(){
+        ComplexNumber z12 = new ComplexNumber(10,10);
+        ComplexNumber z22 = new ComplexNumber(20,20);
+        ComplexNumber z32 = new ComplexNumber(0, 400);
+        assertEquals(z32, Calculator.multiply(z12,z22));
         //First Case
         ComplexNumber z1 = new ComplexNumber(1,3);
         ComplexNumber z2 = new ComplexNumber(2,1);
@@ -33,6 +54,7 @@ public class CalculatorTest {
         ComplexNumber z9 = new ComplexNumber(0,49);
         assertEquals(z9, Calculator.multiply(z7,z8));
     }
+    
     @Test
     public void InverseTest(){
         //First Case
@@ -44,6 +66,7 @@ public class CalculatorTest {
         ComplexNumber z4 = new ComplexNumber(0,-12);
         assertEquals(z4, Calculator.inverse(z3));
     }
+    
     @Test
     public void DivideTest(){
         //First Case
@@ -61,20 +84,5 @@ public class CalculatorTest {
         ComplexNumber z8 = new ComplexNumber(7,0);
         ComplexNumber z9 = new ComplexNumber(0,1);
         assertEquals(z9, Calculator.divide(z7,z8));
-    }
-    @Test
-    public void SumTest(){
-        ComplexNumber  z1 = new ComplexNumber(1.5,3.7);
-        ComplexNumber z2 = new ComplexNumber(2.33,1.87);
-        ComplexNumber z3 = new ComplexNumber(3.83, 5.57);
-        assertEquals(z3, Calculator.add(z1,z2));
-    
-    }
-    @Test
-    public void SubTest(){
-        ComplexNumber  z1 = new ComplexNumber(5.33,3.7);
-        ComplexNumber z2 = new ComplexNumber(2.33,1.7);
-        ComplexNumber z3 = new ComplexNumber(3, 2);
-        assertEquals(z3, Calculator.sub(z1,z2));
     }
 }

@@ -17,7 +17,7 @@ public class Calculator {
      * @param y the second ComplexNumber
      * @return the correct resultant ComplexNumber (z+y)
      */
-   public static ComplexNumber add(ComplexNumber z, ComplexNumber y){
+   public static ComplexNumber addition(ComplexNumber z, ComplexNumber y){
         return new ComplexNumber(z.getRe() + y.getRe(), z.getIm() + y.getIm());
     }
     
@@ -27,7 +27,7 @@ public class Calculator {
      * @param y the second ComplexNumber
      * @return the correct resultant ComplexNumber (z-y)
      */
-    public static ComplexNumber sub(ComplexNumber z, ComplexNumber y){
+    public static ComplexNumber subtract(ComplexNumber z, ComplexNumber y){
         return new ComplexNumber(z.getRe() - y.getRe(), z.getIm() - y.getIm());
     }
     

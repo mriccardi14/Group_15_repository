@@ -5,6 +5,7 @@
 package complexnumber_calculator;
 
 import java.net.URL;
+import java.util.*;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,52 +89,57 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void add_function(ActionEvent event) {
         
+        List<ComplexNumber> list = new ArrayList<>();
+        while(!values.isEmpty())
+            list.add(values.remove(0));
+        
         ComplexNumber result = new ComplexNumber();
+        for(ComplexNumber z : list)
+            result = Calculator.addition(result, z);
         
-        for(ComplexNumber z : values)
-            result = Calculator.add(result, z);
-        
-        values.clear();
-        values.add(result);
-        
+        values.add(result);    
     }
     
     @FXML
     private void sub_function(ActionEvent event) {
         
-        ComplexNumber result = values.get(values.size()-1);
+        List<ComplexNumber> list = new ArrayList<>();
+        while(!values.isEmpty())
+            list.add(values.remove(0));
         
-        for(int i=values.size()-2; i>=0; i--)
-            result = Calculator.sub(result, values.get(i));
+        ComplexNumber result = list.get(list.size()-1);
+        for(int i=list.size()-2; i>=0; i--)
+            result = Calculator.subtract(result, list.get(i));
         
-        values.clear();
         values.add(result);
-        
     }
 
     @FXML
     private void mul_function(ActionEvent event) {
         
-        ComplexNumber result = new ComplexNumber(1,1);
+        List<ComplexNumber> list = new ArrayList<>();
+        while(!values.isEmpty())
+            list.add(values.remove(0));
         
-        for(ComplexNumber z : values)
+        ComplexNumber result = new ComplexNumber(1,0);
+        for(ComplexNumber z : list)
             result = Calculator.multiply(result, z);
         
-        values.clear();
         values.add(result);
     }
 
     @FXML
     private void div_function(ActionEvent event) {
         
-        ComplexNumber result = values.get(values.size()-1);
+        List<ComplexNumber> list = new ArrayList<>();
+        while(!values.isEmpty())
+            list.add(values.remove(0));
         
-        for(int i=values.size()-2; i>=0; i--)
-            result = Calculator.divide(result, values.get(i));
+        ComplexNumber result = list.get(list.size()-1);
+        for(int i=list.size()-2; i>=0; i--)
+            result = Calculator.divide(result, list.get(i));
         
-        values.clear();
         values.add(result);
-        
     }
 
     @FXML
