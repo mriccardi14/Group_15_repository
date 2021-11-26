@@ -66,15 +66,15 @@ public class CalculatorTest {
     public void SumTest(){
         ComplexNumber  z1 = new ComplexNumber(1.5,3.7);
         ComplexNumber z2 = new ComplexNumber(2.33,1.87);
-        ComplexNumber z3 = new ComplexNumber(1.16673, 0.65159);
+        ComplexNumber z3 = new ComplexNumber(3.83, 5.57);
         assertEquals(z3, Calculator.add(z1,z2));
     
     }
     @Test
     public void SubTest(){
-        ComplexNumber  z1 = new ComplexNumber(1.5,3.7);
-        ComplexNumber z2 = new ComplexNumber(2.33,1.87);
-        ComplexNumber z3 = new ComplexNumber(1.16673, 0.65159);
+        ComplexNumber  z1 = new ComplexNumber(5.33,3.7);
+        ComplexNumber z2 = new ComplexNumber(2.33,1.7);
+        ComplexNumber z3 = new ComplexNumber(3, 2);
         assertEquals(z3, Calculator.sub(z1,z2));
     }
 }
