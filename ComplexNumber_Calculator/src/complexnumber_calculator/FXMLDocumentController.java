@@ -108,6 +108,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void drop_function(ActionEvent event) {
+        values.remove(values.size()-1);
     }
 
     @FXML
