@@ -62,4 +62,19 @@ public class CalculatorTest {
         ComplexNumber z9 = new ComplexNumber(0,1);
         assertEquals(z9, Calculator.divide(z7,z8));
     }
+    @Test
+    public void SumTest(){
+        ComplexNumber  z1 = new ComplexNumber(1.5,3.7);
+        ComplexNumber z2 = new ComplexNumber(2.33,1.87);
+        ComplexNumber z3 = new ComplexNumber(1.16673, 0.65159);
+        assertEquals(z3, Calculator.add(z1,z2));
+    
+    }
+    @Test
+    public void SubTest(){
+        ComplexNumber  z1 = new ComplexNumber(1.5,3.7);
+        ComplexNumber z2 = new ComplexNumber(2.33,1.87);
+        ComplexNumber z3 = new ComplexNumber(1.16673, 0.65159);
+        assertEquals(z3, Calculator.sub(z1,z2));
+    }
 }
