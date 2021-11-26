@@ -5,8 +5,6 @@
 package complexnumber_calculator;
 
 import java.net.URL;
-import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,8 +20,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 /**
- *
- * @author
+ * Controller class for Graphical User Interface
+ * 
+ * @author Group 15
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -39,6 +38,8 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<ComplexNumber, String> values_column;
     @FXML
     private AnchorPane paneDown;
+    @FXML
+    private Button insert_btn, add_btn, sub_btn, mul_btn, div_btn;
     @FXML
     private Button sqrt_btn;
     @FXML
@@ -58,23 +59,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button swap_btn;
     @FXML
-    private Button add_btn;
-    @FXML
     private Button storeVar_btn;
-    @FXML
-    private Button mul_btn;
-    @FXML
-    private Button sub_btn;
-    @FXML
-    private Button div_btn;
     @FXML
     private Button equal_btn;
     @FXML
     private Button retrieve_btn;
     
     private ObservableList<ComplexNumber> values;
-    @FXML
-    private Button insert_btn;
     
     
     @Override
@@ -85,48 +76,15 @@ public class FXMLDocumentController implements Initializable {
         stack_value.setItems(values);
         
     }
-
-    @FXML
-    private void sqrt_function(ActionEvent event) {
-    }
-
-    @FXML
-    private void dup_function(ActionEvent event) {
-    }
-
-    @FXML
-    private void over_function(ActionEvent event) {
-    }
-
-    @FXML
-    private void inverse_function(ActionEvent event) {
-    }
-
-    @FXML
-    private void plusVar_function(ActionEvent event) {
-    }
-
-    @FXML
-    private void drop_function(ActionEvent event) {
-        values.remove(values.size()-1);
-    }
-
-    @FXML
-    private void clear_function(ActionEvent event) {
-    }
-
-    @FXML
-    private void subVar_function(ActionEvent event) {
-    }
-
-    @FXML
-    private void swap_function(ActionEvent event) {
-    }
     
     @FXML
-    private void storeVar_function(ActionEvent event) {
+    private void insert_function(ActionEvent event) {
+        
+        values.add(0,ComplexNumber.parseComplex(textArea.getText()));
+        textArea.clear();
+        
     }
-
+    
     @FXML
     private void add_function(ActionEvent event) {
         
@@ -179,19 +137,51 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
+    private void sqrt_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void dup_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void over_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void inverse_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void plusVar_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void drop_function(ActionEvent event) {
+        values.remove(values.size()-1);
+    }
+
+    @FXML
+    private void clear_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void subVar_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void swap_function(ActionEvent event) {
+    }
+    
+    @FXML
+    private void storeVar_function(ActionEvent event) {
+    }
+    
+    @FXML
     private void equal_function(ActionEvent event) {
     }
 
     @FXML
     private void retrieve_function(ActionEvent event) {
     }
-
-    @FXML
-    private void insert_function(ActionEvent event) {
-        
-        values.add(0,ComplexNumber.parseComplex(textArea.getText()));
-        textArea.clear();
-        
-    }
-
 }
