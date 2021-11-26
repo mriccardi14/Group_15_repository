@@ -11,8 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
- * @author 
+ * 
+ * @author Group 15
  */
 public class ComplexNumber_Calculator extends Application {
     

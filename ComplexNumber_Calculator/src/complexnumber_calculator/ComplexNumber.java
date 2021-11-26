@@ -144,12 +144,18 @@ public class ComplexNumber {
             if (s.indexOf('+') > 0) {
                 re = s.substring(0, s.indexOf('+'));
                 im = s.substring(s.indexOf('+') + 1, s.length());
-                parsed = new ComplexNumber(Double.parseDouble(re), Double.parseDouble(im));
+                if(im.compareTo("") == 0)
+                    parsed = new ComplexNumber(Double.parseDouble(re), 1);
+                else
+                    parsed = new ComplexNumber(Double.parseDouble(re), Double.parseDouble(im));
             } 
             else if (s.lastIndexOf('-') > 0) {
                 re = s.substring(0, s.lastIndexOf('-'));
                 im = s.substring(s.lastIndexOf('-') + 1, s.length());
-                parsed = new ComplexNumber(Double.parseDouble(re), -Double.parseDouble(im));
+                if(im.compareTo("") == 0)
+                    parsed = new ComplexNumber(Double.parseDouble(re), -1);
+                else
+                    parsed = new ComplexNumber(Double.parseDouble(re), -Double.parseDouble(im));
             }
             
         } 
@@ -158,7 +164,10 @@ public class ComplexNumber {
             if (s.endsWith("i") || s.endsWith("I")) {
                 s = s.replaceAll("i", "");
                 s = s.replaceAll("I", "");
-                parsed = new ComplexNumber(0, Double.parseDouble(s));
+                if(s.compareTo("") == 0)
+                    parsed = new ComplexNumber(0, 1);
+                else
+                    parsed = new ComplexNumber(0, Double.parseDouble(s));
             } // Pure real number
             else {
                 parsed = new ComplexNumber(Double.parseDouble(s), 0);
