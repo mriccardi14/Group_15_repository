@@ -151,7 +151,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void dup_function(ActionEvent event) {
-        values.add(values.size()-1);
+        values.add(values.get(values.size()-1));
     }
 
     @FXML
