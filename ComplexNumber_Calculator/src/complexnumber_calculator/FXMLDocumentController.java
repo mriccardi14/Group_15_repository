@@ -299,6 +299,11 @@ public class FXMLDocumentController implements Initializable {
     private void storeVar_function(ActionEvent event) {
     }
     
+    /**
+     * Method aociated with the exit button
+     * 
+     * @param event 
+     */
     @FXML
     private void exit_function(ActionEvent event) {
         Platform.exit();
