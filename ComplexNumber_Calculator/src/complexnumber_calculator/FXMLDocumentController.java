@@ -145,9 +145,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void sqrt_function(ActionEvent event) {
     }
-
+    /**
+     * This method remove the last inserted number 
+     * @param event 
+     */
     @FXML
     private void dup_function(ActionEvent event) {
+        values.add(values.size()-1);
     }
 
     @FXML
@@ -161,14 +165,21 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void plusVar_function(ActionEvent event) {
     }
-
+    /**
+     * This method duplicate the last inserted number 
+     * @param event 
+     */
     @FXML
     private void drop_function(ActionEvent event) {
         values.remove(values.size()-1);
     }
-
+    /**
+     * This method delete all numbers
+     * @param event 
+     */
     @FXML
     private void clear_function(ActionEvent event) {
+        values.clear();
     }
 
     @FXML
