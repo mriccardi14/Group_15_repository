@@ -7,11 +7,16 @@ package complexnumber_calculator;
 import java.net.URL;
 import java.util.*;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -44,7 +49,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button sqrt_btn;
     @FXML
-    private Button dub_btn;
+    private Button dup_btn;
     @FXML
     private Button over_btn;
     @FXML
@@ -62,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button storeVar_btn;
     @FXML
-    private Button equal_btn;
+    private Button exit_btn;
     @FXML
     private Button retrieve_btn;
     
@@ -76,6 +81,24 @@ public class FXMLDocumentController implements Initializable {
         values_column.setCellValueFactory(new PropertyValueFactory("complexNumber"));
         stack_value.setItems(values);
         
+//        insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));
+        SimpleListProperty slpr = new SimpleListProperty(values);
+        drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        clear_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        dup_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        storeVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        retrieve_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        swap_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        subVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        plusVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        inverse_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        over_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        sqrt_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        
+        add_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
+        sub_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
+        mul_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
+        div_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
     }
    
     /**
@@ -86,6 +109,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void insert_function(ActionEvent event) {
         
+        if(textArea.getText().isEmpty()){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error in insertion of a number");
+            alert.setHeaderText(null);
+            alert.setContentText("It hasn't been inserted any complex number");
+            alert.showAndWait();
+        }
+            
         values.add(0,ComplexNumber.parseComplex(textArea.getText()));
         textArea.clear();
         
@@ -220,7 +251,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void drop_function(ActionEvent event) {
-        values.remove(0);
+        values.remove(0);    
     }
     
     /**
@@ -230,7 +261,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void clear_function(ActionEvent event) {
+        
         values.clear();
+        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("clear Information");
+        alert.setHeaderText(null);
+        alert.setContentText("The Deletion of elements has been completed correctly");
+        alert.showAndWait();
+        
     }
 
     /**
@@ -261,7 +300,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void equal_function(ActionEvent event) {
+    private void exit_function(ActionEvent event) {
+        Platform.exit();
     }
 
     /**

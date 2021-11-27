@@ -40,7 +40,7 @@
                         <Font name="Arial Italic" size="55.0" />
                      </font>
                   </Button>
-                  <Button fx:id="dub_btn" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#dup_function" prefHeight="109.0" prefWidth="234.0" style="-fx-background-color: #C0C0C0;" text="Duplicate" GridPane.rowIndex="2">
+                  <Button fx:id="dup_btn" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#dup_function" prefHeight="109.0" prefWidth="234.0" style="-fx-background-color: #C0C0C0;" text="Duplicate" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Italic" size="30.0" />
                      </font>
@@ -117,9 +117,9 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="equal_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#equal_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="=" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <Button fx:id="exit_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#exit_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="Exit" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Arial Italic" size="55.0" />
+                        <Font name="Arial Italic" size="40.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />

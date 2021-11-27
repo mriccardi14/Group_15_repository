@@ -24,7 +24,7 @@ public class ComplexNumber_Calculator extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setTitle("Complex NUmber Calculator");
+        stage.setTitle("Complex Number Calculator");
         stage.show();
     }
 
