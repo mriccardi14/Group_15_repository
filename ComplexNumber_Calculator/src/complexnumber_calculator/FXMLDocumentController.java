@@ -67,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     private Button retrieve_btn;
     
     private ObservableList<ComplexNumber> values;
-    
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,7 +77,12 @@ public class FXMLDocumentController implements Initializable {
         stack_value.setItems(values);
         
     }
-    
+   
+    /**
+     * Method associated with the stack insertion button
+     * 
+     * @param event 
+     */
     @FXML
     private void insert_function(ActionEvent event) {
         
@@ -86,6 +91,11 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
+    /**
+     * Method associated with the SUM button 
+     * 
+     * @param event 
+     */
     @FXML
     private void add_function(ActionEvent event) {
         
@@ -100,6 +110,11 @@ public class FXMLDocumentController implements Initializable {
         values.add(result);    
     }
     
+    /**
+     * Method associated with the subtraction button 
+     * 
+     * @param event 
+     */
     @FXML
     private void sub_function(ActionEvent event) {
         
@@ -114,6 +129,11 @@ public class FXMLDocumentController implements Initializable {
         values.add(result);
     }
 
+    /**
+     * Method associated with the Multiply button 
+     * 
+     * @param event 
+     */
     @FXML
     private void mul_function(ActionEvent event) {
         
@@ -128,6 +148,11 @@ public class FXMLDocumentController implements Initializable {
         values.add(result);
     }
 
+    /**
+     * Method associated with the Division button 
+     * 
+     * @param event 
+     */
     @FXML
     private void div_function(ActionEvent event) {
         
@@ -142,12 +167,18 @@ public class FXMLDocumentController implements Initializable {
         values.add(result);
     }
 
+    /**
+     * Method associated with the Sqrt button 
+     * 
+     * @param event 
+     */
     @FXML
     private void sqrt_function(ActionEvent event) {
     }
     
     /**
-     * This method remove the last inserted number 
+     * Method associated with the dup button 
+     * 
      * @param event 
      */
     @FXML
@@ -155,20 +186,36 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,values.get(0));
     }
 
+    /**
+     * Method associated with the over button 
+     * 
+     * @param event 
+     */
     @FXML
     private void over_function(ActionEvent event) {
     }
 
+    /**
+     * Method associated with the inverse button 
+     * 
+     * @param event 
+     */
     @FXML
     private void inverse_function(ActionEvent event) {
     }
 
+    /**
+     * Method associated with the +X button 
+     * 
+     * @param event 
+     */
     @FXML
     private void plusVar_function(ActionEvent event) {
     }
     
     /**
-     * This method duplicate the last inserted number 
+     * Method associated with the drop button 
+     * 
      * @param event 
      */
     @FXML
@@ -177,7 +224,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * This method delete all numbers
+     * Method associated with the clear button 
+     * 
      * @param event 
      */
     @FXML
@@ -185,14 +233,29 @@ public class FXMLDocumentController implements Initializable {
         values.clear();
     }
 
+    /**
+     * Method associated with the -X button 
+     * 
+     * @param event 
+     */
     @FXML
     private void subVar_function(ActionEvent event) {
     }
 
+    /**
+     * Method associated with the swap button 
+     * 
+     * @param event 
+     */
     @FXML
     private void swap_function(ActionEvent event) {
     }
     
+    /**
+     * Method associated with the >X button 
+     * 
+     * @param event 
+     */
     @FXML
     private void storeVar_function(ActionEvent event) {
     }
@@ -201,6 +264,11 @@ public class FXMLDocumentController implements Initializable {
     private void equal_function(ActionEvent event) {
     }
 
+    /**
+     * Method associated with the <X button 
+     * 
+     * @param event 
+     */
     @FXML
     private void retrieve_function(ActionEvent event) {
     }

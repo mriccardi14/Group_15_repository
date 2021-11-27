@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * Main Class Application
  * 
  * @author Group 15
  */
@@ -23,6 +24,7 @@ public class ComplexNumber_Calculator extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("Complex NUmber Calculator");
         stage.show();
     }
 
