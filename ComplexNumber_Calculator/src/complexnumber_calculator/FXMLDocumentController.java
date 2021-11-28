@@ -256,9 +256,9 @@ public class FXMLDocumentController implements Initializable {
         values.clear();
         
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("clear Information");
+        alert.setTitle("Clear Information");
         alert.setHeaderText(null);
-        alert.setContentText("The Deletion of elements has been completed correctly");
+        alert.setContentText("The deletion of elements has been completed correctly");
         alert.showAndWait();
         
     }
