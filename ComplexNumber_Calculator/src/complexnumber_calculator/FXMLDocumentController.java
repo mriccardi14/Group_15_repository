@@ -76,12 +76,12 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
         values = FXCollections.observableArrayList();
         values_column.setCellValueFactory(new PropertyValueFactory("complexNumber"));
         stack_value.setItems(values);
         
-//        insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));
+//      insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));
         SimpleListProperty slpr = new SimpleListProperty(values);
         drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         clear_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
@@ -123,7 +123,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * Method associated with the SUM button 
+     * Method associated with the Sum button 
      * 
      * @param event 
      */
@@ -142,7 +142,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * Method associated with the subtraction button 
+     * Method associated with the Subtraction button 
      * 
      * @param event 
      */
@@ -208,7 +208,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * Method associated with the dup button 
+     * Method associated with the Dup button 
      * 
      * @param event 
      */
@@ -218,7 +218,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Method associated with the over button 
+     * Method associated with the Over button 
      * 
      * @param event 
      */
@@ -227,26 +227,17 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Method associated with the inverse button 
+     * Method associated with the Inverse button 
      * 
      * @param event 
      */
     @FXML
     private void inverse_function(ActionEvent event) {
     }
-
-    /**
-     * Method associated with the +X button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void plusVar_function(ActionEvent event) {
-    }
     
     /**
-     * Method associated with the drop button 
-     * 
+     * Method associated with the Drop button 
+     *
      * @param event 
      */
     @FXML
@@ -255,7 +246,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * Method associated with the clear button 
+     * Method associated with the Clear button 
      * 
      * @param event 
      */
@@ -273,23 +264,14 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Method associated with the -X button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void subVar_function(ActionEvent event) {
-    }
-
-    /**
-     * Method associated with the swap button 
+     * Method associated with the Swap button 
      * 
      * @param event 
      */
     @FXML
     private void swap_function(ActionEvent event) {
     }
-    
+
     /**
      * Method associated with the >X button 
      * 
@@ -300,7 +282,34 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * Method aociated with the exit button
+     * Method associated with the <X button 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void retrieve_function(ActionEvent event) {
+    }
+    
+    /**
+     * Method associated with the +X button 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void plusVar_function(ActionEvent event) {
+    }
+    
+    /**
+     * Method associated with the -X button 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void subVar_function(ActionEvent event) {
+    }
+    
+    /**
+     * Method aociated with the Exit button
      * 
      * @param event 
      */
@@ -309,12 +318,5 @@ public class FXMLDocumentController implements Initializable {
         Platform.exit();
     }
 
-    /**
-     * Method associated with the <X button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void retrieve_function(ActionEvent event) {
-    }
+    
 }
