@@ -81,11 +81,21 @@ public class Calculator {
     public static ComplexNumber root(ComplexNumber z){
         if(z.getRe() == 0.0 && z.getIm() == 0.0)
             return new ComplexNumber(0.0, 0.0);
-        double r = Math.sqrt(z.mod());
-        double theta = z.arg()/2;
-        double outputr = (int)(Math.round((r*Math.cos(theta)) * 100000))/100000.0;
-        double outputh = (int)(Math.round((r*Math.sin(theta)) * 100000))/100000.0;
-        return new ComplexNumber(outputr, outputh);
+        if(z.getRe() == 0.0 && z.getIm() > 0)
+            return new ComplexNumber(0.0, Math.sqrt(z.getIm()));
+        if(z.getRe() == 0.0 && z.getIm() < 0){
+            ComplexNumber z1 = Calculator.inverse(z);
+            return new ComplexNumber(0.0, Math.sqrt(z1.getIm()));
         }
+        if(z.getIm() == 0.0)
+            return new ComplexNumber(Math.sqrt(z.getRe()), 0.0);
+        else{
+            double r = Math.sqrt(z.mod());
+            double theta = z.arg()/2;
+            double outputr = (int)(Math.round((r*Math.cos(theta)) * 100000))/100000.0;
+            double outputh = (int)(Math.round((r*Math.sin(theta)) * 100000))/100000.0;
+            return new ComplexNumber(outputr, outputh);
+        }
+    }
     }
     
