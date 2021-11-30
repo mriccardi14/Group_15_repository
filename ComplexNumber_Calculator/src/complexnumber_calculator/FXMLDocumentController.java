@@ -118,7 +118,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * 
+     * Support method for variable stack
      */
     private void mapInitialize(){
         
@@ -321,15 +321,6 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Method associated with the Swap button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void swap_function(ActionEvent event) {
-    }
-
-    /**
      * Method associated with the >X button 
      * 
      * @param event 
@@ -391,6 +382,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void subVar_function(ActionEvent event) {
+    }
+    
+     /**
+     * Method associated with the Swap button 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void swap_function(ActionEvent event) {
     }
     
     /**
