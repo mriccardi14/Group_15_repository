@@ -71,8 +71,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button retrieve_btn;
     
-    private ObservableList<ComplexNumber> values;
-   
+    private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
+    private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,8 +80,9 @@ public class FXMLDocumentController implements Initializable {
         values = FXCollections.observableArrayList();
         values_column.setCellValueFactory(new PropertyValueFactory("complexNumber"));
         stack_value.setItems(values);
+        stack = new Stack<>();
         
-//      insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));
+//      insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));   //soluzione 2 bindings
         SimpleListProperty slpr = new SimpleListProperty(values);
         drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         clear_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
@@ -117,7 +118,9 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         }
             
-        values.add(0,ComplexNumber.parseComplex(textArea.getText()));
+        ComplexNumber z = ComplexNumber.parseComplex(textArea.getText());
+        stack.push(z);
+        values.add(0,z);
         textArea.clear();
         
     }
@@ -131,13 +134,16 @@ public class FXMLDocumentController implements Initializable {
     private void add_function(ActionEvent event) {
         
         List<ComplexNumber> list = new ArrayList<>();
-        while(!values.isEmpty())
-            list.add(values.remove(0));
+        while(!stack.isEmpty())
+            list.add(stack.pop());
+        
+        values.clear();
         
         ComplexNumber result = new ComplexNumber();
         for(ComplexNumber z : list)
             result = Calculator.addition(result, z);
         
+        stack.push(result);
         values.add(result);    
     }
     
@@ -150,13 +156,16 @@ public class FXMLDocumentController implements Initializable {
     private void sub_function(ActionEvent event) {
         
         List<ComplexNumber> list = new ArrayList<>();
-        while(!values.isEmpty())
-            list.add(values.remove(0));
+        while(!stack.isEmpty())
+            list.add(stack.pop());
+        
+        values.clear();
         
         ComplexNumber result = list.get(list.size()-1);
         for(int i=list.size()-2; i>=0; i--)
             result = Calculator.subtract(result, list.get(i));
         
+        stack.push(result);
         values.add(result);
     }
 
@@ -169,13 +178,16 @@ public class FXMLDocumentController implements Initializable {
     private void mul_function(ActionEvent event) {
         
         List<ComplexNumber> list = new ArrayList<>();
-        while(!values.isEmpty())
-            list.add(values.remove(0));
+        while(!stack.isEmpty())
+            list.add(stack.pop());
+        
+        values.clear();
         
         ComplexNumber result = new ComplexNumber(1,0);
         for(ComplexNumber z : list)
             result = Calculator.multiply(result, z);
         
+        stack.push(result);
         values.add(result);
     }
 
@@ -188,13 +200,16 @@ public class FXMLDocumentController implements Initializable {
     private void div_function(ActionEvent event) {
         
         List<ComplexNumber> list = new ArrayList<>();
-        while(!values.isEmpty())
-            list.add(values.remove(0));
+        while(!stack.isEmpty())
+            list.add(stack.pop());
+        
+        values.clear();
         
         ComplexNumber result = list.get(list.size()-1);
         for(int i=list.size()-2; i>=0; i--)
             result = Calculator.divide(result, list.get(i));
         
+        stack.push(result);
         values.add(result);
     }
 
@@ -214,6 +229,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void dup_function(ActionEvent event) {
+        stack.push(stack.peek());
         values.add(0,values.get(0));
     }
 
@@ -242,6 +258,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void drop_function(ActionEvent event) {
+        stack.pop();
         values.remove(0);    
     }
     
@@ -253,6 +270,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void clear_function(ActionEvent event) {
         
+        stack.clear();
         values.clear();
         
         Alert alert = new Alert(AlertType.INFORMATION);
