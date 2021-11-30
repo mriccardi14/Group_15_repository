@@ -98,6 +98,11 @@ public class FXMLDocumentController implements Initializable {
         
 //      insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));   //soluzione 2 bindings
         SimpleListProperty slpr = new SimpleListProperty(values);
+        
+        add_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
+        sub_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
+        mul_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
+        div_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         clear_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         dup_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
@@ -110,10 +115,6 @@ public class FXMLDocumentController implements Initializable {
         over_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         sqrt_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         
-        add_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        sub_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        mul_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        div_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
     }
     
     /**
@@ -337,14 +338,12 @@ public class FXMLDocumentController implements Initializable {
     private void storeVar_function(ActionEvent event) {
             
             ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet()); 
-            dialog.setTitle("Choice Dialog"); 
-            dialog.setHeaderText("Select the variables");
+            dialog.setTitle("Store Variable"); 
+            dialog.setHeaderText("Select the variable in which store the value");
             dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
             Optional<Character> result = dialog.showAndWait(); 
             if (result.isPresent())
                 variables.put(result.get(), stack.peek());
-            
-            System.err.println(variables.get('a'));
     }
     
     /**
@@ -355,7 +354,25 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void retrieve_function(ActionEvent event) {
         
-        
+            List<Character> listKey = new ArrayList<>();
+            for(Character c : variables.keySet()){
+                if(variables.get(c) != null)
+                    listKey.add(c);
+            }
+                
+            ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKey.get(0), listKey); 
+            dialog.setTitle("Retrieve Variable"); 
+            dialog.setHeaderText("Select the variable from which retrieve the value");
+            dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
+            Optional<Character> result = dialog.showAndWait(); 
+            if (result.isPresent()){
+                Character c = result.get();
+                ComplexNumber z = variables.get(c);
+                if(z != null){
+                    stack.push(z);
+                    values.add(0, z);
+                }
+            }
     }
     
     /**
