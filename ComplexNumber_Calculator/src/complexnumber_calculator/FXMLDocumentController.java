@@ -244,15 +244,9 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void sqrt_function(ActionEvent event) {
-        List<ComplexNumber> list = new ArrayList<>();
-        while(!stack.isEmpty())
-            list.add(stack.pop());
-        
-        values.clear();
-        
-        ComplexNumber result = list.get(list.size()-1);
+        ComplexNumber result = stack.peek();
         result = Calculator.root(result);
-        
+        values.clear();
         stack.push(result);
         values.add(result);
     }
@@ -286,17 +280,13 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void inverse_function(ActionEvent event) {
-        List<ComplexNumber> list = new ArrayList<>();
-        while(!stack.isEmpty())
-            list.add(stack.pop());
         
-        values.clear();
-        
-        ComplexNumber result = list.get(list.size()-1);
+        ComplexNumber result = stack.peek();
         result = Calculator.inverse(result);
-        
+        values.clear();
         stack.push(result);
         values.add(result);
+        
     }
     
     /**
