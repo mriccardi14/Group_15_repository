@@ -275,6 +275,8 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void over_function(ActionEvent event) {
+        stack.push(stack.peek());
+        values.add(0,values.get(1));
     }
 
     /**
