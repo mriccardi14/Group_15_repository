@@ -11,6 +11,36 @@ package complexnumber_calculator;
  */
 public class Calculator {
     
+        /**
+	* The complex conjugate of the current complex number
+        * @param z a ComplexNumber
+	* @return a ComplexNumber object which is the conjugate of the current complex number
+	*/
+	public static ComplexNumber conjugate(ComplexNumber z)
+	{
+		return new ComplexNumber(z.getRe(),-z.getIm());
+	}
+	
+	/**
+	* The modulus, magnitude or the absolute value of current complex number
+        * @param z a ComplexNumber
+	* @return the magnitude or modulus of current complex number
+	*/
+	public static double mod(ComplexNumber z)
+	{
+		return Math.sqrt(Math.pow(z.getRe(),2) + Math.pow(z.getIm(),2));
+	}
+
+        
+        /**
+	* The argument of current complex number
+        * @param z a ComplexNumber
+	* @return the magnitude or modulus of current complex number
+	*/
+        public static double arg(ComplexNumber z) {
+            return Math.atan2(z.getIm(),z.getRe());
+        }
+    
    /**
      * This method do the addition between two complex numbers
      * @param z the first ComplexNumber
@@ -50,8 +80,8 @@ public class Calculator {
     * @return the correct resultant ComplexNumber (z/y)  
     */		
     public static ComplexNumber divide(ComplexNumber z, ComplexNumber y){  
-        ComplexNumber output = multiply(z,y.conjugate());
-        double div = Math.pow(y.mod(),2);
+        ComplexNumber output = multiply(z, Calculator.conjugate(y));
+        double div = Math.pow(Calculator.mod(y),2);
         double outputRe = (int)(Math.round((output.getRe()/div) * 100000))/100000.0;
         double outputIm = (int)(Math.round((output.getIm()/div) * 100000))/100000.0;
         return new ComplexNumber(outputRe, outputIm);
@@ -81,17 +111,15 @@ public class Calculator {
     public static ComplexNumber root(ComplexNumber z){
         if(z.getRe() == 0.0 && z.getIm() == 0.0)
             return new ComplexNumber(0.0, 0.0);
-        if(z.getRe() == 0.0 && z.getIm() > 0)
-            return new ComplexNumber(0.0, Math.sqrt(z.getIm()));
-        if(z.getRe() == 0.0 && z.getIm() < 0){
-            ComplexNumber z1 = Calculator.inverse(z);
-            return new ComplexNumber(0.0, Math.sqrt(z1.getIm()));
-        }
-        if(z.getIm() == 0.0)
+        if(z.getIm() == 0.0 && z.getRe() > 0)
             return new ComplexNumber(Math.sqrt(z.getRe()), 0.0);
+        if(z.getIm() == 0.0 && z.getRe() < 0){
+            ComplexNumber z1 = Calculator.inverse(z);
+            return new ComplexNumber(0.0, Math.sqrt(z1.getRe()));
+        }   
         else{
-            double r = Math.sqrt(z.mod());
-            double theta = z.arg()/2;
+            double r = Math.sqrt(Calculator.mod(z));
+            double theta = Calculator.arg(z)/2;
             double outputr = (int)(Math.round((r*Math.cos(theta)) * 100000))/100000.0;
             double outputh = (int)(Math.round((r*Math.sin(theta)) * 100000))/100000.0;
             return new ComplexNumber(outputr, outputh);
