@@ -87,4 +87,19 @@ public class CalculatorTest {
         ComplexNumber z9 = new ComplexNumber(0,1);
         assertEquals(z9, Calculator.divide(z7,z8));
     }
+    @Test
+    public void RootTest(){
+        //First Case
+        ComplexNumber z1 = new ComplexNumber(1.2,-3.5);
+        ComplexNumber z2 = new ComplexNumber(1.56525, -1.11803);
+        assertEquals(z2, Calculator.root(z1));
+        //Second Case
+        ComplexNumber z3 = new ComplexNumber(0, 353);
+        ComplexNumber z4 = new ComplexNumber(13.28533, 13.28533);
+        assertEquals(z4, Calculator.root(z3));
+        //Third Case
+        ComplexNumber z5 = new ComplexNumber(-3.7,-9.4);
+        ComplexNumber z6 = new ComplexNumber(1.78913, -2.62697);
+        assertEquals(z6, Calculator.root(z5));
+    }
 }

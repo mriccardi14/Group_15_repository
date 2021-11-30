@@ -191,8 +191,6 @@ public class ComplexNumber {
 	
 	/**
 	* The modulus, magnitude or the absolute value of current complex number
-        * 
-        * @param z
 	* @return the magnitude or modulus of current complex number
 	*/
 	public double mod()
@@ -200,4 +198,12 @@ public class ComplexNumber {
 		return Math.sqrt(Math.pow(this.getRe(),2) + Math.pow(this.getIm(),2));
 	}
 
+        
+        /**
+	* The argument of current complex number
+	* @return the magnitude or modulus of current complex number
+	*/
+        public double arg() {
+            return Math.atan2(this.getIm(),this.getRe());
+        }
 }

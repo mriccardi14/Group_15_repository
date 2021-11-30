@@ -73,4 +73,19 @@ public class Calculator {
             return new ComplexNumber(-z.getRe(),-z.getIm());
     }
     
-}
+    /**
+     * This method do the square root of a complex number
+     * @param z the ComplexNumber
+     * @return a ComplexNumber which is the square of z
+     */
+    public static ComplexNumber root(ComplexNumber z){
+        if(z.getRe() == 0.0 && z.getIm() == 0.0)
+            return new ComplexNumber(0.0, 0.0);
+        double r = Math.sqrt(z.mod());
+        double theta = z.arg()/2;
+        double outputr = (int)(Math.round((r*Math.cos(theta)) * 100000))/100000.0;
+        double outputh = (int)(Math.round((r*Math.sin(theta)) * 100000))/100000.0;
+        return new ComplexNumber(outputr, outputh);
+        }
+    }
+    
