@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -74,6 +75,9 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
     
+    private Map<Character,ComplexNumber> variables;
+    private static final int NUM_VARIABLES = 26;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -81,6 +85,16 @@ public class FXMLDocumentController implements Initializable {
         values_column.setCellValueFactory(new PropertyValueFactory("complexNumber"));
         stack_value.setItems(values);
         stack = new Stack<>();
+        variables = new HashMap<>();
+        this.mapInitialize();
+        
+        this.viewInitialize();
+    }
+   
+    /**
+     * Support method for view initialization
+     */
+    private void viewInitialize(){
         
 //      insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));   //soluzione 2 bindings
         SimpleListProperty slpr = new SimpleListProperty(values);
@@ -101,7 +115,17 @@ public class FXMLDocumentController implements Initializable {
         mul_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         div_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
     }
-   
+    
+    /**
+     * 
+     */
+    private void mapInitialize(){
+        
+        for(int i=0; i<NUM_VARIABLES; i++)
+            variables.put((char)(97+i), null);
+  
+    }
+    
     /**
      * Method associated with the stack insertion button
      * 
@@ -297,15 +321,27 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void storeVar_function(ActionEvent event) {
+            
+            ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet()); 
+            dialog.setTitle("Choice Dialog"); 
+            dialog.setHeaderText("Select the variables");
+            dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
+            Optional<Character> result = dialog.showAndWait(); 
+            if (result.isPresent())
+                variables.put(result.get(), stack.peek());
+            
+            System.err.println(variables.get('a'));
     }
     
     /**
-     * Method associated with the <X button 
+     * Method associated with the <X button
      * 
      * @param event 
      */
     @FXML
     private void retrieve_function(ActionEvent event) {
+        
+        
     }
     
     /**
