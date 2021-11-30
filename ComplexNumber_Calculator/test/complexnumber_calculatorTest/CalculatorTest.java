@@ -17,6 +17,41 @@ import org.junit.*;
  */
 public class CalculatorTest {
     
+    private ComplexNumber z1, z2, z3, z4;
+    
+    @Before
+    public void setUp(){
+        z1 = new ComplexNumber();
+        z2 = new ComplexNumber(1, -4);
+        z3 = new ComplexNumber(-8, -17);
+        z4 = new ComplexNumber(90, -38);
+    }
+    
+    @Test
+    public void conjugateTest(){
+    //First Case
+        z1.setIm(-1);
+        assertEquals(new ComplexNumber(0, 1), Calculator.conjugate(z1));
+    //Second Case
+        assertEquals(new ComplexNumber(1, 4), Calculator.conjugate(z2));
+    //Third Case
+        assertEquals(new ComplexNumber(-8, 17), Calculator.conjugate(z3));
+    //Fourth Case
+        assertEquals(new ComplexNumber(90, 38), Calculator.conjugate(z4));
+    }
+    
+    @Test
+    public void modTest(){
+    //First Case
+        assertEquals(0.0, Calculator.mod(z1));
+    //Second Case
+        assertEquals(4.123105625617661, Calculator.mod(z2));
+    //Third Case
+        assertEquals(18.788294228055936, Calculator.mod(z3));
+    //Fourth Case
+        assertEquals(97.6933979345585, Calculator.mod(z4));
+    }
+    
     @Test
     public void SumTest(){
         ComplexNumber z1 = new ComplexNumber(1.5,3.7);

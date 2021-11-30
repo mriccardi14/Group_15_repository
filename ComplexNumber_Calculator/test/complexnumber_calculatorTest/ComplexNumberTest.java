@@ -72,29 +72,4 @@ public class ComplexNumberTest {
     //Fourth Case
         assertEquals(z4, ComplexNumber.parseComplex("90-38i"));
     }
-    
-    @Test
-    public void conjugateTest(){
-    //First Case
-        z1.setIm(-1);
-        assertEquals(new ComplexNumber(0, 1), z1.conjugate());
-    //Second Case
-        assertEquals(new ComplexNumber(1, 4), z2.conjugate());
-    //Third Case
-        assertEquals(new ComplexNumber(-8, 17), z3.conjugate());
-    //Fourth Case
-        assertEquals(new ComplexNumber(90, 38), z4.conjugate());
-    }
-    
-    @Test
-    public void modTest(){
-    //First Case
-        assertEquals(0.0, z1.mod());
-    //Second Case
-        assertEquals(4.123105625617661, z2.mod());
-    //Third Case
-        assertEquals(18.788294228055936, z3.mod());
-    //Fourth Case
-        assertEquals(97.6933979345585, z4.mod());
-    }
 }

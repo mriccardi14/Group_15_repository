@@ -286,6 +286,17 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void inverse_function(ActionEvent event) {
+        List<ComplexNumber> list = new ArrayList<>();
+        while(!stack.isEmpty())
+            list.add(stack.pop());
+        
+        values.clear();
+        
+        ComplexNumber result = list.get(list.size()-1);
+        result = Calculator.inverse(result);
+        
+        stack.push(result);
+        values.add(result);
     }
     
     /**
