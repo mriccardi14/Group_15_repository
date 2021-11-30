@@ -11,35 +11,35 @@ package complexnumber_calculator;
  */
 public class Calculator {
     
-        /**
-	* The complex conjugate of the current complex number
-        * @param z a ComplexNumber
-	* @return a ComplexNumber object which is the conjugate of the current complex number
-	*/
-	public static ComplexNumber conjugate(ComplexNumber z)
-	{
-		return new ComplexNumber(z.getRe(),-z.getIm());
-	}
-	
-	/**
-	* The modulus, magnitude or the absolute value of current complex number
-        * @param z a ComplexNumber
-	* @return the magnitude or modulus of current complex number
-	*/
-	public static double mod(ComplexNumber z)
-	{
-		return Math.sqrt(Math.pow(z.getRe(),2) + Math.pow(z.getIm(),2));
-	}
+    /**
+     * The complex conjugate of the current complex number
+     * @param z a ComplexNumber
+     * @return a ComplexNumber object which is the conjugate of the current complex number
+     */
+    public static ComplexNumber conjugate(ComplexNumber z)
+    {
+            return new ComplexNumber(z.getRe(),-z.getIm());
+    }
 
-        
-        /**
-	* The argument of current complex number
-        * @param z a ComplexNumber
-	* @return the magnitude or modulus of current complex number
-	*/
-        public static double arg(ComplexNumber z) {
-            return Math.atan2(z.getIm(),z.getRe());
-        }
+    /**
+     * The modulus, magnitude or the absolute value of current complex number
+     * @param z a ComplexNumber
+     * @return the magnitude or modulus of current complex number
+     */
+    public static double mod(ComplexNumber z)
+    {
+            return Math.sqrt(Math.pow(z.getRe(),2) + Math.pow(z.getIm(),2));
+    }
+
+
+    /**
+     * The argument of current complex number
+     * @param z a ComplexNumber
+     * @return the magnitude or modulus of current complex number
+     */
+    public static double arg(ComplexNumber z) {
+        return Math.atan2(z.getIm(),z.getRe());
+    }
     
    /**
      * This method do the addition between two complex numbers
