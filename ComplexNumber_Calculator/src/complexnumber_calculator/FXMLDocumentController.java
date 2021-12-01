@@ -9,9 +9,12 @@ import java.util.*;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.MapProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,7 +60,9 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
     
+    private List<Character> listKeys;
     private Map<Character,ComplexNumber> variables;
+    private ObservableMap<Character,ComplexNumber> observable_variables;
     private static final int NUM_VARIABLES = 26;
     
     @Override
@@ -67,9 +72,10 @@ public class FXMLDocumentController implements Initializable {
         values_column.setCellValueFactory(new PropertyValueFactory("complexNumber"));
         stack_value.setItems(values);
         stack = new Stack<>();
-        variables = new HashMap<>();
-        this.mapInitialize();
-        
+        listKeys = new ArrayList<>();
+        variables = new HashMap<>();     //Forse da rendere ordinata
+        observable_variables= FXCollections.observableHashMap();
+        this.listInitialize();
         this.viewInitialize();
     }
    
@@ -85,27 +91,30 @@ public class FXMLDocumentController implements Initializable {
         sub_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         mul_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         div_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        clear_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        dup_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        storeVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        retrieve_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        swap_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        subVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        plusVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         inverse_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        over_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         sqrt_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        clear_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        dup_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        swap_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
+        over_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        storeVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        
+        SimpleMapProperty smpr = new SimpleMapProperty(observable_variables);
+        
+        plusVar_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
+        subVar_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
+        retrieve_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
         
     }
     
     /**
      * Support method for variable stack
      */
-    private void mapInitialize(){
+    private void listInitialize(){
         
         for(int i=0; i<NUM_VARIABLES; i++)
-            variables.put((char)(97+i), null);
+            listKeys.add((char)(97+i));
   
     }
     
@@ -347,13 +356,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void storeVar_function(ActionEvent event) {
             
-        ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet()); 
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',listKeys); 
         dialog.setTitle("Store Variable"); 
         dialog.setHeaderText("Select the variable in which store the value");
         dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
         Optional<Character> result = dialog.showAndWait(); 
-        if (result.isPresent())
+        if (result.isPresent()){
             variables.put(result.get(), stack.peek());
+            observable_variables.put(result.get(), stack.peek());
+        }
     }
     
     /**
@@ -364,13 +375,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void retrieve_function(ActionEvent event) {
         
-        List<Character> listKey = new ArrayList<>();
+        List<Character> KeyUsed = new ArrayList<>();
         for(Character c : variables.keySet()){
             if(variables.get(c) != null)
-                listKey.add(c);
+                KeyUsed.add(c);
         }
 
-        ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKey.get(0), listKey); 
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>(KeyUsed.get(0), KeyUsed); 
         dialog.setTitle("Retrieve Variable"); 
         dialog.setHeaderText("Select the variable from which retrieve the value");
         dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
@@ -402,16 +413,16 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void subVar_function(ActionEvent event) {
         
-        List<Character> listKey = new ArrayList<>();     //Ridontande non utilizzata
+        List<Character> KeyUsed = new ArrayList<>();     //Ridontande non utilizzata
         for(Character c : variables.keySet()){
             if(variables.get(c) != null)
-                listKey.add(c);
+                KeyUsed.add(c);
         }
         
         ComplexNumber z = new ComplexNumber();   //Ridondante
         z = stack.peek();
         
-        ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet()); 
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet());   //Controllare
         dialog.setTitle("Sub Variable"); 
         dialog.setHeaderText("Select the variable in which the value is stored");
         dialog.setContentText("Choose your variable:");
