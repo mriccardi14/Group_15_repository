@@ -46,31 +46,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane paneDown;
     @FXML
-    private Button insert_btn, add_btn, sub_btn, mul_btn, div_btn;
-    @FXML
-    private Button sqrt_btn;
-    @FXML
-    private Button dup_btn;
-    @FXML
-    private Button over_btn;
-    @FXML
-    private Button inverse_btn;
-    @FXML
-    private Button plusVar_btn;
-    @FXML
-    private Button drop_btn;
-    @FXML
-    private Button clear_btn;
-    @FXML
-    private Button subVar_btn;
-    @FXML
-    private Button swap_btn;
-    @FXML
-    private Button storeVar_btn;
-    @FXML
     private Button exit_btn;
     @FXML
-    private Button retrieve_btn;
+    private Button insert_btn, add_btn, sub_btn, mul_btn, div_btn, inverse_btn, sqrt_btn;
+    @FXML
+    private Button clear_btn, drop_btn, dup_btn, swap_btn, over_btn;
+    @FXML
+    private Button storeVar_btn, retrieve_btn, plusVar_btn, subVar_btn;
     
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
