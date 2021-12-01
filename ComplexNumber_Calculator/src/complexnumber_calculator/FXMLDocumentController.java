@@ -155,12 +155,14 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("It hasn't been inserted any complex number");
             alert.showAndWait();
         }
-            
-        ComplexNumber z = ComplexNumber.parseComplex(textArea.getText());
-        stack.push(z);
-        values.add(0,z);
-        textArea.clear();
         
+        else{
+            
+            ComplexNumber z = ComplexNumber.parseComplex(textArea.getText());
+            stack.push(z);
+            values.add(0,z);
+            textArea.clear();
+        }
     }
     
     /**
@@ -442,10 +444,51 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * Method associated with the user defined operation, that executes in 
+     * sequence the indicated operations on the GUI on the stack's data and
+     * visualizes the result
+     * 
+     * @param event 
+     */
     @FXML
     private void exec_op_function(ActionEvent event) {
         
-        String[] user_op = textArea.getText().replaceAll(" ","").split("");
-        
+        if(textArea.getText().isEmpty()){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error in insertion of user operation");
+            alert.setHeaderText(null);
+            alert.setContentText("It hasn't been inserted any operator");
+            alert.showAndWait();
+        }
+        else{
+            String[] user_op = textArea.getText().split(" ");
+            for(String op : user_op){
+                switch(op){
+                    case "+": 
+                        this.add_function(null);
+                        break;
+                    case "-": 
+                        this.sub_function(null);    
+                        break;
+                    case "*": 
+                        this.mul_function(null);    
+                        break;
+                    case "/": 
+                        this.div_function(null);    
+                        break;    
+                    case "sqrt": 
+                        this.sqrt_function(null);    
+                        break;
+                    case "dup": 
+                        this.dup_function(null);    
+                        break;        
+                    case "swap": 
+                        this.swap_function(null);    
+                        break;    
+                }
+            }
+            textArea.clear();
+        }
     }
 }
