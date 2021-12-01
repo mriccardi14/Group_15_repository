@@ -127,6 +127,21 @@ public class FXMLDocumentController implements Initializable {
   
     }
     
+        
+    /*------------------ Exit Calculator Functions ------------------*/
+    
+    /**
+     * Method aociated with the Exit button
+     * 
+     * @param event 
+     */
+    @FXML
+    private void exit_function(ActionEvent event) {
+        Platform.exit();
+    }
+    
+    /*------------------ Basic Operations Functions ------------------*/
+    
     /**
      * Method associated with the stack insertion button
      * 
@@ -237,43 +252,7 @@ public class FXMLDocumentController implements Initializable {
         stack.push(result);
         values.add(result);
     }
-
-    /**
-     * Method associated with the Sqrt button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void sqrt_function(ActionEvent event) {
-        ComplexNumber result = stack.peek();
-        result = Calculator.root(result);
-        values.clear();
-        stack.push(result);
-        values.add(result);
-    }
     
-    /**
-     * Method associated with the Dup button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void dup_function(ActionEvent event) {
-        stack.push(stack.peek());
-        values.add(0,values.get(0));
-    }
-
-    /**
-     * Method associated with the Over button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void over_function(ActionEvent event) {
-        stack.push(stack.peek());
-        values.add(0,values.get(1));
-    }
-
     /**
      * Method associated with the Inverse button 
      * 
@@ -289,17 +268,23 @@ public class FXMLDocumentController implements Initializable {
         values.add(result);
         
     }
-    
+
     /**
-     * Method associated with the Drop button 
-     *
+     * Method associated with the Sqrt button 
+     * 
      * @param event 
      */
     @FXML
-    private void drop_function(ActionEvent event) {
-        stack.pop();
-        values.remove(0);    
+    private void sqrt_function(ActionEvent event) {
+        ComplexNumber result = stack.peek();
+        result = Calculator.root(result);
+        values.clear();
+        stack.push(result);
+        values.add(result);
     }
+    
+    
+    /*------------------ Stack Manipulation Functions ------------------*/
     
     /**
      * Method associated with the Clear button 
@@ -319,6 +304,58 @@ public class FXMLDocumentController implements Initializable {
         alert.showAndWait();
         
     }
+    
+    /**
+     * Method associated with the Drop button 
+     *
+     * @param event 
+     */
+    @FXML
+    private void drop_function(ActionEvent event) {
+        
+        stack.pop();
+        values.remove(0);
+        
+    }
+    
+    /**
+     * Method associated with the Dup button 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void dup_function(ActionEvent event) {
+        stack.push(stack.peek());
+        values.add(0,values.get(0));
+    }
+    
+    /**
+     * Method associated with the Swap button 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void swap_function(ActionEvent event) {
+        ComplexNumber z1, z2;
+        z1 = stack.pop();
+        z2 = stack.pop();
+        stack.push(z1);
+        stack.push(z2);
+        values.add(1,values.remove(0));
+    }
+
+    /**
+     * Method associated with the Over button 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void over_function(ActionEvent event) {
+        stack.push(stack.peek());
+        values.add(0,values.get(1));
+    }
+    
+    /*------------------ Variables Manipulation Functions ------------------*/
 
     /**
      * Method associated with the >X button 
@@ -328,13 +365,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void storeVar_function(ActionEvent event) {
             
-            ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet()); 
-            dialog.setTitle("Store Variable"); 
-            dialog.setHeaderText("Select the variable in which store the value");
-            dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
-            Optional<Character> result = dialog.showAndWait(); 
-            if (result.isPresent())
-                variables.put(result.get(), stack.peek());
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet()); 
+        dialog.setTitle("Store Variable"); 
+        dialog.setHeaderText("Select the variable in which store the value");
+        dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
+        Optional<Character> result = dialog.showAndWait(); 
+        if (result.isPresent())
+            variables.put(result.get(), stack.peek());
     }
     
     /**
@@ -345,25 +382,25 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void retrieve_function(ActionEvent event) {
         
-            List<Character> listKey = new ArrayList<>();
-            for(Character c : variables.keySet()){
-                if(variables.get(c) != null)
-                    listKey.add(c);
+        List<Character> listKey = new ArrayList<>();
+        for(Character c : variables.keySet()){
+            if(variables.get(c) != null)
+                listKey.add(c);
+        }
+
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKey.get(0), listKey); 
+        dialog.setTitle("Retrieve Variable"); 
+        dialog.setHeaderText("Select the variable from which retrieve the value");
+        dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
+        Optional<Character> result = dialog.showAndWait(); 
+        if (result.isPresent()){
+            Character c = result.get();
+            ComplexNumber z = variables.get(c);
+            if(z != null){
+                stack.push(z);
+                values.add(0, z);
             }
-                
-            ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKey.get(0), listKey); 
-            dialog.setTitle("Retrieve Variable"); 
-            dialog.setHeaderText("Select the variable from which retrieve the value");
-            dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
-            Optional<Character> result = dialog.showAndWait(); 
-            if (result.isPresent()){
-                Character c = result.get();
-                ComplexNumber z = variables.get(c);
-                if(z != null){
-                    stack.push(z);
-                    values.add(0, z);
-                }
-            }
+        }
     }
     
     /**
@@ -382,13 +419,16 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void subVar_function(ActionEvent event) {
-        List<Character> listKey = new ArrayList<>();
+        
+        List<Character> listKey = new ArrayList<>();     //Ridontande non utilizzata
         for(Character c : variables.keySet()){
             if(variables.get(c) != null)
                 listKey.add(c);
         }
-        ComplexNumber z = new ComplexNumber();
+        
+        ComplexNumber z = new ComplexNumber();   //Ridondante
         z = stack.peek();
+        
         ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet()); 
         dialog.setTitle("Sub Variable"); 
         dialog.setHeaderText("Select the variable in which the value is stored");
@@ -401,25 +441,4 @@ public class FXMLDocumentController implements Initializable {
                 variables.put(result.get(), Calculator.subtract(z1, z));
         }
     }
-    
-     /**
-     * Method associated with the Swap button 
-     * 
-     * @param event 
-     */
-    @FXML
-    private void swap_function(ActionEvent event) {
-    }
-    
-    /**
-     * Method aociated with the Exit button
-     * 
-     * @param event 
-     */
-    @FXML
-    private void exit_function(ActionEvent event) {
-        Platform.exit();
-    }
-
-    
 }
