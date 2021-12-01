@@ -11,13 +11,15 @@
   <items>
     <AnchorPane fx:id="paneTop" minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
-            <TextArea fx:id="textArea" layoutX="444.0" layoutY="20.0" prefHeight="246.0" prefWidth="511.0" promptText="Example: (a + bi) or (a - bi)" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="10.0" />
+            <TextArea fx:id="textArea" layoutX="11.0" layoutY="10.0" prefHeight="223.0" prefWidth="511.0" promptText="Example: (a + bi) or (a - bi)" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="10.0" />
             <TableView fx:id="stack_value" editable="true" layoutX="79.0" layoutY="88.0" prefHeight="410.0" prefWidth="233.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
               <columns>
                 <TableColumn fx:id="values_column" prefWidth="232.0" text="VALUES" />
               </columns>
             </TableView>
-            <Button fx:id="insert_btn" layoutX="367.0" layoutY="276.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
+            <Button fx:id="insert_btn" layoutX="367.0" layoutY="283.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
+            <Button fx:id="exec_op_btn" layoutX="33.0" layoutY="283.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
+            <CheckBox fx:id="def_op_ckb" layoutX="33.0" layoutY="251.0" mnemonicParsing="false" text="Define Operation" textFill="#fffbfb" />
          </children></AnchorPane>
     <AnchorPane fx:id="paneDown" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>

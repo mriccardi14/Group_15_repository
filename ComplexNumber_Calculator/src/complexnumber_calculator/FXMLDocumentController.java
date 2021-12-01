@@ -9,7 +9,6 @@ import java.util.*;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.MapProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
@@ -21,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -56,6 +56,10 @@ public class FXMLDocumentController implements Initializable {
     private Button clear_btn, drop_btn, dup_btn, swap_btn, over_btn;
     @FXML
     private Button storeVar_btn, retrieve_btn, plusVar_btn, subVar_btn;
+    @FXML
+    private Button exec_op_btn;
+    @FXML
+    private CheckBox def_op_ckb;
     
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
@@ -64,6 +68,7 @@ public class FXMLDocumentController implements Initializable {
     private Map<Character,ComplexNumber> variables;
     private ObservableMap<Character,ComplexNumber> observable_variables;
     private static final int NUM_VARIABLES = 26;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -106,6 +111,8 @@ public class FXMLDocumentController implements Initializable {
         subVar_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
         retrieve_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
         
+        insert_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(true).otherwise(false));
+        exec_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
     }
     
     /**
@@ -413,7 +420,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void subVar_function(ActionEvent event) {
         
-        List<Character> KeyUsed = new ArrayList<>();     //Ridontande non utilizzata
+        List<Character> KeyUsed = new ArrayList<>();
         for(Character c : variables.keySet()){
             if(variables.get(c) != null)
                 KeyUsed.add(c);
@@ -433,5 +440,12 @@ public class FXMLDocumentController implements Initializable {
             if(z1 != null)
                 variables.put(result.get(), Calculator.subtract(z1, z));
         }
+    }
+
+    @FXML
+    private void exec_op_function(ActionEvent event) {
+        
+        String[] user_op = textArea.getText().replaceAll(" ","").split("");
+        
     }
 }
