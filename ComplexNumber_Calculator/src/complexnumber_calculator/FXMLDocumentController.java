@@ -102,7 +102,7 @@ public class FXMLDocumentController implements Initializable {
         drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         dup_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         swap_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        over_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        over_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         storeVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         
         SimpleMapProperty smpr = new SimpleMapProperty(observable_variables);
@@ -421,26 +421,21 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void subVar_function(ActionEvent event) {
-        
         List<Character> KeyUsed = new ArrayList<>();
         for(Character c : variables.keySet()){
             if(variables.get(c) != null)
                 KeyUsed.add(c);
         }
-        
-        ComplexNumber z = new ComplexNumber();   //Ridondante
-        z = stack.peek();
-        
-        ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',variables.keySet());   //Controllare
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>(KeyUsed.get(0), KeyUsed); 
         dialog.setTitle("Sub Variable"); 
         dialog.setHeaderText("Select the variable in which the value is stored");
         dialog.setContentText("Choose your variable:");
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z1 = variables.get(c);
-            if(z1 != null)
-                variables.put(result.get(), Calculator.subtract(z1, z));
+            ComplexNumber z = variables.get(c);
+            if(z != null)
+                variables.put(result.get(), Calculator.subtract(z, stack.peek()));
         }
     }
 
