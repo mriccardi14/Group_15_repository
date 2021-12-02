@@ -243,11 +243,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void inverse_function(ActionEvent event) {
         
-        ComplexNumber result = stack.peek();
+        ComplexNumber result = stack.pop();
         result = Calculator.inverse(result);
-        values.clear();
+        values.remove(0);
         stack.push(result);
-        values.add(result);
+        values.add(0,result);
         
     }
 
@@ -258,11 +258,12 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void sqrt_function(ActionEvent event) {
-        ComplexNumber result = stack.peek();
+        
+        ComplexNumber result = stack.pop();
         result = Calculator.root(result);
-        values.clear();
+        values.remove(0);
         stack.push(result);
-        values.add(result);
+        values.add(0,result);
     }
     
     
@@ -463,6 +464,9 @@ public class FXMLDocumentController implements Initializable {
                     case "swap": 
                         this.swap_function(null);    
                         break;    
+                    case "over":
+                        this.over_function(null);
+                        break;
                 }
             }
             textArea.clear();
