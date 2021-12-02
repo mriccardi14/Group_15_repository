@@ -173,18 +173,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void add_function(ActionEvent event) {
         
-        List<ComplexNumber> list = new ArrayList<>();
-        while(!stack.isEmpty())
-            list.add(stack.pop());
+        ComplexNumber result;
+        result = Calculator.addition(stack.pop(), stack.pop());
         
-        values.clear();
-        
-        ComplexNumber result = new ComplexNumber();
-        for(ComplexNumber z : list)
-            result = Calculator.addition(result, z);
-        
+        values.remove(0, 2);   
         stack.push(result);
-        values.add(result);    
+        values.add(0,result);    
     }
     
     /**
@@ -195,18 +189,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void sub_function(ActionEvent event) {
         
-        List<ComplexNumber> list = new ArrayList<>();
-        while(!stack.isEmpty())
-            list.add(stack.pop());
+        ComplexNumber result, minuendo, subtracting;
         
-        values.clear();
+        subtracting = stack.pop();
+        minuendo = stack.pop();
+        result = Calculator.subtract(minuendo,subtracting);
         
-        ComplexNumber result = list.get(list.size()-1);
-        for(int i=list.size()-2; i>=0; i--)
-            result = Calculator.subtract(result, list.get(i));
-        
+        values.remove(0, 2);   
         stack.push(result);
-        values.add(result);
+        values.add(0,result);  
     }
 
     /**
@@ -217,18 +208,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void mul_function(ActionEvent event) {
         
-        List<ComplexNumber> list = new ArrayList<>();
-        while(!stack.isEmpty())
-            list.add(stack.pop());
+        ComplexNumber result;
+        result = Calculator.multiply(stack.pop(), stack.pop());
         
-        values.clear();
-        
-        ComplexNumber result = new ComplexNumber(1,0);
-        for(ComplexNumber z : list)
-            result = Calculator.multiply(result, z);
-        
+        values.remove(0, 2);   
         stack.push(result);
-        values.add(result);
+        values.add(0,result);  
     }
 
     /**
@@ -239,18 +224,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void div_function(ActionEvent event) {
         
-        List<ComplexNumber> list = new ArrayList<>();
-        while(!stack.isEmpty())
-            list.add(stack.pop());
+        ComplexNumber result, dividend, divider;
         
-        values.clear();
+        divider = stack.pop();
+        dividend = stack.pop();
+        result = Calculator.divide(dividend,divider);
         
-        ComplexNumber result = list.get(list.size()-1);
-        for(int i=list.size()-2; i>=0; i--)
-            result = Calculator.divide(result, list.get(i));
-        
+        values.remove(0, 2);   
         stack.push(result);
-        values.add(result);
+        values.add(0,result);  
     }
     
     /**
