@@ -4,9 +4,19 @@
  */
 package complexnumber_calculator;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.*;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
@@ -22,12 +32,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 /**
  * Controller class for Graphical User Interface
@@ -60,6 +73,10 @@ public class FXMLDocumentController implements Initializable {
     private Button exec_op_btn;
     @FXML
     private CheckBox def_op_ckb;
+    @FXML
+    private MenuItem save_btn;
+    @FXML
+    private MenuItem load_btn;
     
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
@@ -68,6 +85,8 @@ public class FXMLDocumentController implements Initializable {
     private Map<Character,ComplexNumber> variables;
     private ObservableMap<Character,ComplexNumber> observable_variables;
     private static final int NUM_VARIABLES = 26;
+
+   
     
     
     @Override
@@ -470,6 +489,46 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
             textArea.clear();
+        }
+    }
+
+    @FXML
+    private void save_opn_function(ActionEvent event) {
+        
+         if(textArea.getText().isEmpty()){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error in insertion of user operation");
+            alert.setHeaderText(null);
+            alert.setContentText("It hasn't been inserted any operator");
+            alert.showAndWait();
+        }
+         else{
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save File as...");
+            File file = fileChooser.showSaveDialog(rootPane.getScene().getWindow());
+
+            if(file!=null)
+                try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)))){
+                    String user_op = textArea.getText().replaceAll(" ", "|");
+                    pw.write(user_op);
+                } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @FXML
+    private void load_opn_function(ActionEvent event) {
+        
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        File file = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
+        
+        try(Scanner in = new Scanner(new BufferedReader(new FileReader(file)))){
+            String op = in.next().replaceAll("|", " ");
+            textArea.setText(op);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

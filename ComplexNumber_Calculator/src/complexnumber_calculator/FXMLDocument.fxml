@@ -11,11 +11,11 @@
   <items>
     <AnchorPane fx:id="paneTop" minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
-            <TextArea fx:id="textArea" layoutX="11.0" layoutY="10.0" prefHeight="223.0" prefWidth="511.0" promptText="Example number: (a + bi) or (a - bi)                                                                &#10;        Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="10.0">
+            <TextArea fx:id="textArea" layoutX="11.0" layoutY="49.0" prefHeight="184.0" prefWidth="511.0" promptText="Example number: (a + bi) or (a - bi)                                                                &#10;        Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="49.0">
                <font>
-                  <Font size="21.0" />
+                  <Font size="22.0" />
                </font></TextArea>
-            <TableView fx:id="stack_value" editable="true" layoutX="79.0" layoutY="88.0" prefHeight="410.0" prefWidth="233.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <TableView fx:id="stack_value" editable="true" layoutX="79.0" layoutY="48.0" prefHeight="282.0" prefWidth="233.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
               <columns>
                 <TableColumn fx:id="values_column" prefWidth="232.0" text="VALUES" />
               </columns>
@@ -23,6 +23,16 @@
             <Button fx:id="insert_btn" layoutX="367.0" layoutY="283.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
             <Button fx:id="exec_op_btn" layoutX="33.0" layoutY="283.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
             <CheckBox fx:id="def_op_ckb" layoutX="33.0" layoutY="251.0" mnemonicParsing="false" text="Define Operation" textFill="#fffbfb" />
+            <MenuBar prefHeight="23.0" prefWidth="776.0">
+              <menus>
+                <Menu fx:id="file_menu" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="save_btn" mnemonicParsing="false" onAction="#save_opn_function" text="Save  Operation" />
+                        <MenuItem fx:id="load_btn" mnemonicParsing="false" onAction="#load_opn_function" text="Reload Operation" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
          </children></AnchorPane>
     <AnchorPane fx:id="paneDown" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
