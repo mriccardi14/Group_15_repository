@@ -148,7 +148,7 @@ public class FXMLDocumentController implements Initializable {
     /*------------------ Exit Calculator Functions ------------------*/
     
     /**
-     * Method aociated with the Exit button
+     * Method associated with the Exit button
      * 
      * @param event 
      */
@@ -353,7 +353,11 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void over_function(ActionEvent event) {
-        stack.push(stack.peek());
+        ComplexNumber z1,z2;
+        z1 = stack.pop();
+        z2 = stack.peek();
+        stack.push(z1);
+        stack.push(z2);
         values.add(0,values.get(1));
     }
     
