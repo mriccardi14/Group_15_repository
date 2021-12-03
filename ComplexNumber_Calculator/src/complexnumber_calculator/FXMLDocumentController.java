@@ -32,7 +32,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -563,6 +562,4 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void other_function(ActionEvent event) {
     }
-
-    
 }
