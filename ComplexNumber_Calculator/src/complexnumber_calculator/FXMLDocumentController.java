@@ -418,6 +418,22 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void plusVar_function(ActionEvent event) {
+        List<Character> KeyUsed = new ArrayList<>();
+        for(Character c : variables.keySet()){
+            if(variables.get(c) != null)
+                KeyUsed.add(c);
+        }
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>(KeyUsed.get(0), KeyUsed); 
+        dialog.setTitle("Add Variable"); 
+        dialog.setHeaderText("Select the variable in which the value is stored");
+        dialog.setContentText("Choose your variable:");
+        Optional<Character> result = dialog.showAndWait(); 
+        if (result.isPresent()){
+            Character c = result.get();
+            ComplexNumber z = variables.get(c);
+            if(z != null)
+                variables.put(result.get(), Calculator.addition(z, stack.peek()));
+        }
     }
     
     /**
