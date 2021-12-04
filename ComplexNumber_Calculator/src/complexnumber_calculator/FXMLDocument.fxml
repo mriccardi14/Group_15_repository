@@ -31,6 +31,10 @@
                         <MenuItem fx:id="load_btn" mnemonicParsing="false" onAction="#load_opn_function" text="Reload Operation" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Exit">
+                     <items>
+                        <MenuItem fx:id="exit_btn" mnemonicParsing="false" onAction="#exit_function" text="Exit Calculator" />
+                     </items></Menu>
               </menus>
             </MenuBar>
          </children></AnchorPane>
@@ -132,9 +136,9 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="exit_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#exit_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="Exit" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <Button fx:id="other_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#other_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="--&gt;&#10;&lt;--" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Arial Italic" size="40.0" />
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />

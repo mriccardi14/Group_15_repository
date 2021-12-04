@@ -32,7 +32,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -62,8 +61,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane paneDown;
     @FXML
-    private Button exit_btn;
-    @FXML
     private Button insert_btn, add_btn, sub_btn, mul_btn, div_btn, inverse_btn, sqrt_btn;
     @FXML
     private Button clear_btn, drop_btn, dup_btn, swap_btn, over_btn;
@@ -85,8 +82,9 @@ public class FXMLDocumentController implements Initializable {
     private Map<Character,ComplexNumber> variables;
     private ObservableMap<Character,ComplexNumber> observable_variables;
     private static final int NUM_VARIABLES = 26;
-
-   
+    
+    @FXML
+    private Button other_btn;
     
     
     @Override
@@ -132,6 +130,10 @@ public class FXMLDocumentController implements Initializable {
         
         insert_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(true).otherwise(false));
         exec_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        
+        save_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        load_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        
     }
     
     /**
@@ -156,6 +158,7 @@ public class FXMLDocumentController implements Initializable {
     private void exit_function(ActionEvent event) {
         Platform.exit();
     }
+    
     
     /*------------------ Basic Operations Functions ------------------*/
     
@@ -479,39 +482,53 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         }
         else{
-            String[] user_op = textArea.getText().split(" ");
-            for(String op : user_op){
-                switch(op){
-                    case "+": 
-                        this.add_function(null);
-                        break;
-                    case "-": 
-                        this.sub_function(null);    
-                        break;
-                    case "*": 
-                        this.mul_function(null);    
-                        break;
-                    case "/": 
-                        this.div_function(null);    
-                        break;    
-                    case "sqrt": 
-                        this.sqrt_function(null);    
-                        break;
-                    case "dup": 
-                        this.dup_function(null);    
-                        break;        
-                    case "swap": 
-                        this.swap_function(null);    
-                        break;    
-                    case "over":
-                        this.over_function(null);
-                        break;
-                }
+            if(stack.isEmpty()){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error execution of user operation");
+                alert.setHeaderText(null);
+                alert.setContentText("Stack empty, insert the operands for the operations");
+                alert.showAndWait();
             }
-            textArea.clear();
+            else{
+                String[] user_op = textArea.getText().split(" ");
+                for(String op : user_op){
+                    switch(op){
+                        case "+": 
+                            this.add_function(null);
+                            break;
+                        case "-": 
+                            this.sub_function(null);    
+                            break;
+                        case "*": 
+                            this.mul_function(null);    
+                            break;
+                        case "/": 
+                            this.div_function(null);    
+                            break;    
+                        case "sqrt": 
+                            this.sqrt_function(null);    
+                            break;
+                        case "dup": 
+                            this.dup_function(null);    
+                            break;        
+                        case "swap": 
+                            this.swap_function(null);    
+                            break;    
+                        case "over":
+                            this.over_function(null);
+                            break;
+                    }
+                }
+                textArea.clear();
+            }
         }
     }
-
+    
+    /**
+     * Method associated with the save button of the menu, that allows the user
+     * to save on a file a defined operation
+     * @param event 
+     */
     @FXML
     private void save_opn_function(ActionEvent event) {
         
@@ -537,6 +554,12 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * Method associated with the load button of the menu, that allows the user
+     * to reload from a prevoius saved file a defined operation 
+     * 
+     * @param event 
+     */
     @FXML
     private void load_opn_function(ActionEvent event) {
         
@@ -545,10 +568,14 @@ public class FXMLDocumentController implements Initializable {
         File file = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
         
         try(Scanner in = new Scanner(new BufferedReader(new FileReader(file)))){
-            String op = in.next().replaceAll("|", " ");
+            String op = in.next().replaceAll("\\|", " ");
             textArea.setText(op);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void other_function(ActionEvent event) {
     }
 }
