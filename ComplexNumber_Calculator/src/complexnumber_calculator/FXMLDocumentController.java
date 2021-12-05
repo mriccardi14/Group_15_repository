@@ -32,11 +32,13 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -83,8 +85,20 @@ public class FXMLDocumentController implements Initializable {
     private ObservableMap<Character,ComplexNumber> observable_variables;
     private static final int NUM_VARIABLES = 26;
     
+    private Map<String,String> userOperations;
+    
     @FXML
     private Button other_btn;
+    @FXML
+    private Menu file_menu;
+    @FXML
+    private MenuItem exit_btn;
+    @FXML
+    private Button ins_op_btn;
+    @FXML
+    private TextField textField;
+    @FXML
+    private Button retr_op_btn;
     
     
     @Override
@@ -99,6 +113,7 @@ public class FXMLDocumentController implements Initializable {
         observable_variables= FXCollections.observableHashMap();
         this.listInitialize();
         this.viewInitialize();
+        userOperations = new HashMap<>();
     }
    
     /**
@@ -130,7 +145,8 @@ public class FXMLDocumentController implements Initializable {
         
         insert_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(true).otherwise(false));
         exec_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
-        
+        ins_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        retr_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         save_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         load_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         
@@ -219,7 +235,7 @@ public class FXMLDocumentController implements Initializable {
         
         values.remove(0, 2);   
         stack.push(result);
-        values.add(0,result);  
+        values.add(0,result);
     }
 
     /**
@@ -525,6 +541,64 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
+     * Method associated with the user defined operation, that inserts 
+     * the indicated operation on the GUI in the Map of user operations using 
+     * as key the name of operation and as value the operation itself
+     * 
+     * @param event 
+     */
+    @FXML
+    private void insert_op_function(ActionEvent event) {
+        
+        if(textField.getText().isEmpty() || textArea.getText().isEmpty()){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error in insertion of user operation");
+            alert.setHeaderText(null);
+            alert.setContentText("It hasn't been inserted any operator or the name of the operation");
+            alert.showAndWait();
+        }
+        else{
+            userOperations.put(textField.getText(), textArea.getText());
+            textField.clear();
+            textArea.clear();
+        }
+    }
+
+    /**
+     * Method associated with the user defined operation, that retrieves from
+     * Map of user operations the operation associated with the name
+     * indicated on the GUI
+     * 
+     * @param event 
+     */
+    @FXML
+    private void retrieve_op_function(ActionEvent event) {
+        
+        if(textField.getText().isEmpty()){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error in retrieving an operation");
+            alert.setHeaderText(null);
+            alert.setContentText("It hasn't been specified the name of the operation");
+            alert.showAndWait();
+        }
+        else{
+            String operation = userOperations.get(textField.getText());
+            if(operation != null){
+                textArea.setText(operation);
+                textField.clear();
+            }
+            else{
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error in retrieving an operation");
+                alert.setHeaderText(null);
+                alert.setContentText("The specified operation hasn't been found");
+                alert.showAndWait();
+                textField.clear();
+            }
+        }
+    }
+    
+    /**
      * Method associated with the save button of the menu, that allows the user
      * to save on a file a defined operation
      * @param event 
@@ -578,4 +652,5 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void other_function(ActionEvent event) {
     }
+
 }

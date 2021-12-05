@@ -22,7 +22,7 @@
             </TableView>
             <Button fx:id="insert_btn" layoutX="388.0" layoutY="347.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
             <Button fx:id="exec_op_btn" layoutX="14.0" layoutY="347.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
-            <CheckBox fx:id="def_op_ckb" layoutX="14.0" layoutY="208.0" mnemonicParsing="false" text="Define Operation" textFill="WHITE" />
+            <CheckBox fx:id="def_op_ckb" layoutX="14.0" layoutY="208.0" mnemonicParsing="false" text="Operation" textFill="WHITE" />
             <MenuBar prefHeight="23.0" prefWidth="776.0">
               <menus>
                 <Menu fx:id="file_menu" mnemonicParsing="false" text="File">
