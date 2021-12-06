@@ -35,7 +35,7 @@ public class Calculator {
     /**
      * The argument of a complex number
      * @param z a ComplexNumber
-     * @return the magnitude or modulus of current complex number
+     * @return the argument of current complex number
      */
     public static double arg(ComplexNumber z) {
         return Math.atan2(z.getIm(),z.getRe());
