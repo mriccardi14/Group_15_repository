@@ -162,6 +162,24 @@ public class FXMLDocumentController implements Initializable {
   
     }
     
+    /**
+     * Methods for the visualization of a message from the GUI
+     * 
+     * @param type    type of the information message
+     * @param title   title of the information message
+     * @param header  header of the information message
+     * @param context context of the information message
+     */
+    private void alertMessage(AlertType type, String title, String header, String context){
+        
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(context);
+        alert.showAndWait();
+        
+    }
+    
         
     /*------------------ Exit Calculator Functions ------------------*/
     
@@ -187,13 +205,10 @@ public class FXMLDocumentController implements Initializable {
     private void insert_function(ActionEvent event) {
         
         if(textArea.getText().isEmpty()){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error in insertion of a number");
-            alert.setHeaderText(null);
-            alert.setContentText("It hasn't been inserted any complex number");
-            alert.showAndWait();
+            String title = "Error in insertion of a number";
+            String context = "It hasn't been inserted any complex number";
+            this.alertMessage(AlertType.ERROR, title, null, context);
         }
-        
         else{
             
             ComplexNumber z = ComplexNumber.parseComplex(textArea.getText());
@@ -318,12 +333,9 @@ public class FXMLDocumentController implements Initializable {
         stack.clear();
         values.clear();
         
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Clear Information");
-        alert.setHeaderText(null);
-        alert.setContentText("The deletion of elements has been completed correctly");
-        alert.showAndWait();
-        
+        String title = "Clear Information";
+        String context = "The deletion of elements has been completed correctly";
+        this.alertMessage(AlertType.INFORMATION, title, null, context);
     }
     
     /**
@@ -491,25 +503,21 @@ public class FXMLDocumentController implements Initializable {
     private void exec_op_function(ActionEvent event) {
         
         if(textArea.getText().isEmpty()){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error in insertion of user operation");
-            alert.setHeaderText(null);
-            alert.setContentText("It hasn't been inserted any operator");
-            alert.showAndWait();
+            String title = "Error in insertion of user operation";
+            String context = "It hasn't been inserted any operator";
+            this.alertMessage(AlertType.ERROR, title, null, context);
         }
         else{
             if(stack.isEmpty()){
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error execution of user operation");
-                alert.setHeaderText(null);
-                alert.setContentText("Stack empty, insert the operands for the operations");
-                alert.showAndWait();
+                String title = "Error in execution of user operation";
+                String context = "Stack empty, insert the operands for the operations";
+                this.alertMessage(AlertType.ERROR, title, null, context);
             }
             else{
                 String[] user_op = textArea.getText().split(" ");
                 for(String op : user_op){
                     switch(op){
-                        case "+": 
+                        case "+":
                             this.add_function(null);
                             break;
                         case "-": 
@@ -551,11 +559,9 @@ public class FXMLDocumentController implements Initializable {
     private void insert_op_function(ActionEvent event) {
         
         if(textField.getText().isEmpty() || textArea.getText().isEmpty()){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error in insertion of user operation");
-            alert.setHeaderText(null);
-            alert.setContentText("It hasn't been inserted any operator or the name of the operation");
-            alert.showAndWait();
+            String title = "Error in insertion of user operation";
+            String context = "It hasn't been inserted any operator or the name of the operation";
+            this.alertMessage(AlertType.ERROR, title, null, context);
         }
         else{
             userOperations.put(textField.getText(), textArea.getText());
@@ -575,11 +581,9 @@ public class FXMLDocumentController implements Initializable {
     private void retrieve_op_function(ActionEvent event) {
         
         if(textField.getText().isEmpty()){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error in retrieving an operation");
-            alert.setHeaderText(null);
-            alert.setContentText("It hasn't been specified the name of the operation");
-            alert.showAndWait();
+            String title = "Error in retrieving an operation";
+            String context = "It hasn't been specified the name of the operation";
+            this.alertMessage(AlertType.ERROR, title, null, context);
         }
         else{
             String operation = userOperations.get(textField.getText());
@@ -588,12 +592,9 @@ public class FXMLDocumentController implements Initializable {
                 textField.clear();
             }
             else{
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error in retrieving an operation");
-                alert.setHeaderText(null);
-                alert.setContentText("The specified operation hasn't been found");
-                alert.showAndWait();
-                textField.clear();
+                String title = "Error in retrieving an operation";
+                String context = "The specified operation hasn't been found";
+                this.alertMessage(AlertType.ERROR, title, null, context);
             }
         }
     }
@@ -607,11 +608,9 @@ public class FXMLDocumentController implements Initializable {
     private void save_opn_function(ActionEvent event) {
         
          if(textArea.getText().isEmpty()){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error in insertion of user operation");
-            alert.setHeaderText(null);
-            alert.setContentText("It hasn't been inserted any operator");
-            alert.showAndWait();
+            String title = "Error in insertion of user operation";
+            String context = "It hasn't been inserted any operator";
+            this.alertMessage(AlertType.ERROR, title, null, context);
         }
          else{
             FileChooser fileChooser = new FileChooser();
