@@ -236,6 +236,8 @@ public class FXMLDocumentController implements Initializable {
     
     /**
      * Method associated with the Subtraction button 
+     * assuming subtracting is the last element of the stack 
+     * and minuendo is the second last element of the stack
      * 
      * @param event 
      */
@@ -270,7 +272,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Method associated with the Division button 
+     * Method associated with the Division button,
+     * assuming divider is the last element of the stack 
+     * and dividend is the second last element of the stack
      * 
      * @param event 
      */

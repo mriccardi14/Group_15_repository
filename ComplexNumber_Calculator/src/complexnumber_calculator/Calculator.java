@@ -12,7 +12,7 @@ package complexnumber_calculator;
 public class Calculator {
     
     /**
-     * The complex conjugate of the a complex number
+     * The complex conjugate of a complex number
      * @param z a ComplexNumber
      * @return a ComplexNumber object which is the conjugate of the current complex number
      */
@@ -22,9 +22,9 @@ public class Calculator {
     }
 
     /**
-     * The modulus, magnitude or the absolute value of a complex number
+     * The absolute value of a complex number
      * @param z a ComplexNumber
-     * @return the magnitude or modulus of current complex number
+     * @return the absolute value of current complex number
      */
     public static double mod(ComplexNumber z)
     {
@@ -141,5 +141,31 @@ public class Calculator {
         
         return new ComplexNumber(re, im);
     }
+    
+    /**
+    * This method calculates the logarithm of a ComplexNumber
+    * @param z a ComplexNumber
+    * @return the logarithm of z.
+    */
+    public static ComplexNumber log(ComplexNumber z) {
+        return new ComplexNumber(Math.log(Calculator.mod(z)),Calculator.arg(z));
+    }
+
+    /**
+    * This method calculates the cosine of a ComplexNumber
+    * @param z a ComplexNumber
+    * @return the cosine of z.
+    */
+	public static ComplexNumber cos(ComplexNumber z)
+	{
+            if(z.getRe()== 0.0 && z.getIm() == 0.0){
+                return new ComplexNumber(1,+-0);
+            }
+            double x = Math.exp(z.getIm());
+            double inv_x = 1/x;
+            double r = Math.cos(z.getRe()) * (x + inv_x)/2;
+            double i = -Math.sin(z.getRe()) * (x - inv_x)/2;
+            return new ComplexNumber(r,i);
+	}
 }
     

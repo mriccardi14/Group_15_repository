@@ -7,6 +7,7 @@ package complexnumber_calculatorTest;
 
 import complexnumber_calculator.Calculator;
 import complexnumber_calculator.ComplexNumber;
+import static jdk.nashorn.internal.objects.Global.Infinity;
 import static junit.framework.Assert.*;
 import org.junit.*;
 
@@ -17,7 +18,7 @@ import org.junit.*;
  */
 public class CalculatorTest {
     
-    private ComplexNumber z1, z2, z3, z4, z5, z6;
+    private ComplexNumber z1, z2, z3, z4, z5, z6, z7;
     
     @Before
     public void setUp(){
@@ -27,6 +28,7 @@ public class CalculatorTest {
         z4 = new ComplexNumber(90, -38);
         z5 = new ComplexNumber(4, 65);
         z6 = new ComplexNumber(-10, 20);
+        z7 = new ComplexNumber(4,2);
     }
     
     @Test
@@ -40,6 +42,18 @@ public class CalculatorTest {
         assertEquals(new ComplexNumber(-8, 17), Calculator.conjugate(z3));
     //Fourth Case
         assertEquals(new ComplexNumber(90, 38), Calculator.conjugate(z4));
+    }
+    
+    @Test
+    public void argTest(){
+    //First Case
+        assertEquals(0.0, Calculator.arg(z1));
+    //Second Case
+        assertEquals(-1.325817663668032465059239210428475631184440601306368843360096381, Calculator.arg(z2));
+    //Third Case
+        assertEquals(-2.010638909610633, Calculator.arg(z3));
+    //Fourth Case
+        assertEquals(-0.399515493999374533717965361212644309295248110085532379658314934, Calculator.arg(z4));
     }
     
     @Test
@@ -153,5 +167,25 @@ public class CalculatorTest {
         assertEquals(new ComplexNumber(-1.77679,2.05720), Calculator.exp(z2));
         //Fifth Case: z has negative real part and positive imaginary part
         assertEquals(new ComplexNumber(0.00002,0.00004), Calculator.exp(z6));
+    }
+    
+    @Test
+    public void cosTest(){
+    //First Case
+        assertEquals(new ComplexNumber(1.0,0.0), Calculator.cos(z1));
+    //Second Case
+        assertEquals(new ComplexNumber(14.75470117048376, 22.963673499193042), Calculator.cos(z2));
+    //Third Case
+        assertEquals(new ComplexNumber(-2.4591352139173837, 2.7448170067921541), Calculator.cos(z7));
+    }
+    
+    @Test
+    public void logTest(){
+    //First Case
+        assertEquals(new ComplexNumber(-Infinity,0.0), Calculator.log(z1));
+    //Second Case
+        assertEquals(new ComplexNumber(1.416606672028108, -1.3258176636680326), Calculator.log(z2));
+    //Third Case
+        assertEquals(new ComplexNumber(1.4978661367769956, 0.4636476090008061), Calculator.log(z7));
     }
 }
