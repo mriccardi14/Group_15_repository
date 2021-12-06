@@ -99,6 +99,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField textField;
     @FXML
     private Button retr_op_btn;
+    @FXML
+    private Button delete_op_btn;
     
     
     @Override
@@ -147,6 +149,7 @@ public class FXMLDocumentController implements Initializable {
         exec_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         ins_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         retr_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        delete_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         save_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         load_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         
@@ -362,6 +365,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void dup_function(ActionEvent event) {
+        
         stack.push(stack.peek());
         values.add(0,values.get(0));
     }
@@ -388,6 +392,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void over_function(ActionEvent event) {
+        
         ComplexNumber z1,z2;
         z1 = stack.pop();
         z2 = stack.peek();
@@ -453,6 +458,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void plusVar_function(ActionEvent event) {
+        
         List<Character> KeyUsed = new ArrayList<>();
         for(Character c : variables.keySet()){
             if(variables.get(c) != null)
@@ -478,6 +484,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void subVar_function(ActionEvent event) {
+        
         List<Character> KeyUsed = new ArrayList<>();
         for(Character c : variables.keySet()){
             if(variables.get(c) != null)
@@ -650,6 +657,38 @@ public class FXMLDocumentController implements Initializable {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+     /**
+     * Method associated with the "Delete Operation" button of the menu, that allows the user
+     * to delete from a prevoius saved file a defined operation 
+     * 
+     * @param event 
+     */
+    @FXML
+    private void delete_op_func(ActionEvent event) {
+        
+        if(textField.getText().isEmpty()){
+            String title = "Error in deleting an operation";
+            String context = "It hasn't been specified the name of the operation";
+            this.alertMessage(AlertType.ERROR, title, null, context);
+        }
+        else{
+            String operation = userOperations.get(textField.getText());
+            if(operation != null){
+                userOperations.remove(textField.getText());
+                textField.clear();
+                String title = "Remove user operation information";
+                String context = "The deletion of the user operation has been completed correctly";
+                this.alertMessage(AlertType.INFORMATION, title, null, context);
+            }
+            else{
+                String title = "Error in deleting an operation";
+                String context = "The specified operation hasn't been found";
+                this.alertMessage(AlertType.ERROR, title, null, context);
+            }
+        }
+        
     }
 
     @FXML

@@ -11,7 +11,7 @@
   <items>
     <AnchorPane fx:id="paneTop" minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
-            <TextArea fx:id="textArea" layoutX="11.0" layoutY="49.0" prefHeight="140.0" prefWidth="511.0" promptText="Example number: (a + bi) or (a - bi)&#9;&#9;&#9;Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="209.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="49.0">
+            <TextArea fx:id="textArea" layoutX="11.0" layoutY="49.0" prefHeight="100.0" prefWidth="511.0" promptText="Example number: (a + bi) or (a - bi)&#9;&#9;&#9;Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="249.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="49.0">
                <font>
                   <Font size="22.0" />
                </font></TextArea>
@@ -21,8 +21,8 @@
               </columns>
             </TableView>
             <Button fx:id="insert_btn" layoutX="388.0" layoutY="347.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
-            <Button fx:id="exec_op_btn" layoutX="14.0" layoutY="347.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
-            <CheckBox fx:id="def_op_ckb" layoutX="14.0" layoutY="208.0" mnemonicParsing="false" text="Operation/Value" textFill="WHITE" />
+            <Button fx:id="exec_op_btn" layoutX="14.0" layoutY="286.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
+            <CheckBox fx:id="def_op_ckb" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" text="Operation/Value" textFill="WHITE" />
             <MenuBar prefHeight="23.0" prefWidth="776.0">
               <menus>
                 <Menu fx:id="file_menu" mnemonicParsing="false" text="File">
@@ -37,10 +37,11 @@
                      </items></Menu>
               </menus>
             </MenuBar>
-            <Button fx:id="ins_op_btn" layoutX="14.0" layoutY="246.0" mnemonicParsing="false" onAction="#insert_op_function" prefHeight="37.0" prefWidth="157.0" text="Insert Operation" />
+            <Button fx:id="ins_op_btn" layoutX="14.0" layoutY="187.0" mnemonicParsing="false" onAction="#insert_op_function" prefHeight="37.0" prefWidth="157.0" text="Insert Operation" />
             <TextField fx:id="textField" layoutX="388.0" layoutY="249.0" prefHeight="31.0" prefWidth="131.0" />
             <Label layoutX="269.0" layoutY="254.0" text="Name Operation" textFill="WHITE" />
-            <Button fx:id="retr_op_btn" layoutX="14.0" layoutY="296.0" mnemonicParsing="false" onAction="#retrieve_op_function" prefHeight="37.0" prefWidth="157.0" text="Retrieve Operation" />
+            <Button fx:id="retr_op_btn" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#retrieve_op_function" prefHeight="37.0" prefWidth="157.0" text="Retrieve Operation" />
+            <Button fx:id="delete_op_btn" layoutX="14.0" layoutY="339.0" mnemonicParsing="false" onAction="#delete_op_func" prefHeight="37.0" prefWidth="157.0" text="Delete Operation" />
          </children></AnchorPane>
     <AnchorPane fx:id="paneDown" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
