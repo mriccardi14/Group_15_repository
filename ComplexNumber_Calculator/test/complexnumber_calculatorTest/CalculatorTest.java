@@ -17,7 +17,7 @@ import org.junit.*;
  */
 public class CalculatorTest {
     
-    private ComplexNumber z1, z2, z3, z4;
+    private ComplexNumber z1, z2, z3, z4, z5, z6;
     
     @Before
     public void setUp(){
@@ -25,6 +25,8 @@ public class CalculatorTest {
         z2 = new ComplexNumber(1, -4);
         z3 = new ComplexNumber(-8, -17);
         z4 = new ComplexNumber(90, -38);
+        z5 = new ComplexNumber(4, 65);
+        z6 = new ComplexNumber(-10, 20);
     }
     
     @Test
@@ -122,6 +124,7 @@ public class CalculatorTest {
         ComplexNumber z9 = new ComplexNumber(0,1);
         assertEquals(z9, Calculator.divide(z7,z8));
     }
+    
     @Test
     public void RootTest(){
         //First Case
@@ -136,5 +139,19 @@ public class CalculatorTest {
         ComplexNumber z5 = new ComplexNumber(-3.7,-9.4);
         ComplexNumber z6 = new ComplexNumber(1.78913, -2.62697);
         assertEquals(z6, Calculator.root(z5));
+    }
+    
+    @Test
+    public void ExponentialTest(){
+        //Fisrt Case: z has both part equal to 0
+        assertEquals(new ComplexNumber(1,0) , Calculator.exp(z1));
+        //Second Case: z has both positive part
+        assertEquals(new ComplexNumber(-30.70894,45.14332), Calculator.exp(z5));
+        //Third Case: z has both negative part
+        assertEquals(new ComplexNumber(-0.00009,0.00032), Calculator.exp(z3));
+        //Fourth Case: z has positive real part and negative imaginary part
+        assertEquals(new ComplexNumber(-1.77679,2.05720), Calculator.exp(z2));
+        //Fifth Case: z has negative real part and positive imaginary part
+        assertEquals(new ComplexNumber(0.00002,0.00004), Calculator.exp(z6));
     }
 }

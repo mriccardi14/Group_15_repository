@@ -12,7 +12,7 @@ package complexnumber_calculator;
 public class Calculator {
     
     /**
-     * The complex conjugate of the current complex number
+     * The complex conjugate of the a complex number
      * @param z a ComplexNumber
      * @return a ComplexNumber object which is the conjugate of the current complex number
      */
@@ -22,7 +22,7 @@ public class Calculator {
     }
 
     /**
-     * The modulus, magnitude or the absolute value of current complex number
+     * The modulus, magnitude or the absolute value of a complex number
      * @param z a ComplexNumber
      * @return the magnitude or modulus of current complex number
      */
@@ -33,7 +33,7 @@ public class Calculator {
 
 
     /**
-     * The argument of current complex number
+     * The argument of a complex number
      * @param z a ComplexNumber
      * @return the magnitude or modulus of current complex number
      */
@@ -124,6 +124,22 @@ public class Calculator {
             double outputh = (int)(Math.round((r*Math.sin(theta)) * 100000))/100000.0;
             return new ComplexNumber(outputr, outputh);
         }
+    }
+    
+    /**
+    * This method calculates the exponential of a complex number
+    * @param z The input ComplexNumber
+    * @return a ComplexNumber which is e^(input z)
+    */
+    public static ComplexNumber exp(ComplexNumber z){
+            
+        double re, im;
+        double radius = Math.exp(z.getRe());
+        
+        re = (int) (Math.round((radius*Math.cos(z.getIm())) * 100000))/100000.0;
+        im = (int) (Math.round((radius*Math.sin(z.getIm())) * 100000))/100000.0;
+        
+        return new ComplexNumber(re, im);
     }
 }
     
