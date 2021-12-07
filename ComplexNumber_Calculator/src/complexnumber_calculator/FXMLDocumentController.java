@@ -20,10 +20,8 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -81,8 +79,8 @@ public class FXMLDocumentController implements Initializable {
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
     
     private List<Character> listKeys;
-    private Map<Character,ComplexNumber> variables;
-    private ObservableMap<Character,ComplexNumber> observable_variables;
+    private ObservableList<Variable> variables;
+    private List<Variable> list_var;
     private static final int NUM_VARIABLES = 26;
     
     private Map<String,String> userOperations;
@@ -100,23 +98,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button delete_op_btn;
     @FXML
-    private Button exec_op_btn1;
+    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn; 
     @FXML
-    private Button mod_btn;
+    private Button modify_op_btn;
     @FXML
-    private Button sin_btn;
+    private TableView<Variable> var_tab;
     @FXML
-    private Button pow_btn;
+    private TableColumn<Character, Character> var_column;
     @FXML
-    private Button log_btn;
-    @FXML
-    private Button exp_btn;
-    @FXML
-    private Button arg_btn;
-    @FXML
-    private Button tan_btn;
-    @FXML
-    private Button cos_btn;
+    private TableColumn<ComplexNumber, String> val_column;
     
     
     @Override
@@ -125,12 +115,19 @@ public class FXMLDocumentController implements Initializable {
         values = FXCollections.observableArrayList();
         values_column.setCellValueFactory(new PropertyValueFactory("complexNumber"));
         stack_value.setItems(values);
+        
+        variables = FXCollections.observableArrayList();
+        var_column.setCellValueFactory(new PropertyValueFactory("key"));
+        val_column.setCellValueFactory(new PropertyValueFactory("valueS"));
+        var_tab.setItems(variables);
+        list_var = new ArrayList<>();
+        
         stack = new Stack<>();
         listKeys = new ArrayList<>();
-        variables = new HashMap<>();     //Forse da rendere ordinata
-        observable_variables= FXCollections.observableHashMap();
+        
         this.listInitialize();
         this.viewInitialize();
+        
         userOperations = new HashMap<>();
     }
    
@@ -155,11 +152,8 @@ public class FXMLDocumentController implements Initializable {
         over_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         storeVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         
-        SimpleMapProperty smpr = new SimpleMapProperty(observable_variables);
-        
-        plusVar_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
-        subVar_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
-        retrieve_btn.disableProperty().bind(Bindings.when(smpr.emptyProperty()).then(true).otherwise(false));
+        plusVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        subVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         
         insert_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(true).otherwise(false));
         exec_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
@@ -172,9 +166,12 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * Support method for variable stack
+     * Support method for variables stack
      */
     private void listInitialize(){
+        
+        for(int i=0; i<NUM_VARIABLES; i++)
+            variables.add(new Variable((char)(97+i), new ComplexNumber()));
         
         for(int i=0; i<NUM_VARIABLES; i++)
             listKeys.add((char)(97+i));
@@ -417,7 +414,7 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,values.get(1));
     }
     
-    /*------------------ Variables Manipulation Functions ------------------*/
+    /*------------------ Variable Manipulation Functions ------------------*/
 
     /**
      * Method associated with the >X button 
@@ -433,8 +430,12 @@ public class FXMLDocumentController implements Initializable {
         dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
-            variables.put(result.get(), stack.peek());
-            observable_variables.put(result.get(), stack.peek());
+            Character c = result.get();
+            list_var.add(new Variable(c, stack.peek()));
+            for(Variable var: variables){
+                if(c.equals(var.getKey()))
+                    var.setValue(stack.peek());
+            }
         }
     }
     
@@ -444,22 +445,20 @@ public class FXMLDocumentController implements Initializable {
      * @param event 
      */
     @FXML
-    private void retrieve_function(ActionEvent event) {
+    private void retrieveVar_function(ActionEvent event) {
         
-        List<Character> KeyUsed = new ArrayList<>();
-        for(Character c : variables.keySet()){
-            if(variables.get(c) != null)
-                KeyUsed.add(c);
-        }
-
-        ChoiceDialog<Character> dialog = new ChoiceDialog<>(KeyUsed.get(0), KeyUsed); 
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKeys.get(0), listKeys); 
         dialog.setTitle("Retrieve Variable"); 
         dialog.setHeaderText("Select the variable from which retrieve the value");
         dialog.setContentText("Choose your variable:"); // Traditional way to get the response value. 
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z = variables.get(c);
+            ComplexNumber z = null;
+            for(Variable var: variables){
+                if(c.equals(var.getKey()))
+                    z = var.getValueC();
+            }
             if(z != null){
                 stack.push(z);
                 values.add(0, z);
@@ -475,21 +474,22 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void plusVar_function(ActionEvent event) {
         
-        List<Character> KeyUsed = new ArrayList<>();
-        for(Character c : variables.keySet()){
-            if(variables.get(c) != null)
-                KeyUsed.add(c);
-        }
-        ChoiceDialog<Character> dialog = new ChoiceDialog<>(KeyUsed.get(0), KeyUsed); 
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKeys.get(0), listKeys); 
         dialog.setTitle("Add Variable"); 
         dialog.setHeaderText("Select the variable in which the value is stored");
         dialog.setContentText("Choose your variable:");
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z = variables.get(c);
-            if(z != null)
-                variables.put(result.get(), Calculator.addition(z, stack.peek()));
+            ComplexNumber z = null;
+            for(Variable var: list_var){
+                if(c.equals(var.getKey()))
+                    var.setValue(Calculator.addition(var.getValueC(), stack.peek()));
+            }
+            for(Variable var: variables){
+                if(c.equals(var.getKey()))
+                    var.setValue(Calculator.addition(var.getValueC(), stack.peek()));
+            }   
         }
     }
     
@@ -501,21 +501,22 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void subVar_function(ActionEvent event) {
         
-        List<Character> KeyUsed = new ArrayList<>();
-        for(Character c : variables.keySet()){
-            if(variables.get(c) != null)
-                KeyUsed.add(c);
-        }
-        ChoiceDialog<Character> dialog = new ChoiceDialog<>(KeyUsed.get(0), KeyUsed); 
+        ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKeys.get(0), listKeys); 
         dialog.setTitle("Sub Variable"); 
         dialog.setHeaderText("Select the variable in which the value is stored");
         dialog.setContentText("Choose your variable:");
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z = variables.get(c);
-            if(z != null)
-                variables.put(result.get(), Calculator.subtract(z, stack.peek()));
+            ComplexNumber z = null;
+            for(Variable var: list_var){
+                if(c.equals(var.getKey()))
+                    var.setValue(Calculator.subtract(var.getValueC(), stack.peek()));
+            }
+            for(Variable var: variables){
+                if(c.equals(var.getKey()))
+                    var.setValue(Calculator.subtract(var.getValueC(), stack.peek()));
+            }
         }
     }
 
@@ -616,7 +617,6 @@ public class FXMLDocumentController implements Initializable {
             String operation = userOperations.get(textField.getText());
             if(operation != null){
                 textArea.setText(operation);
-                textField.clear();
             }
             else{
                 String title = "Error in retrieving an operation";
@@ -672,6 +672,27 @@ public class FXMLDocumentController implements Initializable {
             textArea.setText(op);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     * Method associated with the "Modify Operation" button of the menu, 
+     * that allows the user to modify a prevoius defined operation
+     * 
+     * @param event 
+     */
+    @FXML
+    private void modify_op_function(ActionEvent event) {
+        
+        if(textArea.getText().isEmpty()){
+            String title = "Error in modify an operation";
+            String context = "It hasn't been inserted any operation";
+            this.alertMessage(AlertType.ERROR, title, null, context);
+        }
+        else{
+            userOperations.put(textField.getText(), textArea.getText());
+            textArea.clear();
+            textField.clear();
         }
     }
 
@@ -743,6 +764,13 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,result);
     }
 
+    /**
+     * Method associated with the Exponential button that computes the 
+     * exponential e^(a+bi), where (a+bi) is the complex number from the top
+     * of the stack
+     * 
+     * @param event 
+     */
     @FXML
     private void exp_function(ActionEvent event) {
         
@@ -771,6 +799,4 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void tan_function(ActionEvent event) {
     }
-
-
 }
