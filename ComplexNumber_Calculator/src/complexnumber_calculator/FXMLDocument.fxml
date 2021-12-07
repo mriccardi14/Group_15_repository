@@ -16,7 +16,7 @@
                <font>
                   <Font size="22.0" />
                </font></TextArea>
-            <TableView fx:id="stack_value" editable="true" layoutX="527.0" layoutY="50.0" prefHeight="282.0" prefWidth="233.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="236.0" AnchorPane.topAnchor="50.0">
+            <TableView fx:id="stack_value" editable="true" layoutX="527.0" layoutY="50.0" prefHeight="391.0" prefWidth="220.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="249.0" AnchorPane.topAnchor="50.0">
               <columns>
                 <TableColumn fx:id="values_column" prefWidth="232.0" text="STACK" />
               </columns>
@@ -50,7 +50,7 @@
             <Button fx:id="retr_op_btn" layoutX="179.0" layoutY="347.0" mnemonicParsing="false" onAction="#retrieve_op_function" prefHeight="37.0" prefWidth="157.0" text="Retrieve Operation" />
             <Button fx:id="delete_op_btn" layoutX="179.0" layoutY="398.0" mnemonicParsing="false" onAction="#delete_op_func" prefHeight="37.0" prefWidth="157.0" text="Delete Operation" />
             <Button fx:id="modify_op_btn" layoutX="14.0" layoutY="398.0" mnemonicParsing="false" onAction="#modify_op_function" prefHeight="37.0" prefWidth="157.0" text="Modify Operation" />
-            <TableView fx:id="var_tab" layoutX="769.0" layoutY="50.0" prefHeight="391.0" prefWidth="213.0">
+            <TableView fx:id="var_tab" layoutX="762.0" layoutY="50.0" prefHeight="391.0" prefWidth="220.0">
               <columns>
                 <TableColumn fx:id="var_column" prefWidth="77.0" text="VAR" />
                 <TableColumn fx:id="val_column" prefWidth="135.0" text="VALUE" />
@@ -58,6 +58,14 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#save_var_function" text="Save Variables" />
+                      <MenuItem mnemonicParsing="false" onAction="#restore_var_function" text="Restore Variables" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
             </TableView>
          </children></AnchorPane>
     <AnchorPane fx:id="paneDown" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">

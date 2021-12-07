@@ -51,15 +51,21 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private SplitPane rootPane;
     @FXML
-    private AnchorPane paneTop;
+    private AnchorPane paneTop, paneDown;
     @FXML
     private TextArea textArea;
+    @FXML
+    private TextField textField;
     @FXML
     private TableView<ComplexNumber> stack_value;
     @FXML
     private TableColumn<ComplexNumber, String> values_column;
     @FXML
-    private AnchorPane paneDown;
+    private TableView<Variable> var_tab;
+    @FXML
+    private TableColumn<Character, Character> var_column;
+    @FXML
+    private TableColumn<ComplexNumber, String> val_column;
     @FXML
     private Button insert_btn, add_btn, sub_btn, mul_btn, div_btn, inverse_btn, sqrt_btn;
     @FXML
@@ -67,13 +73,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button storeVar_btn, retrieve_btn, plusVar_btn, subVar_btn;
     @FXML
-    private Button exec_op_btn;
+    private Button ins_op_btn, retr_op_btn, modify_op_btn, delete_op_btn, exec_op_btn;
+    @FXML
+    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn, arcsin_btn, arccos_btn; 
     @FXML
     private CheckBox def_op_ckb;
     @FXML
-    private MenuItem save_btn;
-    @FXML
-    private MenuItem load_btn;
+    private MenuItem save_btn, load_btn;
     
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
@@ -81,34 +87,14 @@ public class FXMLDocumentController implements Initializable {
     private List<Character> listKeys;
     private ObservableList<Variable> variables;
     private Map<Character, ComplexNumber> map_var;
+    private Stack<Variable> variable_stack;
     private static final int NUM_VARIABLES = 26;
     
     private Map<String,String> userOperations;
-    
     @FXML
     private Menu file_menu;
     @FXML
     private MenuItem exit_btn;
-    @FXML
-    private Button ins_op_btn;
-    @FXML
-    private TextField textField;
-    @FXML
-    private Button retr_op_btn;
-    @FXML
-    private Button delete_op_btn;
-    @FXML
-    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn, arcsin_btn, arccos_btn; 
-    @FXML
-    private Button modify_op_btn;
-    @FXML
-    private TableView<Variable> var_tab;
-    @FXML
-    private TableColumn<Character, Character> var_column;
-    @FXML
-    private TableColumn<ComplexNumber, String> val_column;
-    
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -129,6 +115,7 @@ public class FXMLDocumentController implements Initializable {
         this.listInitialize();
         this.viewInitialize();
         
+        variable_stack = new Stack<>();
         userOperations = new HashMap<>();
     }
    
@@ -525,7 +512,28 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     }
+    
+    /**
+     * Method that save the all variables' value on the variable stack
+     * 
+     * @param event 
+     */
+    @FXML
+    private void save_var_function(ActionEvent event) {
+        
+        for(Character c: map_var.keySet()){
+            variable_stack.push(new Variable(c, map_var.get(c)));
+        }
+    }
 
+    @FXML
+    private void restore_var_function(ActionEvent event) {
+        
+    }
+
+    
+    /*------------------ Defined Operation Manipulation ------------------*/
+    
     /**
      * Method associated with the user defined operation, that executes in 
      * sequence the indicated operations on the GUI on the stack's data and
@@ -842,4 +850,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void arccos_function(ActionEvent event) {
     }
+
+    
 }
