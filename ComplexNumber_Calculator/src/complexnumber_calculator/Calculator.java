@@ -132,13 +132,13 @@ public class Calculator {
     * @return a ComplexNumber which is e^(input z)
     */
     public static ComplexNumber exp(ComplexNumber z){
-            
+     
         double re, im;
         double radius = Math.exp(z.getRe());
-        
-        re = (int) (Math.round((radius*Math.cos(z.getIm())) * 100000))/100000.0;
-        im = (int) (Math.round((radius*Math.sin(z.getIm())) * 100000))/100000.0;
-        
+
+        re = (int) (Math.round((radius * Math.cos(z.getIm())) * 100000)) / 100000.0;
+        im = (int) (Math.round((radius * Math.sin(z.getIm())) * 100000)) / 100000.0;
+
         return new ComplexNumber(re, im);
     }
     
@@ -156,16 +156,15 @@ public class Calculator {
     * @param z a ComplexNumber
     * @return the cosine of z.
     */
-	public static ComplexNumber cos(ComplexNumber z)
-	{
-            if(z.getRe()== 0.0 && z.getIm() == 0.0){
-                return new ComplexNumber(1,+-0);
-            }
-            double x = Math.exp(z.getIm());
-            double inv_x = 1/x;
-            double r = Math.cos(z.getRe()) * (x + inv_x)/2;
-            double i = -Math.sin(z.getRe()) * (x - inv_x)/2;
-            return new ComplexNumber(r,i);
-	}
+    public static ComplexNumber cos(ComplexNumber z) {
+        if (z.getRe() == 0.0 && z.getIm() == 0.0) {
+            return new ComplexNumber(1, +-0);
+        }
+        double x = Math.exp(z.getIm());
+        double inv_x = 1 / x;
+        double r = Math.cos(z.getRe()) * (x + inv_x) / 2;
+        double i = -Math.sin(z.getRe()) * (x - inv_x) / 2;
+        return new ComplexNumber(r, i);
+    }
 }
     

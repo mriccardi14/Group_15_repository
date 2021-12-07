@@ -198,7 +198,7 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="210.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <Button fx:id="arcsin_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#arcsin_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arcsin" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
@@ -213,7 +213,7 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="144.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <Button fx:id="arccos_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#arccos_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arccos" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>

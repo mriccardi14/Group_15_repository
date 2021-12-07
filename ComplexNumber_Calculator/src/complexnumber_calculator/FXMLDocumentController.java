@@ -98,7 +98,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button delete_op_btn;
     @FXML
-    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn; 
+    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn, arcsin_btn, arccos_btn; 
     @FXML
     private Button modify_op_btn;
     @FXML
@@ -107,6 +107,7 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Character, Character> var_column;
     @FXML
     private TableColumn<ComplexNumber, String> val_column;
+    
     
     
     @Override
@@ -151,6 +152,16 @@ public class FXMLDocumentController implements Initializable {
         swap_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         over_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
         storeVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        mod_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        arg_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        pow_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        log_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        exp_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        sin_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        cos_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        tan_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        arcsin_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        arccos_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         
         plusVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         subVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
@@ -730,6 +741,11 @@ public class FXMLDocumentController implements Initializable {
 
     /*------------------ Trascendental Functions ------------------*/
     
+    /**
+     * Method associated with the Module button that calculates the module 
+     * of the complex number from the top of the stack
+     * @param event 
+     */
     @FXML
     private void mod_function(ActionEvent event) {
         
@@ -740,6 +756,11 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,complex_result);
     }
 
+    /**
+     * Method associated with the Argument button that calculates the argument 
+     * of the complex number from the top of the stack
+     * @param event 
+     */
     @FXML
     private void arg_function(ActionEvent event) {
         
@@ -754,6 +775,11 @@ public class FXMLDocumentController implements Initializable {
     private void pow_function(ActionEvent event) {
     }
 
+    /**
+     * Method associated with the Logarithm button that calculates the logarithm
+     * of the complex number from the top of the stack
+     * @param event 
+     */
     @FXML
     private void log_function(ActionEvent event) {
         
@@ -785,7 +811,11 @@ public class FXMLDocumentController implements Initializable {
     private void sin_function(ActionEvent event) {   
     }
     
-    
+    /**
+     * Method associated with the Cosine button that calculates the cosine 
+     * of the complex number from the top of the stack
+     * @param event 
+     */
     @FXML
     private void cos_function(ActionEvent event) {
         
@@ -798,5 +828,13 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void tan_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void arcsin_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void arccos_function(ActionEvent event) {
     }
 }
