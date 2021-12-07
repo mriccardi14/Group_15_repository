@@ -18,7 +18,7 @@ import org.junit.*;
  */
 public class CalculatorTest {
     
-    private ComplexNumber z1, z2, z3, z4, z5, z6, z7;
+    private ComplexNumber z1, z2, z3, z4, z5, z6, z7,z8;
     
     @Before
     public void setUp(){
@@ -29,6 +29,7 @@ public class CalculatorTest {
         z5 = new ComplexNumber(4, 65);
         z6 = new ComplexNumber(-10, 20);
         z7 = new ComplexNumber(4,2);
+        z8 = new ComplexNumber(1,1);
     }
     
     @Test
@@ -188,6 +189,7 @@ public class CalculatorTest {
     //Third Case
         assertEquals(new ComplexNumber(1.4978661367769956, 0.4636476090008061), Calculator.log(z7));
     }
+    
     @Test
     public void sinTest(){
     //First Case
@@ -198,4 +200,15 @@ public class CalculatorTest {
         assertEquals(new ComplexNumber(-2.8472390868488278, -2.370674169352002), Calculator.sin(z7));    
     }
 
+    @Test
+    public void powTest(){
+    //First case
+        assertEquals(new ComplexNumber(-4.0,-4.0), Calculator.pow(z8, 5));
+    //Second case
+        assertEquals(new ComplexNumber(0.00015,-0.00004), Calculator.pow(z3, -3));
+    //Third case
+        assertEquals(new ComplexNumber(1,0), Calculator.pow(z4, 0));
+    //Fourth case
+        assertEquals(new ComplexNumber(-10,20), Calculator.pow(z6, 1));
+    }
 }

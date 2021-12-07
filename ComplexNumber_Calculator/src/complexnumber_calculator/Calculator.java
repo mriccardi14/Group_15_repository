@@ -172,16 +172,47 @@ public class Calculator {
     * @param z the input complex number
     * @return a ComplexNumber which is the sine of z.
     */
-	public static ComplexNumber sin(ComplexNumber z)
-	{
-            if (z.getRe() == 0.0 && z.getIm() == 0.0) {
-            return new ComplexNumber(0, +-0);
-        }
-		double x = Math.exp(z.getIm());
-		double x_inv = 1/x;
-		double r = Math.sin(z.getRe()) * (x + x_inv)/2;
-		double i = Math.cos(z.getRe()) * (x - x_inv)/2;
-		return new ComplexNumber(r,i);
-	}
+    public static ComplexNumber sin(ComplexNumber z)
+    {
+        if (z.getRe() == 0.0 && z.getIm() == 0.0) {
+        return new ComplexNumber(0, +-0);
+    }
+            double x = Math.exp(z.getIm());
+            double x_inv = 1/x;
+            double r = Math.sin(z.getRe()) * (x + x_inv)/2;
+            double i = Math.cos(z.getRe()) * (x - x_inv)/2;
+            return new ComplexNumber(r,i);
+    }
+        
+    /**
+     * Calculates the power of a complex number given the exponent
+     * 
+     * @param z the input complex number
+     * @param power the input exponent
+     * @return 
+     */
+    public static ComplexNumber pow(ComplexNumber z, int power){
+        
+        double mod,arg,
+               mod_n,arg_n;
+        
+        mod = Calculator.mod(z); 
+        arg = Calculator.arg(z); 
+        
+        mod_n = Math.pow(mod, power);
+        arg_n = arg * power;
+        
+        double a,b,
+               re,im;
+        
+        a = mod_n * Math.cos(arg_n); 
+        b = mod_n * Math.sin(arg_n);
+        
+        re = (int) (Math.round(a * 100000)) / 100000.0;
+        im = (int) (Math.round(b * 100000)) / 100000.0;
+        
+        return new ComplexNumber(re,im);
+        
+    }
 }
     

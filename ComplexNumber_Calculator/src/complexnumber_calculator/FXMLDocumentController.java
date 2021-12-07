@@ -37,6 +37,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -790,8 +791,31 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,complex_result);
     }
 
+    /**
+     * Method associated with Pow button that calculates the pow
+     * of the complex number from top of the stack
+     * 
+     * @param event 
+     */
     @FXML
     private void pow_function(ActionEvent event) {
+        
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Power function");
+        dialog.setHeaderText("");
+        dialog.setContentText("Insert exponent");
+        Optional<String> result = dialog.showAndWait();
+        
+        if(result.isPresent()){
+            ComplexNumber z = Calculator.pow(stack.pop(), Integer.parseInt(result.get()));
+            values.remove(0);
+            stack.push(z);
+            values.add(0,z);
+        }
+        
+        
+        
+                
     }
 
     /**
