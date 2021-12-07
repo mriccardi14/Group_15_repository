@@ -526,9 +526,25 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * Method that restore the all variables' value from the variable stack
+     * 
+     * @param event 
+     */
     @FXML
     private void restore_var_function(ActionEvent event) {
-        
+        if(variable_stack.isEmpty()){
+            String title = "Error in retrieving of variables' old values";
+            String context = "There aren't previous saved copies";
+            this.alertMessage(AlertType.ERROR, title, null, context);
+            return;
+        }
+        variables.clear();
+        for(int i = 0; i<NUM_VARIABLES; i++){
+            Variable var = variable_stack.pop();
+            map_var.put(var.getKey(), var.getValueC());
+            variables.add(0, var);
+        }
     }
 
     
