@@ -807,10 +807,15 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,result);
     }
 
+    /**
+     * Method associated with the Sine button that calculates the sine 
+     * of the complex number from the top of the stack
+     * @param event 
+     */
     @FXML
     private void sin_function(ActionEvent event) {   
         ComplexNumber result = stack.pop();
-        result = Calculator.cos(result);
+        result = Calculator.sin(result);
         values.remove(0);
         stack.push(result);
         values.add(0,result);

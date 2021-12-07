@@ -191,7 +191,11 @@ public class CalculatorTest {
     @Test
     public void sinTest(){
     //First Case
-        assertEquals(new ComplexNumber(1.0,0.0), Calculator.sin(z1));
+        assertEquals(new ComplexNumber(0.0,0.0), Calculator.sin(z1));
+    //Second Case
+        assertEquals(new ComplexNumber(22.97908557788613, -14.744805188558727), Calculator.sin(z2));
+    //Third Case
+        assertEquals(new ComplexNumber(-2.8472390868488278, -2.370674169352002), Calculator.sin(z7));    
     }
 
 }
