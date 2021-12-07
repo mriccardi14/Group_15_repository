@@ -80,7 +80,7 @@ public class FXMLDocumentController implements Initializable {
     
     private List<Character> listKeys;
     private ObservableList<Variable> variables;
-    private List<Variable> list_var;
+    private Map<Character, ComplexNumber> map_var;
     private static final int NUM_VARIABLES = 26;
     
     private Map<String,String> userOperations;
@@ -121,8 +121,8 @@ public class FXMLDocumentController implements Initializable {
         var_column.setCellValueFactory(new PropertyValueFactory("key"));
         val_column.setCellValueFactory(new PropertyValueFactory("valueS"));
         var_tab.setItems(variables);
-        list_var = new ArrayList<>();
         
+        map_var = new HashMap<>();
         stack = new Stack<>();
         listKeys = new ArrayList<>();
         
@@ -170,6 +170,7 @@ public class FXMLDocumentController implements Initializable {
         exec_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         ins_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         retr_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        modify_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         delete_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         save_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         load_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
@@ -181,11 +182,11 @@ public class FXMLDocumentController implements Initializable {
      */
     private void listInitialize(){
         
-        for(int i=0; i<NUM_VARIABLES; i++)
+        for(int i=0; i<NUM_VARIABLES; i++){
             variables.add(new Variable((char)(97+i), new ComplexNumber()));
-        
-        for(int i=0; i<NUM_VARIABLES; i++)
+            map_var.put((char)(97+i), new ComplexNumber());
             listKeys.add((char)(97+i));
+        }
   
     }
     
@@ -442,10 +443,12 @@ public class FXMLDocumentController implements Initializable {
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            list_var.add(new Variable(c, stack.peek()));
+            map_var.put(c, stack.peek());
             for(Variable var: variables){
-                if(c.equals(var.getKey()))
+                if(c.equals(var.getKey())){
                     var.setValue(stack.peek());
+                    break;
+                }
             }
         }
     }
@@ -465,11 +468,7 @@ public class FXMLDocumentController implements Initializable {
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z = null;
-            for(Variable var: variables){
-                if(c.equals(var.getKey()))
-                    z = var.getValueC();
-            }
+            ComplexNumber z = map_var.get(c);
             if(z != null){
                 stack.push(z);
                 values.add(0, z);
@@ -492,14 +491,12 @@ public class FXMLDocumentController implements Initializable {
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z = null;
-            for(Variable var: list_var){
-                if(c.equals(var.getKey()))
-                    var.setValue(Calculator.addition(var.getValueC(), stack.peek()));
-            }
+            map_var.put(c, Calculator.addition(map_var.get(c), stack.peek()));
             for(Variable var: variables){
-                if(c.equals(var.getKey()))
+                if(c.equals(var.getKey())){
                     var.setValue(Calculator.addition(var.getValueC(), stack.peek()));
+                    break;
+                }
             }   
         }
     }
@@ -519,14 +516,12 @@ public class FXMLDocumentController implements Initializable {
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z = null;
-            for(Variable var: list_var){
-                if(c.equals(var.getKey()))
-                    var.setValue(Calculator.subtract(var.getValueC(), stack.peek()));
-            }
+            map_var.put(c, Calculator.subtract(map_var.get(c), stack.peek()));
             for(Variable var: variables){
-                if(c.equals(var.getKey()))
+                if(c.equals(var.getKey())){
                     var.setValue(Calculator.subtract(var.getValueC(), stack.peek()));
+                    break;
+                }
             }
         }
     }
