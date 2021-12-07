@@ -809,6 +809,11 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void sin_function(ActionEvent event) {   
+        ComplexNumber result = stack.pop();
+        result = Calculator.cos(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
     }
     
     /**

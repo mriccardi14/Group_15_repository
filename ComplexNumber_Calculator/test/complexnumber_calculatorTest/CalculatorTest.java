@@ -188,4 +188,10 @@ public class CalculatorTest {
     //Third Case
         assertEquals(new ComplexNumber(1.4978661367769956, 0.4636476090008061), Calculator.log(z7));
     }
+    @Test
+    public void sinTest(){
+    //First Case
+        assertEquals(new ComplexNumber(1.0,0.0), Calculator.sin(z1));
+    }
+
 }
