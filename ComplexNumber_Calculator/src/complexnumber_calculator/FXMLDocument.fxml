@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
@@ -7,23 +8,26 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="rootPane" dividerPositions="0.5241199478487614" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="769.0" prefWidth="778.0" style="-fx-background-color: #2F4F4F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complexnumber_calculator.FXMLDocumentController">
+<SplitPane fx:id="rootPane" dividerPositions="0.5241199478487614" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="867.0" prefWidth="998.0" style="-fx-background-color: #2F4F4F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complexnumber_calculator.FXMLDocumentController">
   <items>
     <AnchorPane fx:id="paneTop" minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
-            <TextArea fx:id="textArea" layoutX="11.0" layoutY="49.0" prefHeight="100.0" prefWidth="511.0" promptText="Example number: (a + bi) or (a - bi)&#9;&#9;&#9;Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="249.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="49.0">
+            <TextArea fx:id="textArea" layoutX="11.0" layoutY="49.0" prefHeight="144.0" prefWidth="505.0" promptText="Example number: (a + bi) or (a - bi)&#9;&#9;Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="49.0">
                <font>
                   <Font size="22.0" />
                </font></TextArea>
-            <TableView fx:id="stack_value" editable="true" layoutX="79.0" layoutY="48.0" prefHeight="282.0" prefWidth="233.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+            <TableView fx:id="stack_value" editable="true" layoutX="527.0" layoutY="50.0" prefHeight="282.0" prefWidth="233.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="236.0" AnchorPane.topAnchor="50.0">
               <columns>
-                <TableColumn fx:id="values_column" prefWidth="232.0" text="VALUES" />
+                <TableColumn fx:id="values_column" prefWidth="232.0" text="STACK" />
               </columns>
             </TableView>
-            <Button fx:id="insert_btn" layoutX="388.0" layoutY="347.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
-            <Button fx:id="exec_op_btn" layoutX="14.0" layoutY="286.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
-            <CheckBox fx:id="def_op_ckb" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" text="Operation/Value" textFill="WHITE" />
-            <MenuBar prefHeight="23.0" prefWidth="776.0">
+            <Button fx:id="insert_btn" layoutX="388.0" layoutY="199.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
+            <Button fx:id="exec_op_btn" layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
+            <CheckBox fx:id="def_op_ckb" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" text="Operation/Value" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font></CheckBox>
+            <MenuBar prefHeight="32.0" prefWidth="996.0">
               <menus>
                 <Menu fx:id="file_menu" mnemonicParsing="false" text="File">
                   <items>
@@ -37,11 +41,24 @@
                      </items></Menu>
               </menus>
             </MenuBar>
-            <Button fx:id="ins_op_btn" layoutX="14.0" layoutY="187.0" mnemonicParsing="false" onAction="#insert_op_function" prefHeight="37.0" prefWidth="157.0" text="Insert Operation" />
-            <TextField fx:id="textField" layoutX="388.0" layoutY="249.0" prefHeight="31.0" prefWidth="131.0" />
-            <Label layoutX="269.0" layoutY="254.0" text="Name Operation" textFill="WHITE" />
-            <Button fx:id="retr_op_btn" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#retrieve_op_function" prefHeight="37.0" prefWidth="157.0" text="Retrieve Operation" />
-            <Button fx:id="delete_op_btn" layoutX="14.0" layoutY="339.0" mnemonicParsing="false" onAction="#delete_op_func" prefHeight="37.0" prefWidth="157.0" text="Delete Operation" />
+            <Button fx:id="ins_op_btn" layoutX="14.0" layoutY="347.0" mnemonicParsing="false" onAction="#insert_op_function" prefHeight="37.0" prefWidth="157.0" text="Insert Operation" />
+            <TextField fx:id="textField" layoutX="388.0" layoutY="285.0" prefHeight="31.0" prefWidth="131.0" />
+            <Label layoutX="258.0" layoutY="287.0" text="Name Operation" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Button fx:id="retr_op_btn" layoutX="179.0" layoutY="347.0" mnemonicParsing="false" onAction="#retrieve_op_function" prefHeight="37.0" prefWidth="157.0" text="Retrieve Operation" />
+            <Button fx:id="delete_op_btn" layoutX="179.0" layoutY="398.0" mnemonicParsing="false" onAction="#delete_op_func" prefHeight="37.0" prefWidth="157.0" text="Delete Operation" />
+            <Button fx:id="exec_op_btn1" layoutX="14.0" layoutY="398.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Modify Operation" />
+            <TableView layoutX="769.0" layoutY="50.0" prefHeight="391.0" prefWidth="213.0">
+              <columns>
+                <TableColumn prefWidth="77.0" text="VAR" />
+                <TableColumn prefWidth="135.0" text="VALUE" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children></AnchorPane>
     <AnchorPane fx:id="paneDown" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
@@ -51,78 +68,80 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="sqrt_btn" layoutX="209.0" layoutY="125.0" mnemonicParsing="false" onAction="#sqrt_function" prefHeight="109.0" prefWidth="242.0" style="-fx-background-color: #C0C0C0;" text="√" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Arial Italic" size="45.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="dup_btn" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#dup_function" prefHeight="109.0" prefWidth="234.0" style="-fx-background-color: #C0C0C0;" text="Duplicate" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="over_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#over_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Arial Italic" size="40.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="inverse_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#inverse_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Inverse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="sqrt_btn" layoutX="209.0" layoutY="125.0" mnemonicParsing="false" onAction="#sqrt_function" prefHeight="109.0" prefWidth="242.0" style="-fx-background-color: #FFD700;" text="√" GridPane.columnIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="plusVar_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#plusVar_function" prefHeight="109.0" prefWidth="212.0" style="-fx-background-color: #C0C0C0;" text="+x" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Button fx:id="dup_btn" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#dup_function" prefHeight="109.0" prefWidth="234.0" style="-fx-background-color: #C0C0C0;" text="Duplicate" GridPane.rowIndex="1">
                      <font>
-                        <Font size="40.0" />
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="over_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#over_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="inverse_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#inverse_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Inverse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="plusVar_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#plusVar_function" prefHeight="109.0" prefWidth="212.0" style="-fx-background-color: #C0C0C0;" text="+x" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="30.0" />
                      </font>
                   </Button>
                   <Button fx:id="drop_btn" layoutX="204.0" layoutY="120.0" mnemonicParsing="false" onAction="#drop_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Drop" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Arial Italic" size="40.0" />
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
                   <Button fx:id="clear_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#clear_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Clear" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Arial Italic" size="40.0" />
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="subVar_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#subVar_function" prefHeight="114.0" prefWidth="191.0" style="-fx-background-color: #C0C0C0;" text="-x" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Button fx:id="subVar_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#subVar_function" prefHeight="87.0" prefWidth="197.0" style="-fx-background-color: #C0C0C0;" text="-x" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <font>
-                        <Font size="40.0" />
+                        <Font size="30.0" />
                      </font>
                   </Button>
-                  <Button fx:id="swap_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#swap_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Swap" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button fx:id="swap_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#swap_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Swap" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Arial" size="40.0" />
+                        <Font name="Arial" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="add_btn" layoutX="585.0" layoutY="331.0" mnemonicParsing="false" onAction="#add_function" prefHeight="91.0" prefWidth="191.0" style="-fx-background-color: #FFD700;" text="+" textAlignment="CENTER">
+                  <Button fx:id="add_btn" layoutX="585.0" layoutY="331.0" mnemonicParsing="false" onAction="#add_function" prefHeight="82.0" prefWidth="198.0" style="-fx-background-color: #FFD700;" text="+" textAlignment="CENTER">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <font>
-                        <Font name="Arial Italic" size="45.0" />
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="storeVar_btn" layoutX="585.0" layoutY="117.0" mnemonicParsing="false" onAction="#storeVar_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="&gt;x" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <Button fx:id="storeVar_btn" layoutX="585.0" layoutY="117.0" mnemonicParsing="false" onAction="#storeVar_function" prefHeight="82.0" prefWidth="197.0" style="-fx-background-color: #C0C0C0;" text="&gt;x" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font size="40.0" />
+                        <Font size="30.0" />
                      </font>
                   </Button>
                   <Button fx:id="mul_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#mul_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="x" textAlignment="CENTER" GridPane.columnIndex="2">
                      <font>
-                        <Font name="Arial Italic" size="45.0" />
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -130,7 +149,7 @@
                   </Button>
                   <Button fx:id="sub_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#sub_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="-" textAlignment="CENTER" GridPane.columnIndex="1">
                      <font>
-                        <Font name="Arial Italic" size="45.0" />
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -138,23 +157,65 @@
                   </Button>
                   <Button fx:id="div_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#div_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="÷" textAlignment="CENTER" GridPane.columnIndex="3">
                      <font>
-                        <Font name="Arial Italic" size="45.0" />
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="other_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#other_function" prefHeight="185.0" prefWidth="257.0" style="-fx-background-color: #FFD700;" text="--&gt;&#10;&lt;--" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <Button fx:id="retrieve_btn" layoutX="585.0" layoutY="218.0" mnemonicParsing="false" onAction="#retrieve_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="&lt;x" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Arial Italic" size="30.0" />
+                        <Font size="30.0" />
                      </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
                   </Button>
-                  <Button fx:id="retrieve_btn" layoutX="585.0" layoutY="218.0" mnemonicParsing="false" onAction="#retrieve_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="&lt;x" GridPane.rowIndex="3">
+                  <Button fx:id="mod_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#mod_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Mod" GridPane.rowIndex="3">
                      <font>
-                        <Font size="40.0" />
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="sin_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#sin_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Sin" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="pow_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#pow_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Pow" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="log_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#log_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Log" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="exp_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#exp_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Exp" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="arg_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#arg_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arg" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="210.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="tan_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#tan_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Tan" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cos_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#cos_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Cos" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="144.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
                </children>

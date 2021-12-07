@@ -88,8 +88,6 @@ public class FXMLDocumentController implements Initializable {
     private Map<String,String> userOperations;
     
     @FXML
-    private Button other_btn;
-    @FXML
     private Menu file_menu;
     @FXML
     private MenuItem exit_btn;
@@ -101,6 +99,24 @@ public class FXMLDocumentController implements Initializable {
     private Button retr_op_btn;
     @FXML
     private Button delete_op_btn;
+    @FXML
+    private Button exec_op_btn1;
+    @FXML
+    private Button mod_btn;
+    @FXML
+    private Button sin_btn;
+    @FXML
+    private Button pow_btn;
+    @FXML
+    private Button log_btn;
+    @FXML
+    private Button exp_btn;
+    @FXML
+    private Button arg_btn;
+    @FXML
+    private Button tan_btn;
+    @FXML
+    private Button cos_btn;
     
     
     @Override
@@ -691,8 +707,70 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
+    /*------------------ Trascendental Functions ------------------*/
+    
     @FXML
-    private void other_function(ActionEvent event) {
+    private void mod_function(ActionEvent event) {
+        
+        ComplexNumber z = stack.pop(), complex_result;
+        complex_result = new ComplexNumber(Calculator.mod(z), 0);
+        values.remove(0);
+        stack.push(complex_result);
+        values.add(0,complex_result);
     }
+
+    @FXML
+    private void arg_function(ActionEvent event) {
+        
+        ComplexNumber z = stack.pop(), complex_result;
+        complex_result = new ComplexNumber(Calculator.arg(z), 0);
+        values.remove(0);
+        stack.push(complex_result);
+        values.add(0,complex_result);
+    }
+
+    @FXML
+    private void pow_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void log_function(ActionEvent event) {
+        
+        ComplexNumber result = stack.pop();
+        result = Calculator.log(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
+    }
+
+    @FXML
+    private void exp_function(ActionEvent event) {
+        
+        ComplexNumber result = stack.pop();
+        result = Calculator.exp(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
+    }
+
+    @FXML
+    private void sin_function(ActionEvent event) {   
+    }
+    
+    
+    @FXML
+    private void cos_function(ActionEvent event) {
+        
+        ComplexNumber result = stack.pop();
+        result = Calculator.cos(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
+    }
+    
+    @FXML
+    private void tan_function(ActionEvent event) {
+    }
+
 
 }
