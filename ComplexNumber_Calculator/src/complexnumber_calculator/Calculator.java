@@ -166,5 +166,22 @@ public class Calculator {
         double i = -Math.sin(z.getRe()) * (x - inv_x) / 2;
         return new ComplexNumber(r, i);
     }
+    
+    /**
+    * Calculates the sine of the ComplexNumber
+    * @param z the input complex number
+    * @return a ComplexNumber which is the sine of z.
+    */
+	public static ComplexNumber sin(ComplexNumber z)
+	{
+            if (z.getRe() == 0.0 && z.getIm() == 0.0) {
+            return new ComplexNumber(0, +-0);
+        }
+		double x = Math.exp(z.getIm());
+		double x_inv = 1/x;
+		double r = Math.sin(z.getRe()) * (x + x_inv)/2;
+		double i = Math.cos(z.getRe()) * (x - x_inv)/2;
+		return new ComplexNumber(r,i);
+	}
 }
     
