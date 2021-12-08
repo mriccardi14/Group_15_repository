@@ -883,12 +883,36 @@ public class FXMLDocumentController implements Initializable {
     private void tan_function(ActionEvent event) {
     }
 
+    
+    /**
+     * Method associated with the Arcsine button that calculates the arcsine 
+     * of the complex number from the top of the stack
+     * @param event 
+     */
     @FXML
     private void arcsin_function(ActionEvent event) {
+        
+        ComplexNumber result = stack.pop();
+        result = Calculator.arcsin(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
     }
 
+    
+    /**
+     * Method associated with the Arccosine button that calculates the arccosine 
+     * of the complex number from the top of the stack
+     * @param event 
+     */
     @FXML
     private void arccos_function(ActionEvent event) {
+        
+        ComplexNumber result = stack.pop();
+        result = Calculator.arccos(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
     }
 
     

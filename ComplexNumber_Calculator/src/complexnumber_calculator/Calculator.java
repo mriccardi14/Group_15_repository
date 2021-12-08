@@ -42,7 +42,7 @@ public class Calculator {
     }
     
    /**
-     * This method do the addition between two complex numbers
+     * Calculates the addition between two complex numbers
      * @param z the first ComplexNumber
      * @param y the second ComplexNumber
      * @return the correct resultant ComplexNumber (z+y)
@@ -52,7 +52,7 @@ public class Calculator {
     }
     
     /**
-     * This method do the subtract between two complex numbers
+     * Calculates the subtract between two complex numbers
      * @param z the first ComplexNumber
      * @param y the second ComplexNumber
      * @return the correct resultant ComplexNumber (z-y)
@@ -62,7 +62,7 @@ public class Calculator {
     }
     
     /**
-     * This method do the multiply between two complex numbers
+     * Calculates the multiply between two complex numbers
      * @param z the first ComplexNumber
      * @param y the second ComplexNumber
      * @return the correct resultant ComplexNumber (z*y)
@@ -88,7 +88,7 @@ public class Calculator {
     }
     
     /**
-     * This method do the inverse of a complex number
+     * Calculates the inverse of a complex number
      * @param z the ComplexNumber
      * @return a ComplexNumber which is the inverse of z
      */
@@ -104,7 +104,7 @@ public class Calculator {
     }
     
     /**
-     * This method do the square root of a complex number
+     * Calculates the square root of a complex number
      * @param z the ComplexNumber
      * @return a ComplexNumber which is the square of z
      */
@@ -127,6 +127,18 @@ public class Calculator {
     }
     
     /**
+     * Calculates the root of (1-z^2)
+     * @param z a Complex Number
+     * @return the root of (1-z^2)
+     */
+    public static ComplexNumber root1subz2(ComplexNumber z) {
+        
+        ComplexNumber squarez = Calculator.multiply(z, z);
+        ComplexNumber subz = Calculator.subtract(new ComplexNumber (1,0), squarez);
+        return Calculator.root(subz);
+    }
+    
+    /**
     * This method calculates the exponential of a complex number
     * @param z The input ComplexNumber
     * @return a ComplexNumber which is e^(input z)
@@ -143,7 +155,7 @@ public class Calculator {
     }
     
     /**
-    * This method calculates the logarithm of a ComplexNumber
+    * Calculates the logarithm of a ComplexNumber
     * @param z a ComplexNumber
     * @return the logarithm of z.
     */
@@ -152,7 +164,7 @@ public class Calculator {
     }
 
     /**
-    * This method calculates the cosine of a ComplexNumber
+    * Calculates the cosine of a ComplexNumber
     * @param z a ComplexNumber
     * @return the cosine of z.
     */
@@ -189,7 +201,7 @@ public class Calculator {
      * 
      * @param z the input complex number
      * @param power the input exponent
-     * @return 
+     * @return
      */
     public static ComplexNumber pow(ComplexNumber z, int power){
         
@@ -214,5 +226,32 @@ public class Calculator {
         return new ComplexNumber(re,im);
         
     }
-}
+    /**
+     * Calculates the arcsine of a complex number 
+     * @param z a Complex Number
+     * @return the arcsine of the complex number
+     */
+    public static ComplexNumber arcsin(ComplexNumber z){
+        
+        ComplexNumber z1 = Calculator.root1subz2(z);
+        ComplexNumber sumz = Calculator.addition(z1, Calculator.multiply(z, new ComplexNumber(0,1)));
+        ComplexNumber logz = Calculator.log(sumz);
+        ComplexNumber result = Calculator.multiply(logz, new ComplexNumber(0, -1));
+        return result;
+    }
     
+    /**
+     * Calculates the arccosine of a complex number 
+     * @param z a Complex Number
+     * @return the arccosine of the complex number
+     */
+    public static ComplexNumber arccos(ComplexNumber z){
+        
+        ComplexNumber z1 = Calculator.root1subz2(z);
+        ComplexNumber multz = Calculator.multiply(z1, new ComplexNumber(0,1));
+        ComplexNumber sumz = Calculator.addition(z, multz);
+        ComplexNumber logz = Calculator.log(sumz);
+        ComplexNumber result = Calculator.multiply(logz, new ComplexNumber(0, -1));
+        return result;
+    }
+}  

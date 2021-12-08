@@ -18,7 +18,7 @@ import org.junit.*;
  */
 public class CalculatorTest {
     
-    private ComplexNumber z1, z2, z3, z4, z5, z6, z7,z8;
+    private ComplexNumber z1, z2, z3, z4, z5, z6, z7, z8;
     
     @Before
     public void setUp(){
@@ -47,14 +47,17 @@ public class CalculatorTest {
     
     @Test
     public void argTest(){
-    //First Case
+    //First Case: z has both part equal to 0
         assertEquals(0.0, Calculator.arg(z1));
-    //Second Case
+    //Second Case: z has real part>0 and imaginary part <0 
         assertEquals(-1.325817663668032465059239210428475631184440601306368843360096381, Calculator.arg(z2));
-    //Third Case
+    //Third Case: z has real part<0 and imaginary part >0
+        assertEquals(2.0344439357957027354455779231009658441271217539736731742984053848, Calculator.arg(z6));
+    //Fourth Case: z has both part <0
         assertEquals(-2.010638909610633, Calculator.arg(z3));
-    //Fourth Case
-        assertEquals(-0.399515493999374533717965361212644309295248110085532379658314934, Calculator.arg(z4));
+    //Fifth Case: z has both part >0
+        assertEquals(1.5093353709121306633894642605308698765311588250744224056390418032, Calculator.arg(z5));
+    
     }
     
     @Test
@@ -87,22 +90,23 @@ public class CalculatorTest {
     
     @Test
     public void MultiplyTest(){
+        //First Case
         ComplexNumber z12 = new ComplexNumber(10,10);
         ComplexNumber z22 = new ComplexNumber(20,20);
         ComplexNumber z32 = new ComplexNumber(0, 400);
         assertEquals(z32, Calculator.multiply(z12,z22));
-        //First Case
+        //Second Case
         ComplexNumber z1 = new ComplexNumber(1,3);
         ComplexNumber z2 = new ComplexNumber(2,1);
         ComplexNumber z3 = new ComplexNumber(-1, 7);
         assertEquals(z3, Calculator.multiply(z1,z2));
-        //Second Case
+        //Third Case
         ComplexNumber z4 = new ComplexNumber(3,0);
         ComplexNumber z5 = new ComplexNumber(0,5);
         ComplexNumber z6= new ComplexNumber(0, 15);
         assertEquals(z6, Calculator.multiply(z4,z5));
         assertEquals(z6, Calculator.multiply(z5,z4));
-        //Third Case
+        //Fourth Case
         ComplexNumber z7 = new ComplexNumber(0,7);
         ComplexNumber z8 = new ComplexNumber(7,0);
         ComplexNumber z9 = new ComplexNumber(0,49);
@@ -210,5 +214,30 @@ public class CalculatorTest {
         assertEquals(new ComplexNumber(1,0), Calculator.pow(z4, 0));
     //Fourth case
         assertEquals(new ComplexNumber(-10,20), Calculator.pow(z6, 1));
+    }
+    
+    @Test
+    public void arcsinTest(){
+    //First case
+        assertEquals(new ComplexNumber(0.0, 0.0), Calculator.arcsin(z1));
+    //Second case
+        assertEquals(new ComplexNumber(-0.43929774384081915, -3.6268326861821203), Calculator.arcsin(z3));
+    //Third case
+        assertEquals(new ComplexNumber(1.1712620531141804, -5.274962869289355), Calculator.arcsin(z4));
+    //Fourth case
+        assertEquals(new ComplexNumber(-0.4632475290061642, 3.8006511697417187), Calculator.arcsin(z6));
+    }
+    
+    
+    @Test
+    public void arccosTest(){
+    //First case
+        assertEquals(new ComplexNumber(1.5707963267948966192313216916397514420985846996875529104874722961, 0.0), Calculator.arccos(z1));
+    //Second case
+        assertEquals(new ComplexNumber(2.01005852662301, 3.6270412585003178), Calculator.arccos(z3));
+    //Third case
+        assertEquals(new ComplexNumber(0.39899593047893156, 5.274141380077213), Calculator.arccos(z4));
+    //Fourth case
+        assertEquals(new ComplexNumber(1.509342584590729, -4.869482842745701), Calculator.arccos(z5));
     }
 }
