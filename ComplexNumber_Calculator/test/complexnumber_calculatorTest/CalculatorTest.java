@@ -49,9 +49,9 @@ public class CalculatorTest {
     public void argTest(){
     //First Case: z has both part equal to 0
         assertEquals(0.0, Calculator.arg(z1));
-    //Second Case: z has real part>0 and imaginary part <0 
+    //Second Case: z has real part >0 and imaginary part <0 
         assertEquals(-1.325817663668032465059239210428475631184440601306368843360096381, Calculator.arg(z2));
-    //Third Case: z has real part<0 and imaginary part >0
+    //Third Case: z has real part <0 and imaginary part >0
         assertEquals(2.0344439357957027354455779231009658441271217539736731742984053848, Calculator.arg(z6));
     //Fourth Case: z has both part <0
         assertEquals(-2.010638909610633, Calculator.arg(z3));
@@ -62,14 +62,16 @@ public class CalculatorTest {
     
     @Test
     public void modTest(){
-    //First Case
+    //First Case: z has both part equal to 0
         assertEquals(0.0, Calculator.mod(z1));
-    //Second Case
+    //Second Case: z has real part >0 and imaginary part <0 
         assertEquals(4.123105625617661, Calculator.mod(z2));
-    //Third Case
+    //Third Case: z has real part <0 and imaginary part >0
+        assertEquals(22.360679774997896964091736687312762354406183596115257242708972454, Calculator.mod(z6));
+    //Fourth Case: z has both part <0
         assertEquals(18.788294228055936, Calculator.mod(z3));
-    //Fourth Case
-        assertEquals(97.6933979345585, Calculator.mod(z4));
+    //Fifth Case: z has both part >0
+        assertEquals(65.122960620659745923568890220061483378425955313861933083772910771, Calculator.mod(z5));
     }
     
     @Test
@@ -116,13 +118,20 @@ public class CalculatorTest {
     @Test
     public void InverseTest(){
         //First Case
-        ComplexNumber z1 = new ComplexNumber(3,6);
-        ComplexNumber z2 = new ComplexNumber(-3,-6);
-        assertEquals(z2, Calculator.inverse(z1));
+        ComplexNumber z11 = new ComplexNumber(-3,6);
+        ComplexNumber z22 = new ComplexNumber(3,-6);
+        assertEquals(z22, Calculator.inverse(z11));
         //Second Case
-        ComplexNumber z3 = new ComplexNumber(0,12);
-        ComplexNumber z4 = new ComplexNumber(0,-12);
-        assertEquals(z4, Calculator.inverse(z3));
+        ComplexNumber z33 = new ComplexNumber(-21,12);
+        ComplexNumber z44 = new ComplexNumber(21,-12);
+        assertEquals(z44, Calculator.inverse(z33));
+        //Third Case
+        ComplexNumber z55 = new ComplexNumber(-11, -19);
+        ComplexNumber z66 = new ComplexNumber(11,19);
+        assertEquals(z66, Calculator.inverse(z55));
+        //Fourth Case
+        ComplexNumber z77 = new ComplexNumber(0,0);
+        assertEquals(z77, Calculator.inverse(z77));
     }
     
     @Test
