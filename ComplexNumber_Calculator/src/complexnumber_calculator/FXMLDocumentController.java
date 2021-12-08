@@ -431,12 +431,19 @@ public class FXMLDocumentController implements Initializable {
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            map_var.put(c, stack.peek());
-            for(Variable var: variables){
-                if(c.equals(var.getKey())){
-                    var.setValue(stack.peek());
-                    break;
-                }
+            this.support_storeVar(c);
+        }
+    }
+    
+    private void support_storeVar(Character c){
+        
+        ComplexNumber z = stack.pop();
+        values.remove(0);
+        map_var.put(c, z);
+        for(Variable var: variables){
+            if(c.equals(var.getKey())){
+                var.setValue(z);
+                break;
             }
         }
     }
@@ -456,11 +463,16 @@ public class FXMLDocumentController implements Initializable {
         Optional<Character> result = dialog.showAndWait(); 
         if (result.isPresent()){
             Character c = result.get();
-            ComplexNumber z = map_var.get(c);
-            if(z != null){
-                stack.push(z);
-                values.add(0, z);
-            }
+            this.support_retrieveVar(c);
+        }
+    }
+    
+    private void support_retrieveVar(Character c){
+
+        ComplexNumber z = map_var.get(c);
+        if(z != null){
+            stack.push(z);
+            values.add(0, z);
         }
     }
     
@@ -600,6 +612,25 @@ public class FXMLDocumentController implements Initializable {
                         case "over":
                             this.over_function(null);
                             break;
+                        case "save":
+                            this.save_var_function(null);
+                            break;
+                        case "restore":
+                            this.restore_var_function(null);
+                            break;
+                        default:
+                            if(op.startsWith(">")){
+                                this.support_storeVar(op.charAt(1));
+                                break;
+                            }
+                            if(op.startsWith("<")){
+                                this.support_retrieveVar(op.charAt(1));
+                                break;
+                            }
+                            ComplexNumber z = ComplexNumber.parseComplex(op);
+                            stack.push(z);
+                            values.add(0,z);
+                            textArea.clear();
                     }
                 }
                 textArea.clear();
@@ -811,11 +842,7 @@ public class FXMLDocumentController implements Initializable {
             values.remove(0);
             stack.push(z);
             values.add(0,z);
-        }
-        
-        
-        
-                
+        }            
     }
 
     /**
