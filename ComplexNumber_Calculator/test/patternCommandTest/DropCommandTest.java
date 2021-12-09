@@ -13,6 +13,7 @@ import patternCommand.DropCommand;
 import patternCommand.StackCommand;
 
 /**
+ * Test class for Drop command
  *
  * @author Group 15
  */

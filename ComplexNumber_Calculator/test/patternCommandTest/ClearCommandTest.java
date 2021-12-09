@@ -15,6 +15,7 @@ import patternCommand.ClearCommand;
 
 
 /**
+ * Test class for Clear command
  *
  * @author Gropu 15
  */

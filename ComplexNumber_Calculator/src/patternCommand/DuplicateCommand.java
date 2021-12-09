@@ -8,6 +8,7 @@ import complexnumber_calculator.ComplexNumber;
 import java.util.Stack;
 
 /**
+ * Class for the specific stack command: Duplicate
  *
  * @author Group 15
  */

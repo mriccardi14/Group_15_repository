@@ -13,6 +13,7 @@ import patternCommand.OverCommand;
 import patternCommand.StackCommand;
 
 /**
+ * Test class for Over command
  *
  * @author Group 15
  */

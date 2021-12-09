@@ -13,8 +13,9 @@ import patternCommand.SwapCommand;
 import patternCommand.StackCommand;
 
 /**
+ * Test class for Swap command
  *
- * @author loren
+ * @author group_15
  */
 public class SwapCommandTest {
     

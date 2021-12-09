@@ -13,6 +13,7 @@ import patternCommand.DuplicateCommand;
 import patternCommand.StackCommand;
 
 /**
+ * Test class for Duplicate command
  *
  * @author Group 15
  */

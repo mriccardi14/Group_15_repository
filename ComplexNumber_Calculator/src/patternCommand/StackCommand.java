@@ -5,11 +5,15 @@
 package patternCommand;
 
 /**
- *
+ * Interface that represents an action on the stack
+ * 
  * @author Group 15
  */
 public interface StackCommand {
     
-    void execute();
+    /**
+     * Method  for execute the command on the stack
+     */
+    public void execute();
     
 }

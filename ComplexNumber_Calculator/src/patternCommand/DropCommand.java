@@ -8,7 +8,8 @@ import complexnumber_calculator.ComplexNumber;
 import java.util.Stack;
 
 /**
- *
+ * Class for the specific stack command: Drop
+ * 
  * @author Group 15
  */
 public class DropCommand implements StackCommand{

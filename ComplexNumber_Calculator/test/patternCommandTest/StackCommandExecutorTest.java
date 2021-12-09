@@ -17,6 +17,7 @@ import patternCommand.StackCommand;
 import patternCommand.StackCommandExecutor;
 
 /**
+ * Test class for stack command invoker
  *
  * @author Group 15
  */

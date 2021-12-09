@@ -107,10 +107,6 @@ public class FXMLDocumentController implements Initializable {
         variable_stack = new Stack<>();
         userOperations = new HashMap<>();
         
-        userOperations.put("Solve1Degree", "save >b >a <b inverse <a / restore");
-        userOperations.put("Solve2Degree", "save >c >b >a <b <b * 4 <a <c * * - sqrt >d <b inverse <d - 2 <a * / <b inverse <d + 2 <a * / restore");
-        userOperations.put("Hypothenuse", "save >b >a <a <a * <b <b * + sqrt restore");
-        
     }
    
     /**
@@ -636,6 +632,7 @@ public class FXMLDocumentController implements Initializable {
                             stack.push(z);
                             values.add(0,z);
                             textArea.clear();
+                            textField.clear();
                     }
                 }
                 textArea.clear();
@@ -981,25 +978,41 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,result);
     }  
 
+    /**
+     * Method associated with the Solve1Degree function that writes the parameterized
+     * equations on the textArea
+     * 
+     * @param event 
+     */
     @FXML
     private void eq_1_degree_functions(ActionEvent event) {
         
-        textField.setText("Solve1Degree");
-        textArea.setText(userOperations.get("Solve1Degree"));
+        textArea.setText("save >b >a <b inverse <a / restore");
     }
 
+    /**
+     * Method associated with the Solve2Degree function that writes the parameterized
+     * equations on the textArea
+     * 
+     * @param event 
+     */
     @FXML
     private void eq_2_degree_function(ActionEvent event) {
         
-        textField.setText("Solve2Degree");
-        textArea.setText(userOperations.get("Solve2Degree"));
+        textArea.setText("save >c >b >a <b <b * 4 <a <c * * - sqrt >d <b inverse <d - 2 <a * / <b inverse <d + 2 <a * / restore");
     }
 
+    /**
+     * Method associated with the Hypothenuse function that writes the parameterized
+     * equations on the textArea
+     * 
+     * @param event 
+     */
     @FXML
     private void hyp_eq_function(ActionEvent event) {
         
-        textField.setText("Hypothenuse");
-        textArea.setText(userOperations.get("Hypothenuse"));
+       
+        textArea.setText("save >b >a <a <a * <b <b * + sqrt restore");
     }
 
     @FXML
