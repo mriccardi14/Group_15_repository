@@ -908,6 +908,11 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void tan_function(ActionEvent event) {
+        ComplexNumber result = stack.pop();
+        result = Calculator.tan(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
     }
 
     

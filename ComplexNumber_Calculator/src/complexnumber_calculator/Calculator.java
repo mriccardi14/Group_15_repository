@@ -254,4 +254,11 @@ public class Calculator {
         ComplexNumber result = Calculator.multiply(logz, new ComplexNumber(0, -1));
         return result;
     }
+    public static ComplexNumber tan(ComplexNumber z){
+        
+        ComplexNumber sinz = Calculator.sin(z);
+        ComplexNumber cosz = Calculator.cos(z);
+        ComplexNumber result = Calculator.divide(sinz, cosz);
+        return result;
+    }
 }  
