@@ -410,6 +410,11 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    /**
+     * Support method for execute the storeVar_function method
+     * 
+     * @param c variable read from the ChoiceDialog
+     */
     private void support_storeVar(Character c){
         
         ComplexNumber z = stack.pop();
@@ -442,6 +447,11 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    /**
+     * Support method for execute the retrieveVar_function method
+     * 
+     * @param c variable read from the ChoiceDialog
+     */
     private void support_retrieveVar(Character c){
 
         ComplexNumber z = map_var.get(c);
@@ -667,6 +677,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the save button of the menu, that allows the user
      * to save on a file a defined operation
+     * 
      * @param event 
      */
     @FXML
@@ -771,6 +782,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Module button that calculates the module 
      * of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
@@ -786,6 +798,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Argument button that calculates the argument 
      * of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
@@ -824,6 +837,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Logarithm button that calculates the logarithm
      * of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
@@ -856,6 +870,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Sine button that calculates the sine 
      * of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
@@ -870,6 +885,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Cosine button that calculates the cosine 
      * of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
@@ -882,6 +898,12 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,result);
     }
     
+    /**
+     * Method associated with the Tan button that calculates the tangent 
+     * of the complex number from the top of the stack 
+     * 
+     * @param event 
+     */
     @FXML
     private void tan_function(ActionEvent event) {
         ComplexNumber result = stack.pop();
@@ -895,6 +917,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Arcsine button that calculates the arcsine 
      * of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
@@ -910,6 +933,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Arccosine button that calculates the arccosine 
      * of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
@@ -925,6 +949,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Method associated with the Arctangent button that calculates the
      * arctangent of the complex number from the top of the stack
+     * 
      * @param event 
      */
     @FXML
