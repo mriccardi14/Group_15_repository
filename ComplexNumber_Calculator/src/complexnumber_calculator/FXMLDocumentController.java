@@ -943,4 +943,16 @@ public class FXMLDocumentController implements Initializable {
         stack.push(result);
         values.add(0,result);
     }  
+
+    @FXML
+    private void eq_1_degree_functions(ActionEvent event) {
+    }
+
+    @FXML
+    private void eq_1_degree_function(ActionEvent event) {
+    }
+
+    @FXML
+    private void hyp_eq_function(ActionEvent event) {
+    }
 }
