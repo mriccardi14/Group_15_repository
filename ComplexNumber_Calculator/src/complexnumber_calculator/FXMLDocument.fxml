@@ -38,7 +38,7 @@
                   <Menu mnemonicParsing="false" text="Paramerized Operations">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#eq_1_degree_functions" text="Solve1Degree" />
-                      <MenuItem mnemonicParsing="false" onAction="#eq_1_degree_function" text="Solve2Degree" />
+                      <MenuItem mnemonicParsing="false" onAction="#eq_2_degree_function" text="Solve2Degree" />
                         <MenuItem mnemonicParsing="false" onAction="#hyp_eq_function" text="Hyphotenuse" />
                     </items>
                   </Menu>
@@ -74,6 +74,7 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
+            <Button fx:id="clc_btn" layoutX="298.0" layoutY="204.0" mnemonicParsing="false" onAction="#clc_function" text="Clear" />
          </children></AnchorPane>
     <AnchorPane fx:id="paneDown" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>

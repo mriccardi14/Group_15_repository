@@ -19,6 +19,7 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 /**
@@ -71,6 +72,16 @@ public class FXMLDocumentController implements Initializable {
     private static final int NUM_VARIABLES = 26;
     
     private Map<String,String> userOperations;
+    @FXML
+    private AnchorPane paneTop;
+    @FXML
+    private Menu file_menu;
+    @FXML
+    private MenuItem exit_btn;
+    @FXML
+    private AnchorPane paneDown;
+    @FXML
+    private Button clc_btn;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -95,6 +106,11 @@ public class FXMLDocumentController implements Initializable {
         
         variable_stack = new Stack<>();
         userOperations = new HashMap<>();
+        
+        userOperations.put("Solve1Degree", "save >b >a <b inverse <a / restore");
+        userOperations.put("Solve2Degree", "save >c >b >a <b <b * 4 <a <c * * - sqrt >d <b inverse <d - 2 <a * / <b inverse <d + 2 <a * / restore");
+        userOperations.put("Hypothenuse", "save >b >a <a <a * <b <b * + sqrt restore");
+        
     }
    
     /**
@@ -572,7 +588,7 @@ public class FXMLDocumentController implements Initializable {
             }
             else{
                 String[] user_op = textArea.getText().split(" ");
-                for(String op : user_op){
+                for(String op : user_op){ System.err.println(op + " | " );
                     switch(op){
                         case "+":
                             this.add_function(null);
@@ -588,6 +604,9 @@ public class FXMLDocumentController implements Initializable {
                             break;    
                         case "sqrt": 
                             this.sqrt_function(null);    
+                            break;
+                        case "inverse":
+                            this.inverse_function(null);
                             break;
                         case "dup": 
                             this.dup_function(null);    
@@ -965,14 +984,27 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void eq_1_degree_functions(ActionEvent event) {
         
-        
+        textField.setText("Solve1Degree");
+        textArea.setText(userOperations.get("Solve1Degree"));
     }
 
     @FXML
-    private void eq_1_degree_function(ActionEvent event) {
+    private void eq_2_degree_function(ActionEvent event) {
+        
+        textField.setText("Solve2Degree");
+        textArea.setText(userOperations.get("Solve2Degree"));
     }
 
     @FXML
     private void hyp_eq_function(ActionEvent event) {
+        
+        textField.setText("Hypothenuse");
+        textArea.setText(userOperations.get("Hypothenuse"));
+    }
+
+    @FXML
+    private void clc_function(ActionEvent event) {
+        
+        textArea.clear();
     }
 }
