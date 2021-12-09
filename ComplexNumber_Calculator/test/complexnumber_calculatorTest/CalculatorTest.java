@@ -249,6 +249,7 @@ public class CalculatorTest {
     //Fourth case
         assertEquals(new ComplexNumber(1.509342584590729, -4.869482842745701), Calculator.arccos(z5));
     }
+    
     @Test
     public void tanTest(){
     //First case
@@ -259,5 +260,17 @@ public class CalculatorTest {
         assertEquals(new ComplexNumber(0.0, -1.0), Calculator.tan(z4));
     //Fourth case
         assertEquals(new ComplexNumber(0.0, 1.0), Calculator.tan(z5));
+    }
+    
+    @Test
+    public void arctanTest(){
+    //First case
+        assertEquals(new ComplexNumber(0.0, 0.0), Calculator.arctan(z1));
+    //Second case
+        assertEquals(new ComplexNumber(-1.5480831870901082, -0.0481690859591253), Calculator.arctan(z3));
+    //Third case
+        assertEquals(new ComplexNumber(-1.5507687971709065, 0.04000546608223324), Calculator.arctan(z6));
+    //Fourth case
+        assertEquals(new ComplexNumber(1.3715349039622464, 0.09641702020107616), Calculator.arctan(z7));
     }
 }

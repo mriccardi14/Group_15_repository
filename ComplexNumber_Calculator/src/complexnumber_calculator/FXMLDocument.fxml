@@ -84,6 +84,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="sqrt_btn" layoutX="209.0" layoutY="125.0" mnemonicParsing="false" onAction="#sqrt_function" prefHeight="109.0" prefWidth="242.0" style="-fx-background-color: #FFD700;" text="√" GridPane.columnIndex="4">
@@ -222,6 +223,11 @@
                      </font>
                   </Button>
                   <Button fx:id="arccos_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#arccos_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arccos" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial Italic" size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="arctan_btn" layoutX="602.0" layoutY="276.0" mnemonicParsing="false" onAction="#arctan_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arctan" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>

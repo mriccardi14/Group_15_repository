@@ -76,7 +76,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button ins_op_btn, retr_op_btn, modify_op_btn, delete_op_btn, exec_op_btn;
     @FXML
-    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn, arcsin_btn, arccos_btn; 
+    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn, arcsin_btn, arccos_btn, arctan_btn; 
     @FXML
     private CheckBox def_op_ckb;
     @FXML
@@ -150,6 +150,7 @@ public class FXMLDocumentController implements Initializable {
         tan_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         arcsin_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         arccos_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
+        arctan_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         
         plusVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
         subVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
@@ -931,7 +932,6 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,result);
     }
 
-    
     /**
      * Method associated with the Arccosine button that calculates the arccosine 
      * of the complex number from the top of the stack
@@ -947,5 +947,18 @@ public class FXMLDocumentController implements Initializable {
         values.add(0,result);
     }
 
-    
+    /**
+     * Method associated with the Arctangent button that calculates the
+     * arctangent of the complex number from the top of the stack
+     * @param event 
+     */
+    @FXML
+    private void arctan_function(ActionEvent event) {
+        
+        ComplexNumber result = stack.pop();
+        result = Calculator.arctan(result);
+        values.remove(0);
+        stack.push(result);
+        values.add(0,result);
+    }  
 }

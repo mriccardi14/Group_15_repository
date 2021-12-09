@@ -254,11 +254,33 @@ public class Calculator {
         ComplexNumber result = Calculator.multiply(logz, new ComplexNumber(0, -1));
         return result;
     }
+    
+    /**
+     * Calculates the tangent of a complex number 
+     * @param z a Complex Number
+     * @return the tangent of the complex number
+     */
     public static ComplexNumber tan(ComplexNumber z){
         
         ComplexNumber sinz = Calculator.sin(z);
         ComplexNumber cosz = Calculator.cos(z);
         ComplexNumber result = Calculator.divide(sinz, cosz);
         return result;
+    }
+    
+    /**
+     * Calculates the arctangent of a complex number 
+     * @param z a Complex Number
+     * @return the arctangent of the complex number
+     */
+    public static ComplexNumber arctan(ComplexNumber z){
+         
+        ComplexNumber sumz = Calculator.addition(new ComplexNumber(0,1), z); 
+        ComplexNumber subz = Calculator.subtract(new ComplexNumber(0,1), z);
+        ComplexNumber divz = Calculator.divide(sumz, subz);
+        ComplexNumber logz = Calculator.log(divz);
+        ComplexNumber divz2 = Calculator.divide(new ComplexNumber (0,1), new ComplexNumber (2,0));
+        ComplexNumber multz = Calculator.multiply(logz, divz2);
+        return multz;
     }
 }  
