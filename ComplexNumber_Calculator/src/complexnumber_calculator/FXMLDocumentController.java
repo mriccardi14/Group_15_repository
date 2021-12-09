@@ -4,40 +4,20 @@
  */
 package complexnumber_calculator;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import patternCommand.*;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.fxml.*;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -84,7 +64,9 @@ public class FXMLDocumentController implements Initializable {
     
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
-    
+    private StackCommandExecutor executor;
+    private Deque<StackCommand> stackCommands;
+            
     private List<Character> listKeys;
     private ObservableList<Variable> variables;
     private Map<Character, ComplexNumber> map_var;
@@ -108,6 +90,8 @@ public class FXMLDocumentController implements Initializable {
         var_column.setCellValueFactory(new PropertyValueFactory("key"));
         val_column.setCellValueFactory(new PropertyValueFactory("valueS"));
         var_tab.setItems(variables);
+        
+        executor = new StackCommandExecutor(stackCommands);
         
         map_var = new HashMap<>();
         stack = new Stack<>();
@@ -351,7 +335,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void clear_function(ActionEvent event) {
         
-        stack.clear();
+        StackCommand command = new ClearCommand(stack);
+        executor.execute(command);
         values.clear();
         
         String title = "Clear Information";
@@ -367,7 +352,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void drop_function(ActionEvent event) {
         
-        stack.pop();
+        StackCommand command = new DropCommand(stack);
+        executor.execute(command);
         values.remove(0);
         
     }
@@ -380,7 +366,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void dup_function(ActionEvent event) {
         
-        stack.push(stack.peek());
+        StackCommand command = new DuplicateCommand(stack);
+        executor.execute(command);
         values.add(0,values.get(0));
     }
     
@@ -391,11 +378,9 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void swap_function(ActionEvent event) {
-        ComplexNumber z1, z2;
-        z1 = stack.pop();
-        z2 = stack.pop();
-        stack.push(z1);
-        stack.push(z2);
+        
+        StackCommand command = new SwapCommand(stack);
+        executor.execute(command);
         values.add(1,values.remove(0));
     }
 
@@ -407,11 +392,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void over_function(ActionEvent event) {
         
-        ComplexNumber z1,z2;
-        z1 = stack.pop();
-        z2 = stack.peek();
-        stack.push(z1);
-        stack.push(z2);
+        StackCommand command = new OverCommand(stack);
+        executor.execute(command);
         values.add(0,values.get(1));
     }
     
