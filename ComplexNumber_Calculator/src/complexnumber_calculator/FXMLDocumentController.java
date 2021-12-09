@@ -19,7 +19,6 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 /**
@@ -31,8 +30,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private SplitPane rootPane;
-    @FXML
-    private AnchorPane paneTop, paneDown;
     @FXML
     private TextArea textArea;
     @FXML
@@ -52,7 +49,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button clear_btn, drop_btn, dup_btn, swap_btn, over_btn;
     @FXML
-    private Button storeVar_btn, retrieve_btn, plusVar_btn, subVar_btn;
+    private Button storeVar_btn, retrieveVar_btn, plusVar_btn, subVar_btn;
     @FXML
     private Button ins_op_btn, retr_op_btn, modify_op_btn, delete_op_btn, exec_op_btn;
     @FXML
@@ -74,10 +71,6 @@ public class FXMLDocumentController implements Initializable {
     private static final int NUM_VARIABLES = 26;
     
     private Map<String,String> userOperations;
-    @FXML
-    private Menu file_menu;
-    @FXML
-    private MenuItem exit_btn;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,7 +90,7 @@ public class FXMLDocumentController implements Initializable {
         stack = new Stack<>();
         listKeys = new ArrayList<>();
         
-        this.listInitialize();
+        this.dataSetInitialize();
         this.viewInitialize();
         
         variable_stack = new Stack<>();
@@ -108,8 +101,7 @@ public class FXMLDocumentController implements Initializable {
      * Support method for view initialization
      */
     private void viewInitialize(){
-        
-//      insert_btn.disableProperty().bind(Bindings.when(textArea.textProperty().isEmpty()).then(true).otherwise(false));   //soluzione 2 bindings
+       
         SimpleListProperty slpr = new SimpleListProperty(values);
         
         add_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
@@ -153,7 +145,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Support method for variables stack
      */
-    private void listInitialize(){
+    private void dataSetInitialize(){
         
         for(int i=0; i<NUM_VARIABLES; i++){
             variables.add(new Variable((char)(97+i), new ComplexNumber()));
@@ -529,6 +521,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void restore_var_function(ActionEvent event) {
+        
         if(variable_stack.isEmpty()){
             String title = "Error in retrieving of variables' old values";
             String context = "There aren't previous saved copies";
@@ -716,7 +709,7 @@ public class FXMLDocumentController implements Initializable {
             String op = in.next().replaceAll("\\|", " ");
             textArea.setText(op);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
     
@@ -946,6 +939,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void eq_1_degree_functions(ActionEvent event) {
+        
+        
     }
 
     @FXML

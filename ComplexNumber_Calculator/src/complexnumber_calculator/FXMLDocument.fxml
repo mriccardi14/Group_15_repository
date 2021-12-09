@@ -99,22 +99,22 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="dup_btn" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#dup_function" prefHeight="109.0" prefWidth="234.0" style="-fx-background-color: #C0C0C0;" text="Duplicate" GridPane.rowIndex="1">
+                  <Button fx:id="dup_btn" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#dup_function" prefHeight="109.0" prefWidth="234.0" style="-fx-background-color: #C0C0C0;" text="Duplicate" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Italic" size="30.0" />
                      </font>
                   </Button>
-                  <Button fx:id="over_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#over_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.rowIndex="2">
+                  <Button fx:id="over_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#over_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Over" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="inverse_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#inverse_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Inverse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="inverse_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#inverse_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Inverse" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Italic" size="30.0" />
                      </font>
                   </Button>
-                  <Button fx:id="plusVar_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#plusVar_function" prefHeight="109.0" prefWidth="212.0" style="-fx-background-color: #C0C0C0;" text="+x" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <Button fx:id="plusVar_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#plusVar_function" prefHeight="109.0" prefWidth="212.0" style="-fx-background-color: #C0C0C0;" text="+x" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -124,17 +124,17 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="clear_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#clear_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Clear" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Button fx:id="clear_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#clear_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Clear" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="subVar_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#subVar_function" prefHeight="87.0" prefWidth="197.0" style="-fx-background-color: #C0C0C0;" text="-x" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <Button fx:id="subVar_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#subVar_function" prefHeight="87.0" prefWidth="197.0" style="-fx-background-color: #C0C0C0;" text="-x" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Button>
-                  <Button fx:id="swap_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#swap_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Swap" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <Button fx:id="swap_btn" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#swap_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Swap" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial" size="35.0" />
                      </font>
@@ -150,7 +150,7 @@
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="storeVar_btn" layoutX="585.0" layoutY="117.0" mnemonicParsing="false" onAction="#storeVar_function" prefHeight="82.0" prefWidth="197.0" style="-fx-background-color: #C0C0C0;" text="&gt;x" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="storeVar_btn" layoutX="585.0" layoutY="117.0" mnemonicParsing="false" onAction="#storeVar_function" prefHeight="82.0" prefWidth="197.0" style="-fx-background-color: #C0C0C0;" text="&gt;x" GridPane.rowIndex="2">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -179,7 +179,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="retrieve_btn" layoutX="585.0" layoutY="218.0" mnemonicParsing="false" onAction="#retrieveVar_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="&lt;x" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button fx:id="retrieveVar_btn" layoutX="585.0" layoutY="218.0" mnemonicParsing="false" onAction="#retrieveVar_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="&lt;x" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -239,7 +239,7 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button layoutX="799.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <Button layoutX="799.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
@@ -254,7 +254,7 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <Button layoutX="10.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
