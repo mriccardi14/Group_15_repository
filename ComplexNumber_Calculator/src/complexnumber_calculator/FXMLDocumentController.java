@@ -19,6 +19,8 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
@@ -46,19 +48,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<ComplexNumber, String> val_column;
     @FXML
-    private Button insert_btn, add_btn, sub_btn, mul_btn, div_btn, inverse_btn, sqrt_btn;
-    @FXML
-    private Button clear_btn, drop_btn, dup_btn, swap_btn, over_btn;
-    @FXML
-    private Button storeVar_btn, retrieveVar_btn, plusVar_btn, subVar_btn;
-    @FXML
-    private Button ins_op_btn, retr_op_btn, modify_op_btn, delete_op_btn, exec_op_btn;
-    @FXML
-    private Button mod_btn, arg_btn, pow_btn, log_btn, exp_btn, sin_btn, cos_btn, tan_btn, arcsin_btn, arccos_btn, arctan_btn; 
+    private Button insert_btn, ins_op_btn, retr_op_btn, modify_op_btn, delete_op_btn, exec_op_btn; 
     @FXML
     private CheckBox def_op_ckb;
     @FXML
-    private MenuItem save_btn, load_btn;
+    private MenuItem save_btn, load_btn, eq_1_degree, eq_2_degree, eq_3_hyp;; 
     
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
@@ -72,16 +66,6 @@ public class FXMLDocumentController implements Initializable {
     private static final int NUM_VARIABLES = 26;
     
     private Map<String,String> userOperations;
-    @FXML
-    private AnchorPane paneTop;
-    @FXML
-    private Menu file_menu;
-    @FXML
-    private MenuItem exit_btn;
-    @FXML
-    private AnchorPane paneDown;
-    @FXML
-    private Button clc_btn;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -114,35 +98,6 @@ public class FXMLDocumentController implements Initializable {
      */
     private void viewInitialize(){
        
-        SimpleListProperty slpr = new SimpleListProperty(values);
-        
-        add_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        sub_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        mul_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        div_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        inverse_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        sqrt_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        clear_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        drop_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        dup_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        swap_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        over_btn.disableProperty().bind(Bindings.when(Bindings.lessThan(slpr.sizeProperty(), 2)).then(true).otherwise(false));
-        storeVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        mod_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        arg_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        pow_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        log_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        exp_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        sin_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        cos_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        tan_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        arcsin_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        arccos_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        arctan_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        
-        plusVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        subVar_btn.disableProperty().bind(Bindings.when(slpr.emptyProperty()).then(true).otherwise(false));
-        
         insert_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(true).otherwise(false));
         exec_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         ins_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
@@ -151,6 +106,9 @@ public class FXMLDocumentController implements Initializable {
         delete_op_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         save_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         load_btn.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        eq_1_degree.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        eq_2_degree.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
+        eq_3_hyp.disableProperty().bind(Bindings.when(def_op_ckb.selectedProperty()).then(false).otherwise(true));
         
     }
     
@@ -224,12 +182,64 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
+     * Method associated with the pressed of the button "ENTER" on the keyboard
+     * that inserts the number on the Text Area in the stack
+     * 
+     * @param event 
+     */
+    @FXML
+    private void insert_function2(KeyEvent event) {
+        
+        if(!def_op_ckb.isDisable())
+            return;
+        
+        if(event.getCode().equals(KeyCode.ENTER))
+            this.insert_function(null);
+    }
+    
+    /**
+     * Method associated with the button "Clear" on the GUI that allows to
+     * clears the Text Area
+     * 
+     * @param event 
+     */
+    @FXML
+    private void clc_function(ActionEvent event) {
+        
+        textArea.clear();
+    }
+
+    /**
+     * Method associated with the released of the button "ENTER" on the keyboard
+     * that clears the Text Area
+     * 
+     * @param event 
+     */
+    @FXML
+    private void clc_function2(KeyEvent event) {
+        
+        if(!def_op_ckb.isDisable())
+            return;
+        
+        if(event.getCode().equals(KeyCode.ENTER))
+            this.clc_function(null);
+    }
+    
+    /**
      * Method associated with the Sum button 
      * 
      * @param event 
      */
     @FXML
     private void add_function(ActionEvent event) {
+        
+        if(stack.size() < 2){
+            String title = "Error in execution of addition operation";
+            String header = "At least two operands are required";
+            String context = "Operation Failure, add operands and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         ComplexNumber result;
         result = Calculator.addition(stack.pop(), stack.pop());
@@ -248,6 +258,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void sub_function(ActionEvent event) {
+        
+        if(stack.size() < 2){
+            String title = "Error in execution of subtraction operation";
+            String header = "At least two operands are required";
+            String context = "Operation Failure, add operands and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         ComplexNumber result, minuendo, subtracting;
         
@@ -268,6 +286,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void mul_function(ActionEvent event) {
         
+        if(stack.size() < 2){
+            String title = "Error in execution of multiply operation";
+            String header = "At least two operands are required";
+            String context = "Operation Failure, add operands and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result;
         result = Calculator.multiply(stack.pop(), stack.pop());
         
@@ -285,6 +311,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void div_function(ActionEvent event) {
+        
+        if(stack.size() < 2){
+            String title = "Error in execution of division operation";
+            String header = "At least two operands are required";
+            String context = "Operation Failure, add operands and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         ComplexNumber result, dividend, divider;
         
@@ -305,6 +339,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void inverse_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of inverse operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.inverse(result);
         values.remove(0);
@@ -320,6 +362,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void sqrt_function(ActionEvent event) {
+        
+        if(stack.isEmpty()){
+            String title = "Error in execution of sqrt operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         ComplexNumber result = stack.pop();
         result = Calculator.root(result);
@@ -339,6 +389,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void clear_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Clear Information";
+            String context = "The Stack is already empty";
+            this.alertMessage(AlertType.INFORMATION, title, null, context);
+            return;
+        }
+        
         StackCommand command = new ClearCommand(stack);
         executor.execute(command);
         values.clear();
@@ -356,6 +413,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void drop_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of drop operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, the stack is empty";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         StackCommand command = new DropCommand(stack);
         executor.execute(command);
         values.remove(0);
@@ -370,6 +435,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void dup_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of duplicate operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, the stack is empty";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         StackCommand command = new DuplicateCommand(stack);
         executor.execute(command);
         values.add(0,values.get(0));
@@ -383,6 +456,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void swap_function(ActionEvent event) {
         
+        if(stack.size() < 2){
+            String title = "Error in execution of swap operation";
+            String header = "At least two operands are required";
+            String context = "Operation Failure, add operands and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         StackCommand command = new SwapCommand(stack);
         executor.execute(command);
         values.add(1,values.remove(0));
@@ -395,6 +476,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void over_function(ActionEvent event) {
+        
+        if(stack.size() < 2){
+            String title = "Error in execution of over operation";
+            String header = "At least two operands are required";
+            String context = "Operation Failure, add operands and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         StackCommand command = new OverCommand(stack);
         executor.execute(command);
@@ -411,6 +500,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void storeVar_function(ActionEvent event) {
             
+        if(stack.isEmpty()){
+            String title = "Error in storing an operand in a variable";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ChoiceDialog<Character> dialog = new ChoiceDialog<>('x',listKeys); 
         dialog.setTitle("Store Variable"); 
         dialog.setHeaderText("Select the variable in which store the value");
@@ -481,6 +578,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void plusVar_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in addition an operand from a value stored in a variable";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKeys.get(0), listKeys); 
         dialog.setTitle("Add Variable"); 
         dialog.setHeaderText("Select the variable in which the value is stored");
@@ -505,6 +610,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void subVar_function(ActionEvent event) {
+        
+        if(stack.isEmpty()){
+            String title = "Error in subtracting an operand from a value stored in a variable";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         ChoiceDialog<Character> dialog = new ChoiceDialog<>(listKeys.get(0), listKeys); 
         dialog.setTitle("Sub Variable"); 
@@ -804,6 +917,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void mod_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of module operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber z = stack.pop(), complex_result;
         complex_result = new ComplexNumber(Calculator.mod(z), 0);
         values.remove(0);
@@ -820,6 +941,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void arg_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of argument operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber z = stack.pop(), complex_result;
         complex_result = new ComplexNumber(Calculator.arg(z), 0);
         values.remove(0);
@@ -835,6 +964,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void pow_function(ActionEvent event) {
+        
+        if(stack.isEmpty()){
+            String title = "Error in execution of power operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Power function");
@@ -859,6 +996,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void log_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of logarithm operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.log(result);
         values.remove(0);
@@ -876,6 +1021,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void exp_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of exponential operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.exp(result);
         values.remove(0);
@@ -891,6 +1044,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void sin_function(ActionEvent event) {   
+        
+        if(stack.isEmpty()){
+            String title = "Error in execution of sine operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.sin(result);
         values.remove(0);
@@ -907,6 +1069,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void cos_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of cosine operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.cos(result);
         values.remove(0);
@@ -922,6 +1092,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void tan_function(ActionEvent event) {
+        
+        if(stack.isEmpty()){
+            String title = "Error in execution of tangent operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.tan(result);
         values.remove(0);
@@ -939,6 +1118,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void arcsin_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of arc-sine operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.arcsin(result);
         values.remove(0);
@@ -955,6 +1142,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void arccos_function(ActionEvent event) {
         
+        if(stack.isEmpty()){
+            String title = "Error in execution of arc-cosine operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber result = stack.pop();
         result = Calculator.arccos(result);
         values.remove(0);
@@ -970,6 +1165,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void arctan_function(ActionEvent event) {
+        
+        if(stack.isEmpty()){
+            String title = "Error in execution of arc-tangent operation";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
         
         ComplexNumber result = stack.pop();
         result = Calculator.arctan(result);
@@ -1010,14 +1213,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void hyp_eq_function(ActionEvent event) {
-        
        
         textArea.setText("save >b >a <a <a * <b <b * + sqrt restore");
-    }
-
-    @FXML
-    private void clc_function(ActionEvent event) {
-        
-        textArea.clear();
     }
 }

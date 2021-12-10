@@ -12,7 +12,7 @@
   <items>
     <AnchorPane fx:id="paneTop" minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
-            <TextArea fx:id="textArea" layoutX="11.0" layoutY="49.0" prefHeight="144.0" prefWidth="505.0" promptText="Example number: (a + bi) or (a - bi)&#9;&#9;Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="49.0">
+            <TextArea fx:id="textArea" layoutX="11.0" layoutY="49.0" onKeyPressed="#insert_function2" onKeyReleased="#clc_function2" prefHeight="144.0" prefWidth="505.0" promptText="Example number: (a + bi) or (a - bi)&#9;&#9;Example definition operation: operator operator operator ...." AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="49.0">
                <font>
                   <Font size="22.0" />
                </font></TextArea>
@@ -21,7 +21,7 @@
                 <TableColumn fx:id="values_column" prefWidth="232.0" text="STACK" />
               </columns>
             </TableView>
-            <Button fx:id="insert_btn" layoutX="388.0" layoutY="199.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
+            <Button fx:id="insert_btn" layoutX="388.0" layoutY="202.0" mnemonicParsing="false" onAction="#insert_function" prefHeight="37.0" prefWidth="131.0" text="Insert value" />
             <Button fx:id="exec_op_btn" layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#exec_op_function" prefHeight="37.0" prefWidth="157.0" text="Execute Operation" />
             <CheckBox fx:id="def_op_ckb" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" text="Operation/Value" textFill="WHITE">
                <font>
@@ -37,9 +37,9 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Paramerized Operations">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#eq_1_degree_functions" text="Solve1Degree" />
-                      <MenuItem mnemonicParsing="false" onAction="#eq_2_degree_function" text="Solve2Degree" />
-                        <MenuItem mnemonicParsing="false" onAction="#hyp_eq_function" text="Hyphotenuse" />
+                        <MenuItem fx:id="eq_1_degree" mnemonicParsing="false" onAction="#eq_1_degree_functions" text="Solve1Degree" />
+                      <MenuItem fx:id="eq_2_degree" mnemonicParsing="false" onAction="#eq_2_degree_function" text="Solve2Degree" />
+                        <MenuItem fx:id="eq_3_hyp" mnemonicParsing="false" onAction="#hyp_eq_function" text="Hyphotenuse" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Exit">
@@ -74,7 +74,7 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <Button fx:id="clc_btn" layoutX="298.0" layoutY="204.0" mnemonicParsing="false" onAction="#clc_function" text="Clear" />
+            <Button fx:id="clc_btn" layoutX="309.0" layoutY="202.0" mnemonicParsing="false" onAction="#clc_function" text="Clear" />
          </children></AnchorPane>
     <AnchorPane fx:id="paneDown" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>
