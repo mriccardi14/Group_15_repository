@@ -12,8 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -532,7 +530,8 @@ public class FXMLDocumentController implements Initializable {
         for(Variable var: variables){
             if(c.equals(var.getKey())){
                 var.setValue(z);
-                break;
+                var_tab.refresh();
+                break; 
             }
         }
     }
