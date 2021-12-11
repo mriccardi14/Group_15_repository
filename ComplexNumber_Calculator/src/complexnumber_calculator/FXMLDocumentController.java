@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -187,8 +189,8 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void insert_function2(KeyEvent event) {
-        
-        if(!def_op_ckb.isDisable())
+         
+        if(def_op_ckb.selectedProperty().get())
             return;
         
         if(event.getCode().equals(KeyCode.ENTER))
@@ -216,7 +218,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void clc_function2(KeyEvent event) {
         
-        if(!def_op_ckb.isDisable())
+        if(def_op_ckb.selectedProperty().get())
             return;
         
         if(event.getCode().equals(KeyCode.ENTER))
@@ -688,63 +690,90 @@ public class FXMLDocumentController implements Initializable {
             this.alertMessage(AlertType.ERROR, title, null, context);
         }
         else{
-            if(stack.isEmpty()){
-                String title = "Error in execution of user operation";
-                String context = "Stack empty, insert the operands for the operations";
-                this.alertMessage(AlertType.ERROR, title, null, context);
-            }
-            else{
-                String[] user_op = textArea.getText().split(" ");
-                for(String op : user_op){ System.err.println(op + " | " );
-                    switch(op){
-                        case "+":
-                            this.add_function(null);
+            String[] user_op = textArea.getText().split(" ");
+            for(String op : user_op){
+                switch(op){
+                    case "+":
+                        this.add_function(null);
+                        break;
+                    case "-": 
+                        this.sub_function(null);    
+                        break;
+                    case "*": 
+                        this.mul_function(null);    
+                        break;
+                    case "/": 
+                        this.div_function(null);    
+                        break;    
+                    case "sqrt": 
+                        this.sqrt_function(null);    
+                        break;
+                    case "inverse":
+                        this.inverse_function(null);
+                        break;
+                    case "dup": 
+                        this.dup_function(null);    
+                        break;
+                    case "drop": 
+                        this.drop_function(null);    
+                        break;    
+                    case "swap": 
+                        this.swap_function(null);    
+                        break;    
+                    case "over":
+                        this.over_function(null);
+                        break;
+                    case "save":
+                        this.save_var_function(null);
+                        break;
+                    case "restore":
+                        this.restore_var_function(null);
+                        break;
+                    case "mod": 
+                        this.mod_function(null);    
+                        break;
+                    case "arg": 
+                        this.arg_function(null);    
+                        break;
+                    case "exp": 
+                        this.exp_function(null);    
+                        break;
+                    case "log": 
+                        this.log_function(null);    
+                        break;
+                    case "sin": 
+                        this.sin_function(null);    
+                        break;
+                    case "cos": 
+                        this.cos_function(null);    
+                        break;
+                    case "tan": 
+                        this.tan_function(null);    
+                        break;
+                    case "arcsin": 
+                        this.arcsin_function(null);    
+                        break;
+                    case "arccos": 
+                        this.arccos_function(null);    
+                        break;
+                    case "arctan": 
+                        this.arctan_function(null);    
+                        break;    
+                    default:
+                        if(op.startsWith(">")){
+                            this.support_storeVar(op.charAt(1));
                             break;
-                        case "-": 
-                            this.sub_function(null);    
+                        }
+                        if(op.startsWith("<")){
+                            this.support_retrieveVar(op.charAt(1));
                             break;
-                        case "*": 
-                            this.mul_function(null);    
-                            break;
-                        case "/": 
-                            this.div_function(null);    
-                            break;    
-                        case "sqrt": 
-                            this.sqrt_function(null);    
-                            break;
-                        case "inverse":
-                            this.inverse_function(null);
-                            break;
-                        case "dup": 
-                            this.dup_function(null);    
-                            break;        
-                        case "swap": 
-                            this.swap_function(null);    
-                            break;    
-                        case "over":
-                            this.over_function(null);
-                            break;
-                        case "save":
-                            this.save_var_function(null);
-                            break;
-                        case "restore":
-                            this.restore_var_function(null);
-                            break;
-                        default:
-                            if(op.startsWith(">")){
-                                this.support_storeVar(op.charAt(1));
-                                break;
-                            }
-                            if(op.startsWith("<")){
-                                this.support_retrieveVar(op.charAt(1));
-                                break;
-                            }
-                            ComplexNumber z = ComplexNumber.parseComplex(op);
-                            stack.push(z);
-                            values.add(0,z);
-                            textArea.clear();
-                            textField.clear();
-                    }
+                        }
+                        ComplexNumber z = ComplexNumber.parseComplex(op);
+                        stack.push(z);
+                        values.add(0,z);
+                        textArea.clear();
+                        textField.clear();
+               
                 }
                 textArea.clear();
             }
