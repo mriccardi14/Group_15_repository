@@ -57,7 +57,7 @@
             <Button fx:id="retr_op_btn" layoutX="179.0" layoutY="347.0" mnemonicParsing="false" onAction="#retrieve_op_function" prefHeight="37.0" prefWidth="157.0" text="Retrieve Operation" />
             <Button fx:id="delete_op_btn" layoutX="179.0" layoutY="398.0" mnemonicParsing="false" onAction="#delete_op_func" prefHeight="37.0" prefWidth="157.0" text="Delete Operation" />
             <Button fx:id="modify_op_btn" layoutX="14.0" layoutY="398.0" mnemonicParsing="false" onAction="#modify_op_function" prefHeight="37.0" prefWidth="157.0" text="Modify Operation" />
-            <TableView fx:id="var_tab" layoutX="762.0" layoutY="50.0" prefHeight="391.0" prefWidth="220.0">
+            <TableView fx:id="var_tab" layoutX="762.0" layoutY="50.0" prefHeight="380.0" prefWidth="220.0">
               <columns>
                 <TableColumn fx:id="var_column" prefWidth="77.0" text="VAR" />
                 <TableColumn fx:id="val_column" prefWidth="135.0" text="VALUE" />
@@ -190,7 +190,7 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="sin_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#sin_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Sin" GridPane.rowIndex="4">
+                  <Button fx:id="sin_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#sin_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Sin" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
@@ -215,27 +215,27 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="arcsin_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#arcsin_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arcsin" GridPane.rowIndex="5">
+                  <Button fx:id="arcsin_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#arcsin_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arcsin" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="tan_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#tan_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Tan" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Button fx:id="tan_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#tan_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Tan" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cos_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#cos_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Cos" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button fx:id="cos_btn" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#cos_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Cos" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="arccos_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#arccos_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arccos" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Button fx:id="arccos_btn" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#arccos_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arccos" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="arctan_btn" layoutX="602.0" layoutY="276.0" mnemonicParsing="false" onAction="#arctan_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arctan" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <Button fx:id="arctan_btn" layoutX="602.0" layoutY="276.0" mnemonicParsing="false" onAction="#arctan_function" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" text="Arctan" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
@@ -245,7 +245,7 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                  <Button layoutX="10.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
@@ -255,7 +255,7 @@
                         <Font name="Arial Italic" size="35.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <Button layoutX="10.0" layoutY="342.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="217.0" style="-fx-background-color: #C0C0C0;" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>

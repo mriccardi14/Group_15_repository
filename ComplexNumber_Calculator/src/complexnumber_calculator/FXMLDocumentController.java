@@ -596,6 +596,7 @@ public class FXMLDocumentController implements Initializable {
             for(Variable var: variables){
                 if(c.equals(var.getKey())){
                     var.setValue(Calculator.addition(var.getValueC(), stack.peek()));
+                    var_tab.refresh();
                     break;
                 }
             }   
@@ -629,6 +630,7 @@ public class FXMLDocumentController implements Initializable {
             for(Variable var: variables){
                 if(c.equals(var.getKey())){
                     var.setValue(Calculator.subtract(var.getValueC(), stack.peek()));
+                    var_tab.refresh();
                     break;
                 }
             }
