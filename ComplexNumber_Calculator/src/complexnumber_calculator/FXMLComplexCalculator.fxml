@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane fx:id="rootPane" dividerPositions="0.5241199478487614" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="867.0" prefWidth="998.0" style="-fx-background-color: #2F4F4F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complexnumber_calculator.FXMLDocumentController">
+<SplitPane fx:id="rootPane" dividerPositions="0.5241199478487614" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="867.0" prefWidth="998.0" style="-fx-background-color: #2F4F4F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complexnumber_calculator.FXMLComplexNumberController">
   <items>
     <AnchorPane fx:id="paneTop" minHeight="0.0" minWidth="0.0" prefHeight="89.0" prefWidth="776.0" style="-fx-background-color: #2F4F4F;">
          <children>

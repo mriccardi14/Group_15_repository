@@ -27,7 +27,7 @@ import javafx.stage.FileChooser;
  * 
  * @author Group 15
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLComplexNumberController implements Initializable {
 
     @FXML
     private SplitPane rootPane;
@@ -855,7 +855,7 @@ public class FXMLDocumentController implements Initializable {
                     String user_op = textArea.getText().replaceAll(" ", "|");
                     pw.write(user_op);
                 } catch (IOException ex) {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMLComplexNumberController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
