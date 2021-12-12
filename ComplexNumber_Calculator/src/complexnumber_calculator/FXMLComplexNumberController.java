@@ -54,16 +54,16 @@ public class FXMLComplexNumberController implements Initializable {
     
     private ObservableList<ComplexNumber> values;   //Auxiliary Data Structure for the Calculator view 
     private Stack<ComplexNumber> stack;             //Auxiliary Data Structure for the Calculator memory   
-    private StackCommandExecutor executor;
+    private StackCommandExecutor executor;          
     private Deque<StackCommand> stackCommands;
             
-    private List<Character> listKeys;
-    private ObservableList<Variable> variables;
-    private Map<Character, ComplexNumber> map_var;
-    private Stack<Variable> variable_stack;
+    private List<Character> listKeys;               //Auxiliary Data Structure for the characters from a to z
+    private ObservableList<Variable> variables;     //Auxiliary Data Structure for the Variables view
+    private Map<Character, ComplexNumber> map_var;  //Auxiliary Data Structure for the operations on Variables
+    private Stack<Variable> variable_stack;         //Auxiliary Data Structure for the Variables' data storing
     private static final int NUM_VARIABLES = 26;
     
-    private Map<String,String> userOperations;
+    private Map<String,String> userOperations;      //Auxiliary Data Structure for the User Defined Operations storing
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -524,6 +524,14 @@ public class FXMLComplexNumberController implements Initializable {
      */
     private void support_storeVar(Character c){
         
+        if(stack.isEmpty()){
+            String title = "Error in storing an operand in a variable";
+            String header = "At least one operand is required";
+            String context = "Operation Failure, add operand and try again";
+            this.alertMessage(AlertType.ERROR, title, header, context);
+            return;
+        }
+        
         ComplexNumber z = stack.pop();
         values.remove(0);
         map_var.put(c, z);
@@ -765,16 +773,33 @@ public class FXMLComplexNumberController implements Initializable {
                             this.support_storeVar(op.charAt(1));
                             break;
                         }
-                        if(op.startsWith("<")){
-                            this.support_retrieveVar(op.charAt(1));
-                            break;
+                        else{
+                            if(op.startsWith("<")){
+                                this.support_retrieveVar(op.charAt(1));
+                                break;
+                            }
+                            else{
+                                if(Character.isDigit(op.charAt(0))){
+                                    ComplexNumber z = ComplexNumber.parseComplex(op);
+                                    stack.push(z);
+                                    values.add(0,z);
+                                    textArea.clear();
+                                    textField.clear();
+                                }
+                                else{
+                                    if(userOperations.containsKey(op)){
+                                        textField.setText(op);
+                                        this.retrieve_op_function(null);
+                                        this.exec_op_function(null);
+                                    }
+                                    else{
+                                        String title = "Error in retrieving an operation";
+                                        String context = "The specified operation hasn't been found";
+                                        this.alertMessage(AlertType.ERROR, title, null, context);
+                                    }
+                                }
+                            }
                         }
-                        ComplexNumber z = ComplexNumber.parseComplex(op);
-                        stack.push(z);
-                        values.add(0,z);
-                        textArea.clear();
-                        textField.clear();
-               
                 }
                 textArea.clear();
             }
@@ -822,6 +847,7 @@ public class FXMLComplexNumberController implements Initializable {
             String operation = userOperations.get(textField.getText());
             if(operation != null){
                 textArea.setText(operation);
+            textField.clear();
             }
             else{
                 String title = "Error in retrieving an operation";
